@@ -83,6 +83,10 @@ COPY --link composer.* symfony.* ./
 RUN set -eux; \
 	composer install --no-cache --prefer-dist --no-dev --no-autoloader --no-scripts --no-progress
 
+# Install node packages
+COPY --link package.json package-lock.json ./
+RUN npm install
+
 # copy sources
 COPY --link . ./
 RUN rm -Rf frankenphp/
