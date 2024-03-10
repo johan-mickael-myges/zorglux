@@ -12,7 +12,7 @@ class Typography
         public string $variant = 'default',
         public string $tag = 'span',
         public string $align = 'left',
-        public string $style = 'normal'
+        public string $fstyle = 'normal'
     ) {
     }
 
@@ -47,7 +47,8 @@ class Typography
 
     public function getFontStyleClass(): string
     {
-        return match ($this->style) {
+        return match ($this->fstyle) {
+            'extrabold' => 'font-extrabold',
             'bold' => 'font-bold',
             'semibold' => 'font-semibold',
             'italic' => 'font-italic',
