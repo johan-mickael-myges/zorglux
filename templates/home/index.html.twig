@@ -1,35 +1,33 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <header>
-        <twig:Typography tag="h1" variant="body1" fstyle="extrabold">
-            Welcome to Zorglux
+{% block body_header %}
+    {% include '@common/navbar.html.twig' %}
+{% endblock %}
+
+{% block body_main %}
+    <section id="about">
+        <twig:Typography tag="h2" variant="body3">
+            About Zorglux
         </twig:Typography>
-    </header>
-    <main>
-        <section id="about">
-            <twig:Typography tag="h2" variant="body3">
-                About Zorglux
-            </twig:Typography>
-            <p>Zorglux is a platform dedicated to providing a space for everyone to share their stories, ideas, and experiences through blogging.</p>
-            <p>Our mission is to empower individuals to express themselves freely and connect with others through meaningful content.</p>
-        </section>
-        <section id="blog">
-            <twig:Typography tag="h2" variant="body3">
-                Latest Blog Posts
-            </twig:Typography>
-            <!-- Include your latest blog posts here -->
-        </section>
-        <section id="contact">
-            <h2>Contact Us</h2>
-            <p>If you have any questions or feedback, feel free to reach out to us:</p>
-            <ul>
-                <li>Email: contact@zorglux.com</li>
-                <li>Phone: 123-456-7890</li>
-            </ul>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2024 Zorglux. All rights reserved.</p>
-    </footer>
+        <p>Zorglux is a platform dedicated to providing a space for everyone to share their stories, ideas, and experiences through blogging.</p>
+        <p>Our mission is to empower individuals to express themselves freely and connect with others through meaningful content.</p>
+    </section>
+    <section id="blog">
+        <twig:Typography tag="h2" variant="body3">
+            Latest Blog Posts
+        </twig:Typography>
+        <!-- Include your latest blog posts here -->
+    </section>
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p>If you have any questions or feedback, feel free to reach out to us:</p>
+        <ul>
+            <li>Email: contact@zorglux.com</li>
+            <li>Phone: 123-456-7890</li>
+        </ul>
+    </section>
+{% endblock %}
+
+{% block body_footer %}
+    {% include '@common/footer.html.twig' %}
 {% endblock %}

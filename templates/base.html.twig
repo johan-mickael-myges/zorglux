@@ -17,6 +17,14 @@
         {% endblock %}
     </head>
     <body class="px-5 sm:px-20 md:px-40 lg:px-60 xl:px-80 2xl:px-96">
-        {% block body %}{% endblock %}
+        <header>
+            {% block body_header %}{% endblock %}
+        </header>
+        <main>
+            {% block body_main %}{% endblock %}
+        </main>
+        <footer>
+            {% block body_footer %}{% endblock %}
+        </footer>
     </body>
 </html>
