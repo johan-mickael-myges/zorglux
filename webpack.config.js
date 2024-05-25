@@ -1,20 +1,21 @@
-const Encore = require('@symfony/webpack-encore');
+const Encore = require("@symfony/webpack-encore");
+const TerserPlugin = require("terser-webpack-plugin");
 
 // Manually configure the runtime environment if not already configured yet by the "encore" command.
 // It's useful when you use tools that rely on webpack.config.js file.
 if (!Encore.isRuntimeEnvironmentConfigured()) {
-  Encore.configureRuntimeEnvironment(process.env.NODE_ENV || 'dev');
+  Encore.configureRuntimeEnvironment(process.env.NODE_ENV || "dev");
 }
 
 Encore
   // directory where compiled assets will be stored
-  .setOutputPath('public/build/')
+  .setOutputPath("public/build/")
   // public path used by the web server to access the output path
-  .setPublicPath('/build')
+  .setPublicPath("/build")
   // copy assets images
   .copyFiles({
-    from: './assets/images',
-    to: 'images/[path][name].[ext]',
+    from: "./assets/images",
+    to: "images/[path][name].[ext]",
     pattern: /\.(png|jpg|jpeg|svg)$/,
   })
   // only needed for CDN's or subdirectory deploy
@@ -26,7 +27,7 @@ Encore
    * Each entry will result in one JavaScript file (e.g. app.js)
    * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
    */
-  .addEntry('app', './assets/app.js')
+  .addEntry("app", "./assets/app.js")
 
   // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
   .splitEntryChunks()
@@ -55,15 +56,48 @@ Encore
 
   // enables and configure @babel/preset-env polyfills
   .configureBabelPresetEnv((config) => {
-    config.useBuiltIns = 'usage';
-    config.corejs = '3.23';
+    config.useBuiltIns = "usage";
+    config.corejs = "3.23";
   })
 
   // enables Sass/SCSS support
   //.enableSassLoader()
 
   // enable PostCSS support
-  .enablePostCssLoader();
+  // minify css
+  .enablePostCssLoader((options) => {
+    options.postcssOptions = {
+      // minimize css
+      plugins: [require("cssnano")()],
+    };
+  })
+
+  // minimize js
+  .configureTerserPlugin((options) => {
+    options.terserOptions = {
+      compress: {
+        drop_console: true, // Remove console statements
+        drop_debugger: true, // Remove debugger statements
+      },
+      mangle: {
+        safari10: true, // Fix for Safari 10/11 bugs
+      },
+      output: {
+        comments: false, // Remove comments
+      },
+    };
+  })
+
+  .configureImageRule({
+    // tell Webpack it should consider inlining
+    type: "asset",
+    //maxSize: 4 * 1024, // 4 kb - the default is 8kb
+  })
+
+  .configureFontRule({
+    type: "asset",
+    //maxSize: 4 * 1024
+  });
 
 // uncomment if you use TypeScript
 //.enableTypeScriptLoader()
@@ -78,4 +112,27 @@ Encore
 // uncomment if you're having problems with a jQuery plugin
 //.autoProvidejQuery()
 
-module.exports = Encore.getWebpackConfig();
+const optimization = {
+  minimize: true,
+  minimizer: [
+    new TerserPlugin({
+      terserOptions: {
+        compress: {
+          drop_console: true, // Remove console statements
+          drop_debugger: true, // Remove debugger statements
+        },
+        mangle: {
+          safari10: true, // Fix for Safari 10/11 bugs
+        },
+        output: {
+          comments: false, // Remove comments
+        },
+      },
+    }),
+  ],
+};
+
+module.exports = {
+  ...Encore.getWebpackConfig(),
+  optimization,
+};
