@@ -14,13 +14,14 @@
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
+        <script src="https://kit.fontawesome.com/e164d72746.js" crossorigin="anonymous"></script>
     </head>
-    <body class="px-5 sm:px-20 md:px-40 lg:px-60 xl:px-80 2xl:px-96">
-        <header>
+    <body>
+        <header class="sticky top-0 left-0 bg-white">
             {% block body_header %}{% endblock %}
         </header>
-        <main>
-            {% block body_main %}{% endblock %}
+        <main class="px-5 sm:px-20 md:px-40 lg:px-60 xl:px-80 2xl:px-96">
+            {% block body %}{% endblock %}
         </main>
         <footer>
             {% block body_footer %}{% endblock %}

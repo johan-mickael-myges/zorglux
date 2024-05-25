@@ -9,6 +9,7 @@ For instance, use the following command to install Symfony 6.4:
 On Linux:
 
     SYMFONY_VERSION=6.4.* docker compose up -d --wait
+
 On Windows:
 
     set SYMFONY_VERSION=6.4.* && docker compose up -d --wait&set SYMFONY_VERSION=
@@ -25,7 +26,7 @@ On Linux:
     STABILITY=dev docker compose up -d --wait
 
 On Windows:
-    
+
     set STABILITY=dev && docker compose up -d --wait&set STABILITY=
 
 ## Customizing the Server Name

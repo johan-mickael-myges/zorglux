@@ -1,11 +1,17 @@
-<nav >
-    <twig:Typography tag="h1" variant="body1" fstyle="extrabold">
-        Welcome to Zorglux
-    </twig:Typography>
-
-    <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/about">About</a></li>
-        <li><a href="/contact">Contact</a></li>
-    </ul>
+<nav>
+    <div class="flex flex-row items-center justify-between p-4 shadow">
+        <div class="flex flex-row items-center">
+            <a href="{{ path('public_index') }}">
+                <img src="{{ asset('build/images/logo.svg') }}" alt="zorglux logo" class="w-8 mr-4">
+            </a>
+            <div>
+                {% include '@components/search-form.html.twig' %}
+            </div>
+        </div>
+        <div class="flex flex-row items-center">
+            <a href="{{ path('public_about') }}" class="mr-2 text-gray-500">About</a>
+            <a href="{{ path('signin') }}" class="mr-2">Sign In</a>
+            <twig:Avatar size="30"/>
+        </div>
+    </div>
 </nav>

@@ -6,6 +6,7 @@ If you prefer to work with MySQL, follow these steps:
 First, install the `symfony/orm-pack` package as described: `docker compose exec php composer req symfony/orm-pack`
 
 ## Docker Configuration
+
 Change the database image to use MySQL instead of PostgreSQL in `compose.yaml`:
 
 ```diff
@@ -31,11 +32,13 @@ Change the database image to use MySQL instead of PostgreSQL in `compose.yaml`:
 ```
 
 Depending on the database configuration, modify the environment in the same file at `services.php.environment.DATABASE_URL`
+
 ```
 DATABASE_URL: mysql://${MYSQL_USER:-app}:${MYSQL_PASSWORD:-!ChangeMe!}@database:3306/${MYSQL_DATABASE:-app}?serverVersion=${MYSQL_VERSION:-8}&charset=${MYSQL_CHARSET:-utf8mb4}
 ```
 
 Since we changed the port, we also have to define this in the `compose.override.yaml`:
+
 ```diff
 ###> doctrine/doctrine-bundle ###
   database:
@@ -46,6 +49,7 @@ Since we changed the port, we also have to define this in the `compose.override.
 ```
 
 Last but not least, we need to install the MySQL driver in `Dockerfile`:
+
 ```diff
 ###> doctrine/doctrine-bundle ###
 -RUN install-php-extensions pdo_pgsql
@@ -54,19 +58,23 @@ Last but not least, we need to install the MySQL driver in `Dockerfile`:
 ```
 
 ## Change Environment
+
 Change the database configuration in `.env`:
 
-```dotenv 
+```dotenv
 DATABASE_URL=mysql://${MYSQL_USER:-app}:${MYSQL_PASSWORD:-!ChangeMe!}@database:3306/${MYSQL_DATABASE:-app}?serverVersion=${MYSQL_VERSION:-8}&charset=${MYSQL_CHARSET:-utf8mb4}
 ```
 
 ## Final steps
+
 Rebuild the docker environment:
+
 ```shell
 docker compose down --remove-orphans && docker compose build --pull --no-cache
 ```
 
 Test your setup:
+
 ```shell
 docker compose exec php bin/console dbal:run-sql -q "SELECT 1" && echo "OK" || echo "Connection is not working"
 ```

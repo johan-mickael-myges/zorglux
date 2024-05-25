@@ -22,7 +22,7 @@ But sometimes you may prefer using custom certificates.
 For instance, to use self-signed certificates created with [mkcert](https://github.com/FiloSottile/mkcert) do as follows:
 
 1. Locally install `mkcert`
-2. Create the folder storing the certs: 
+2. Create the folder storing the certs:
    `mkdir frankenphp/certs -p`
 3. Generate the certificates for your local host (example: "server-name.localhost"):
    `mkcert -cert-file frankenphp/certs/tls.pem -key-file frankenphp/certs/tls.key "server-name.localhost"`

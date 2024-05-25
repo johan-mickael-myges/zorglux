@@ -1,22 +1,18 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}
+    About Zorglux
+{% endblock %}
+
 {% block body_header %}
     {% include '@common/navbar.html.twig' %}
 {% endblock %}
 
-{% block body_main %}
+{% block body %}
+    <h1 class="text-xl font-bold">About Zorglux</h1>
     <section id="about">
-        <twig:Typography tag="h2" variant="body3">
-            About Zorglux
-        </twig:Typography>
         <p>Zorglux is a platform dedicated to providing a space for everyone to share their stories, ideas, and experiences through blogging.</p>
         <p>Our mission is to empower individuals to express themselves freely and connect with others through meaningful content.</p>
-    </section>
-    <section id="blog">
-        <twig:Typography tag="h2" variant="body3">
-            Latest Blog Posts
-        </twig:Typography>
-        <!-- Include your latest blog posts here -->
     </section>
     <section id="contact">
         <h2>Contact Us</h2>
@@ -26,8 +22,4 @@
             <li>Phone: 123-456-7890</li>
         </ul>
     </section>
-{% endblock %}
-
-{% block body_footer %}
-    {% include '@common/footer.html.twig' %}
 {% endblock %}

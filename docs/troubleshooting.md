@@ -7,6 +7,7 @@ If you work on linux and cannot edit some of the project files right after the f
 ## HTTPs and Redirects
 
 If Symfony is generating an internal redirect for an `https://` url, but the resulting url is `http://`, you have to uncomment the `TRUSTED_PROXIES` setting in your `.env` file and add this line in `config/packages/framework.yaml`:
+
 ```
 # config/packages/framework.yaml
 framework:

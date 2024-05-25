@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body_header %}
+    {% include '@common/navbar.html.twig' %}
+{% endblock %}
+
+{% block body %}
+    {% set options = {
+        classes: 'border-b py-2',
+    } %}
+
+    {% for blog in blogs %}
+        <twig:BlogCard :blog="blog" :options="options" />
+    {% endfor %}
+{% endblock %}

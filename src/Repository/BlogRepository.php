@@ -21,6 +21,15 @@ class BlogRepository extends ServiceEntityRepository
         parent::__construct($registry, Blog::class);
     }
 
+    public function getLatestPublicBlogs(int $limit = 5): array
+    {
+        return $this->createQueryBuilder('b')
+            ->setMaxResults($limit)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
 //    /**
 //     * @return Blog[] Returns an array of Blog objects
 //     */
