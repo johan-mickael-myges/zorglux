@@ -2,14 +2,23 @@
 
 namespace App\Controller;
 
+use App\Entity\Factory\UserRegistrationFactory;
+use App\Form\SignupType;
+use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\FormError;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\PasswordHasher\Hasher\PasswordHasherAwareInterface;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
+#[Route(name: 'app_')]
 class SecurityController extends AbstractController
 {
-    #[Route(path: '/signin', name: 'signin')]
+    #[Route(path: '/login', name: 'login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
         // get the login error if there is one
@@ -21,6 +30,39 @@ class SecurityController extends AbstractController
         return $this->render('security/signin.html.twig', [
             'last_username' => $lastUsername,
             'error' => $error,
+        ]);
+    }
+
+    #[Route('/register', name: 'register', methods: ['GET', 'POST'])]
+    public function register(
+        Request $request,
+        UserPasswordHasherInterface $passwordHasher,
+        EntityManagerInterface $entityManager
+    ): Response
+    {
+        $form = $this->createForm(SignupType::class);
+
+        // handle the form submission
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $userRegistrationFactory = new UserRegistrationFactory($passwordHasher);
+            $data = $form->getData();
+            $user = $userRegistrationFactory->create($data['username'], $data['plainPassword']);
+
+            try {
+                $entityManager->persist($user);
+                $entityManager->flush();
+                return $this->redirectToRoute('signin');
+            } catch (UniqueConstraintViolationException $e) {
+                $form->get('username')->addError(new FormError('This username is already taken.'));
+                return $this->render('security/signup.html.twig', [
+                    'form' => $form,
+                ]);
+            }
+        }
+
+        return $this->render('security/signup.html.twig', [
+            'form' => $form,
         ]);
     }
 

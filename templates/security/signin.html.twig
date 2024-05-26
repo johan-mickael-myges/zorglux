@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Sign in to Zorglux{% endblock %}
+{% block title %}Login to Zorglux{% endblock %}
 
 {% block body_header %}
     {% include '@common/navbar.html.twig' %}
@@ -8,16 +8,6 @@
 
 {% block body %}
     <form method="post" class="mt-5 p-5 shadow">
-        {% if error %}
-            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-        {% endif %}
-
-        {% if app.user %}
-            <div class="mb-3">
-                You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
-            </div>
-        {% endif %}
-
         <h1 class="text-3xl mb-2 font-sans">Welcome Back to Zorglux.</h1>
 
         <div class="mb-3 flex flex-col">
@@ -46,8 +36,17 @@
             </div>
         #}
 
+        {% if error %}
+            <twig:Alert classes="rounded mb-2" color="danger" variant="small" text="{{ error.messageKey|trans(error.messageData, 'security') }}" />
+        {% endif %}
+
         <button class="bg-gray-800 text-white px-4 py-2 rounded w-full" type="submit">
-            Sign in
+            Login
         </button>
+        <div class="mt-2 text-center">
+            <p>Not a member yet ? No problem</p>
+            <a href="{{ path('app_register') }}" class="font-bold">Create an account.</a>
+        </div>
+
     </form>
 {% endblock %}

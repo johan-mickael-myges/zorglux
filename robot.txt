@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
-Allow: /signin
+Allow: /login
+Allow: /register
 Allow: /about
