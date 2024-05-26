@@ -2,7 +2,7 @@
     <div class="md:flex md:flex-row md:items-center md:justify-between p-4 shadow">
         <div class="flex flex-row items-center">
             <a href="{{ path('public_index') }}">
-                <img src="{{ asset('build/images/logo.svg') }}" alt="zorglux logo" class="w-8 mr-4">
+                <img src="{{ asset('build/images/logo.svg') }}" width="30" height="30" alt="zorglux logo" class="mr-5">
             </a>
             <div class="w-full mr-4">
                 {% include '@components/search-form.html.twig' %}
@@ -20,10 +20,10 @@
             <twig:Avatar size="30" />
         </div>
     </div>
-    <div {{ stimulus_target('menu_toggler', 'menu') }} class="md:hidden transition-transform -translate-x-full w-full min-h-screen absolute top-0 bg-white border">
+    <div {{ stimulus_target('menu_toggler', 'menu') }} class="md:hidden transition-transform -translate-x-full w-4/5 min-h-screen absolute top-0 bg-white border">
         <div class="flex flex-col text-center">
             <a href="{{ path('public_index') }}" class="p-4 self-center">
-                <img src="{{ asset('build/images/logo.svg') }}" alt="zorglux logo" class="w-8">
+                <img src="{{ asset('build/images/logo.svg') }}" alt="zorglux logo" width="50" height="50">
             </a>
             <a href="{{ path('public_about') }}" class="p-2 border-b border-b-gray-100">About</a>
             {% if app.user %}
