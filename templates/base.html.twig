@@ -8,13 +8,14 @@
         <meta name="author" content="Johan Mickaël">
         <title>{% block title %}Zorglux{% endblock %}</title>
         {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
+            <link rel="preload" href="{{ asset('build/app.css') }}" as="style" onload="this.rel='stylesheet'">
+            <noscript><link rel="stylesheet" href="{{ asset('build/app.css') }}"></noscript>
         {% endblock %}
 
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
-        <script src="https://kit.fontawesome.com/e164d72746.js" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/e164d72746.js" crossorigin="anonymous" defer></script>
     </head>
     <body>
         <header class="sticky top-0 left-0 bg-white">
