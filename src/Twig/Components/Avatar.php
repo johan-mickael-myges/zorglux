@@ -13,6 +13,7 @@ class Avatar
         public string $img = 'build/images/avatar-default.jpg',
         public string $name = '',
         public int $size = 25,
+        public string $classes = ''
     ) {
         $this->img = $packages->getUrl($img);
     }
