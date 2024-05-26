@@ -12,7 +12,11 @@
         </div>
         <div class="hidden md:flex flex-row items-center">
             <a href="{{ path('public_about') }}" class="mr-2 text-gray-500">About</a>
-            <a href="{{ path('app_login') }}" class="mr-2">Sign In</a>
+            {% if app.user %}
+                <a href="{{ path('app_logout') }}" class="p-2">Logout</a>
+            {% else %}
+                <a href="{{ path('app_login') }}" class="p-2">Login</a>
+            {% endif %}
             <twig:Avatar size="30" />
         </div>
     </div>
@@ -22,7 +26,11 @@
                 <img src="{{ asset('build/images/logo.svg') }}" alt="zorglux logo" class="w-8">
             </a>
             <a href="{{ path('public_about') }}" class="p-2 border-b border-b-gray-100">About</a>
-            <a href="{{ path('app_login') }}" class="p-2 border-b border-b-gray-100">Sign In</a>
+            {% if app.user %}
+                <a href="{{ path('app_logout') }}" class="p-2 border-b border-b-gray-100">Logout</a>
+            {% else %}
+                <a href="{{ path('app_login') }}" class="p-2 border-b border-b-gray-100">Login</a>
+            {% endif %}
         </div>
     </div>
 </nav>

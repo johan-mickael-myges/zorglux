@@ -52,7 +52,7 @@ class SecurityController extends AbstractController
             try {
                 $entityManager->persist($user);
                 $entityManager->flush();
-                return $this->redirectToRoute('signin');
+                return $this->redirectToRoute('app_login');
             } catch (UniqueConstraintViolationException $e) {
                 $form->get('username')->addError(new FormError('This username is already taken.'));
                 return $this->render('security/signup.html.twig', [
@@ -66,7 +66,7 @@ class SecurityController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/logout', name: 'app_logout')]
+    #[Route(path: '/logout', name: 'logout')]
     public function logout(): void
     {
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
