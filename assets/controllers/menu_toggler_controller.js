@@ -5,7 +5,6 @@ export default class extends Controller {
   connect() {}
 
   toggle() {
-    this.menuTarget.classList.toggle("-translate-x-full");
-    this.menuTarget.classList.toggle("shadow-2xl");
+    this.menuTarget.classList.toggle("hidden");
   }
 }
