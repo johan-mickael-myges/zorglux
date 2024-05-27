@@ -11,7 +11,8 @@
             <button {{ stimulus_action('menu_toggler', 'toggle') }} class="md:hidden" name="menu-toggler" aria-label="toggleMenu"><i class="fa-solid fa-bars"></i></button>
         </div>
         <div class="hidden md:flex flex-row items-center">
-            <a href="{{ path('public_about') }}" class="mr-2 text-gray-500">About</a>
+            <a href="#" class="p-2 text-gray-500">Write</a>
+            <a href="{{ path('public_about') }}" class="p-2 text-gray-500">About</a>
             {% if app.user %}
                 <a href="{{ path('app_logout') }}" class="p-2">Logout</a>
             {% else %}
@@ -25,6 +26,7 @@
             <a href="{{ path('public_index') }}" class="p-4 self-center">
                 <img src="{{ asset('build/images/logo.svg') }}" alt="zorglux logo" width="50" height="50">
             </a>
+            <a href="#" class="p-2 text-gray-500">Write</a>
             <a href="{{ path('public_about') }}" class="p-2 border-b border-b-gray-100">About</a>
             {% if app.user %}
                 <a href="{{ path('app_logout') }}" class="p-2 border-b border-b-gray-100">Logout</a>
