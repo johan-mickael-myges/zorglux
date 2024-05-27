@@ -6,10 +6,14 @@
 
 {% block body %}
     {% set options = {
-        classes: 'border-b py-2',
+        classes: 'cursor-pointer border-b py-2',
     } %}
 
     {% for blog in blogs %}
-        <twig:BlogCard :blog="blog" :options="options" />
+        <div {{ stimulus_controller('clickable', {
+            url: path('admin_blog_show', { id: blog.id }),
+        }) }}>
+            <twig:BlogCard :blog="blog" :options="options" />
+        </div>
     {% endfor %}
 {% endblock %}

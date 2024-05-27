@@ -1,9 +1,9 @@
-<article class="{{ this.classes }}">
+<article class="{{ this.classes }}" {{ stimulus_target('clickable', 'element') }}>
     <div class="flex flex-row items-center mb-2 text-gray-700">
         <twig:Avatar />
         <small>username</small>
     </div>
-    <div class="flex flex-row">
+    <div class="flex flex-row justify-between">
         <div>
             <header>
                 <h2 class="text-2xl font-extrabold">
@@ -12,13 +12,13 @@
             </header>
             <section class="mt-2">
                 <div>
-                    <p class="line-clamp-2 text-gray-500">{{ this.description }}</p>
+                    <p class="line-clamp-2 text-gray-500">{{ this.description|sanitize_html }}</p>
                 </div>
             </section>
         </div>
         <figure>
             <a href="https://zorglux.works/blog-post-url" title="Read more about Zorglux Topic">
-                <img src="{{ this.thumbnail }}" alt="Zorglux feature image description" width="250" loading="lazy">
+                <img src="{{ this.thumbnail|default('#') }}" alt="Zorglux feature image description" width="250" loading="lazy">
             </a>
         </figure>
     </div>

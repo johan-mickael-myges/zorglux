@@ -17,7 +17,7 @@ class PublicController extends AbstractController
     #[Route('/', name: 'index', methods: ['GET'])]
     public function index(BlogRepository $blogRepository): Response
     {
-        $blogs = $blogRepository->getLatestPublicBlogs();
+        $blogs = $blogRepository->getLatestPublicBlogs(1000);
         return $this->render('public/index.html.twig', [
             'blogs' => $blogs,
         ]);

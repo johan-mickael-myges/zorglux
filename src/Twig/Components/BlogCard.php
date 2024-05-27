@@ -30,7 +30,7 @@ class BlogCard
         return $this->blog->getDescription();
     }
 
-    public function getThumbnail(): string
+    public function getThumbnail(): ?string
     {
         return $this->blog->getThumbnail();
     }

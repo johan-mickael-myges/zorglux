@@ -25,6 +25,7 @@ class BlogRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('b')
             ->setMaxResults($limit)
+            ->orderBy('b.createdAt', 'DESC')
             ->getQuery()
             ->getResult()
         ;

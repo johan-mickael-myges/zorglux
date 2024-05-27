@@ -57,9 +57,17 @@ Copyright © 2024 37signals LLC
 
 /*! ../internals/an-object */
 
+/*! ../internals/array-for-each */
+
 /*! ../internals/array-includes */
 
 /*! ../internals/array-iteration */
+
+/*! ../internals/array-method-has-species-support */
+
+/*! ../internals/array-method-is-strict */
+
+/*! ../internals/array-set-length */
 
 /*! ../internals/array-slice */
 
@@ -79,6 +87,8 @@ Copyright © 2024 37signals LLC
 
 /*! ../internals/create-non-enumerable-property */
 
+/*! ../internals/create-property */
+
 /*! ../internals/create-property-descriptor */
 
 /*! ../internals/date-to-primitive */
@@ -92,6 +102,8 @@ Copyright © 2024 37signals LLC
 /*! ../internals/descriptors */
 
 /*! ../internals/document-create-element */
+
+/*! ../internals/does-not-exceed-safe-integer */
 
 /*! ../internals/dom-iterables */
 
@@ -753,7 +765,15 @@ Copyright © 2024 37signals LLC
 
 /*! @symfony/ux-turbo/dist/turbo_controller.js */
 
+/*! core-js/modules/es.array.concat.js */
+
+/*! core-js/modules/es.array.filter.js */
+
+/*! core-js/modules/es.array.for-each.js */
+
 /*! core-js/modules/es.array.iterator.js */
+
+/*! core-js/modules/es.array.push.js */
 
 /*! core-js/modules/es.date.to-primitive.js */
 
@@ -767,9 +787,17 @@ Copyright © 2024 37signals LLC
 
 /*! core-js/modules/es.object.create.js */
 
+/*! core-js/modules/es.object.define-properties.js */
+
 /*! core-js/modules/es.object.define-property.js */
 
+/*! core-js/modules/es.object.get-own-property-descriptor.js */
+
+/*! core-js/modules/es.object.get-own-property-descriptors.js */
+
 /*! core-js/modules/es.object.get-prototype-of.js */
+
+/*! core-js/modules/es.object.keys.js */
 
 /*! core-js/modules/es.object.set-prototype-of.js */
 
@@ -786,6 +814,8 @@ Copyright © 2024 37signals LLC
 /*! core-js/modules/es.symbol.js */
 
 /*! core-js/modules/es.symbol.to-primitive.js */
+
+/*! core-js/modules/web.dom-collections.for-each.js */
 
 /*! core-js/modules/web.dom-collections.iterator.js */
 
@@ -1766,6 +1796,10 @@ Copyright © 2024 37signals LLC
   \*******************************************************/
 
 /*!*******************************************************!*\
+  !*** ./node_modules/core-js/modules/es.array.push.js ***!
+  \*******************************************************/
+
+/*!*******************************************************!*\
   !*** ./node_modules/core-js/modules/es.symbol.for.js ***!
   \*******************************************************/
 
@@ -1787,6 +1821,10 @@ Copyright © 2024 37signals LLC
 
 /*!********************************************************!*\
   !*** ./node_modules/core-js/modules/es.error.cause.js ***!
+  \********************************************************/
+
+/*!********************************************************!*\
+  !*** ./node_modules/core-js/modules/es.object.keys.js ***!
   \********************************************************/
 
 /*!*********************************************************!*\
@@ -1825,8 +1863,20 @@ Copyright © 2024 37signals LLC
   !*** ./node_modules/core-js/internals/try-to-string.js ***!
   \*********************************************************/
 
+/*!*********************************************************!*\
+  !*** ./node_modules/core-js/modules/es.array.concat.js ***!
+  \*********************************************************/
+
+/*!*********************************************************!*\
+  !*** ./node_modules/core-js/modules/es.array.filter.js ***!
+  \*********************************************************/
+
 /*!**********************************************************!*\
   !*** ./node_modules/@hotwired/stimulus/dist/stimulus.js ***!
+  \**********************************************************/
+
+/*!**********************************************************!*\
+  !*** ./node_modules/core-js/internals/array-for-each.js ***!
   \**********************************************************/
 
 /*!**********************************************************!*\
@@ -1878,6 +1928,10 @@ Copyright © 2024 37signals LLC
   \***********************************************************/
 
 /*!***********************************************************!*\
+  !*** ./node_modules/core-js/internals/create-property.js ***!
+  \***********************************************************/
+
+/*!***********************************************************!*\
   !*** ./node_modules/core-js/internals/define-built-in.js ***!
   \***********************************************************/
 
@@ -1894,6 +1948,10 @@ Copyright © 2024 37signals LLC
   \***********************************************************/
 
 /*!***********************************************************!*\
+  !*** ./node_modules/core-js/modules/es.array.for-each.js ***!
+  \***********************************************************/
+
+/*!***********************************************************!*\
   !*** ./node_modules/core-js/modules/es.array.iterator.js ***!
   \***********************************************************/
 
@@ -1904,6 +1962,10 @@ Copyright © 2024 37signals LLC
 /*!***********************************************************!*\
   !*** ./node_modules/core-js/modules/es.symbol.key-for.js ***!
   \***********************************************************/
+
+/*!************************************************************!*\
+  !*** ./node_modules/core-js/internals/array-set-length.js ***!
+  \************************************************************/
 
 /*!************************************************************!*\
   !*** ./node_modules/core-js/internals/has-own-property.js ***!
@@ -2082,6 +2144,10 @@ Copyright © 2024 37signals LLC
   \*****************************************************************/
 
 /*!******************************************************************!*\
+  !*** ./node_modules/core-js/internals/array-method-is-strict.js ***!
+  \******************************************************************/
+
+/*!******************************************************************!*\
   !*** ./node_modules/core-js/internals/define-global-property.js ***!
   \******************************************************************/
 
@@ -2185,6 +2251,10 @@ Copyright © 2024 37signals LLC
   !*** ./node_modules/core-js/internals/well-known-symbol-wrapped.js ***!
   \*********************************************************************/
 
+/*!*********************************************************************!*\
+  !*** ./node_modules/core-js/modules/es.object.define-properties.js ***!
+  \*********************************************************************/
+
 /*!**********************************************************************!*\
   !*** ./node_modules/core-js/internals/create-property-descriptor.js ***!
   \**********************************************************************/
@@ -2198,6 +2268,10 @@ Copyright © 2024 37signals LLC
   \**********************************************************************/
 
 /*!**********************************************************************!*\
+  !*** ./node_modules/core-js/modules/web.dom-collections.for-each.js ***!
+  \**********************************************************************/
+
+/*!**********************************************************************!*\
   !*** ./node_modules/core-js/modules/web.dom-collections.iterator.js ***!
   \**********************************************************************/
 
@@ -2208,6 +2282,10 @@ Copyright © 2024 37signals LLC
 /*!***********************************************************************!*\
   !*** ./node_modules/core-js/internals/iterator-create-constructor.js ***!
   \***********************************************************************/
+
+/*!************************************************************************!*\
+  !*** ./node_modules/core-js/internals/does-not-exceed-safe-integer.js ***!
+  \************************************************************************/
 
 /*!************************************************************************!*\
   !*** ./node_modules/core-js/internals/function-uncurry-this-clause.js ***!
@@ -2238,6 +2316,10 @@ Copyright © 2024 37signals LLC
   \***************************************************************************/
 
 /*!****************************************************************************!*\
+  !*** ./node_modules/core-js/internals/array-method-has-species-support.js ***!
+  \****************************************************************************/
+
+/*!****************************************************************************!*\
   !*** ./node_modules/core-js/modules/es.object.get-own-property-symbols.js ***!
   \****************************************************************************/
 
@@ -2248,6 +2330,14 @@ Copyright © 2024 37signals LLC
 /*!******************************************************************************!*\
   !*** ./node_modules/core-js/internals/object-get-own-property-descriptor.js ***!
   \******************************************************************************/
+
+/*!*******************************************************************************!*\
+  !*** ./node_modules/core-js/modules/es.object.get-own-property-descriptor.js ***!
+  \*******************************************************************************/
+
+/*!********************************************************************************!*\
+  !*** ./node_modules/core-js/modules/es.object.get-own-property-descriptors.js ***!
+  \********************************************************************************/
 
 /*!********************************************************************************!*\
   !*** ./node_modules/quill/modules/normalizeExternalHTML/normalizers/msWord.js ***!
@@ -2272,6 +2362,10 @@ Copyright © 2024 37signals LLC
 /*!******************************************************************************************************************!*\
   !*** ./node_modules/@symfony/stimulus-bridge/lazy-controller-loader.js!./assets/controllers/quill_controller.js ***!
   \******************************************************************************************************************/
+
+/*!**********************************************************************************************************************!*\
+  !*** ./node_modules/@symfony/stimulus-bridge/lazy-controller-loader.js!./assets/controllers/clickable_controller.js ***!
+  \**********************************************************************************************************************/
 
 /*!*************************************************************************************************************************!*\
   !*** ./node_modules/@symfony/stimulus-bridge/lazy-controller-loader.js!./assets/controllers/menu_toggler_controller.js ***!

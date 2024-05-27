@@ -1,5 +1,6 @@
-<nav class="w-full" {{ stimulus_controller('menu_toggler') }}>
-    <div class="md:flex md:flex-row md:items-center md:justify-between p-4 shadow">
+<nav class="w-full">
+    <div class="bg-white md:flex md:flex-row md:items-center md:justify-between p-4 shadow">
+        {% block left_content %}
         <div class="flex flex-row items-center">
             <a href="{{ path('public_index') }}">
                 <img src="{{ asset('build/images/logo.svg') }}" width="30" height="30" alt="zorglux logo" class="mr-5">
@@ -10,8 +11,10 @@
             <twig:Avatar size="30" classes="md:hidden mr-4" />
             <button {{ stimulus_action('menu_toggler', 'toggle') }} class="md:hidden" name="menu-toggler" aria-label="toggleMenu"><i class="fa-solid fa-bars"></i></button>
         </div>
+        {% endblock %}
+        {% block right_content %}
         <div class="hidden md:flex flex-row items-center">
-            <a href="#" class="p-2 text-gray-500">Write</a>
+            <a href="{{ path('user_blog_write') }}" class="p-2 text-gray-500">Write</a>
             <a href="{{ path('public_about') }}" class="p-2 text-gray-500">About</a>
             {% if app.user %}
                 <a href="{{ path('app_logout') }}" class="p-2">Logout</a>
@@ -20,13 +23,17 @@
             {% endif %}
             <twig:Avatar size="30" />
         </div>
+        {% endblock %}
     </div>
-    <div {{ stimulus_target('menu_toggler', 'menu') }} class="md:hidden transition-transform -translate-x-full w-4/5 min-h-screen absolute top-0 bg-white border">
+</nav>
+
+<div {{ stimulus_target('menu_toggler', 'menu') }} class="md:hidden transition-transform -translate-x-full w-4/5 min-h-screen absolute top-0 bg-white border">
+    {% block mobile_menu %}
         <div class="flex flex-col text-center">
             <a href="{{ path('public_index') }}" class="p-4 self-center">
                 <img src="{{ asset('build/images/logo.svg') }}" alt="zorglux logo" width="50" height="50">
             </a>
-            <a href="#" class="p-2 text-gray-500">Write</a>
+            <a href="{{ path('user_blog_write') }}" class="p-2 text-gray-500">Write</a>
             <a href="{{ path('public_about') }}" class="p-2 border-b border-b-gray-100">About</a>
             {% if app.user %}
                 <a href="{{ path('app_logout') }}" class="p-2 border-b border-b-gray-100">Logout</a>
@@ -34,6 +41,6 @@
                 <a href="{{ path('app_login') }}" class="p-2 border-b border-b-gray-100">Login</a>
             {% endif %}
         </div>
-    </div>
-</nav>
+    {% endblock %}
+</div>
 
