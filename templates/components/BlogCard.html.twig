@@ -4,25 +4,27 @@
         <small>username</small>
     </div>
     <div class="flex flex-row justify-between">
-        <div>
-            <header>
-                <h2 class="text-2xl font-bold">
-                    {{ this.title }}
-                </h2>
-            </header>
-            <section class="mt-2">
-                <p class="line-clamp-2 text-gray-500">{{ this.description }}</p>
-            </section>
+        <div class="flex flex-col justify-between">
+            <div>
+                <header>
+                    <h2 class="text-2xl font-bold">
+                        {{ this.title }}
+                    </h2>
+                </header>
+                <section class="mt-2">
+                    <p class="line-clamp-2 text-gray-500">{{ this.description }}</p>
+                </section>
+            </div>
+            <footer class="mt-4 text-sm text-gray-500 flex flex-row">
+                <time class="mr-4" datetime="{{ this.createdAt|date }}">{{ this.createdAt|date('M d') }}</time>
+                <twig:LikeButton classes="mr-4" />
+                <twig:CommentButton />
+            </footer>
         </div>
         <figure>
             <a href="https://zorglux.works/blog-post-url" title="Read more about Zorglux Topic">
-                <img src="{{ vich_uploader_asset(this.blog) }}" alt="Zorglux feature image description" width="250" loading="lazy">
+                <img src="{{ vich_uploader_asset(this.blog) }}" alt="Zorglux feature image description" width="150" height="150" loading="lazy">
             </a>
         </figure>
     </div>
-    <footer class="mt-4 text-sm text-gray-500 flex flex-row">
-        <time class="mr-4" datetime="{{ this.createdAt|date }}">{{ this.createdAt|date('M d') }}</time>
-        <twig:LikeButton classes="mr-4" />
-        <twig:CommentButton />
-    </footer>
 </article>
