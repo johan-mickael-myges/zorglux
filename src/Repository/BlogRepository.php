@@ -31,6 +31,16 @@ class BlogRepository extends ServiceEntityRepository
         ;
     }
 
+    public function getBySlug(string $slug): ?Blog
+    {
+        return $this->createQueryBuilder('b')
+            ->andWhere('b.slug = :slug')
+            ->setParameter('slug', $slug)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
+
 //    /**
 //     * @return Blog[] Returns an array of Blog objects
 //     */

@@ -1,0 +1,32 @@
+{% extends '@common/user/base.html.twig' %}
+
+{% block title %}Write an article{% endblock %}
+
+{% block body_header %}
+    {% embed '@common/navbar.html.twig' %}
+        {% block right_content %}
+            <div class="hidden md:flex flex-row items-center">
+                <a href="{{ path('public_about') }}" class="p-2 text-gray-500">About</a>
+                <a href="{{ path('app_logout') }}" class="p-2">Logout</a>
+                <twig:Avatar size="30" />
+            </div>
+        {% endblock %}
+    {% endembed %}
+{% endblock %}
+
+{% block body %}
+    <h1 class="mt-8 text-5xl font-bold mb-2">{{ blog.title }}</h1>
+    <p class="text-lg text-gray-500 mb-4">{{ blog.description }}</p>
+
+    <div class="border-y py-3 mb-16 text-sm text-gray-500 flex flex-row">
+        <time class="mr-4" datetime="{{ blog.createdAt|date }}">{{ blog.createdAt|date('M d') }}</time>
+        <twig:LikeButton classes="mr-4" />
+        <twig:CommentButton />
+    </div>
+
+    <img src="{{ vich_uploader_asset(blog) }}" alt="{{ blog.title }}" class="w-full object-cover my-12" />
+
+    <div>
+        {{ blog.content|raw }}
+    </div>
+{% endblock %}
