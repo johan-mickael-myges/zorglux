@@ -4,7 +4,7 @@
         <small>username</small>
     </div>
     <div class="flex flex-row justify-between">
-        <div class="flex flex-col justify-between">
+        <div class="w-full flex flex-col justify-between">
             <div>
                 <header>
                     <h2 class="text-2xl font-bold">
@@ -15,13 +15,18 @@
                     <p class="line-clamp-2 text-gray-500">{{ this.description }}</p>
                 </section>
             </div>
+            <figure class="flex justify-center md:hidden">
+                <a class="" href="https://zorglux.works/blog-post-url" title="Read more about Zorglux Topic">
+                    <img src="{{ vich_uploader_asset(this.blog) }}" alt="Zorglux feature image description" width="150" height="150" loading="lazy">
+                </a>
+            </figure>
             <footer class="mt-4 text-sm text-gray-500 flex flex-row">
                 <time class="mr-4" datetime="{{ this.createdAt|date }}">{{ this.createdAt|date('M d') }}</time>
                 <twig:LikeButton classes="mr-4" />
                 <twig:CommentButton />
             </footer>
         </div>
-        <figure>
+        <figure class="hidden md:block">
             <a href="https://zorglux.works/blog-post-url" title="Read more about Zorglux Topic">
                 <img src="{{ vich_uploader_asset(this.blog) }}" alt="Zorglux feature image description" width="150" height="150" loading="lazy">
             </a>
