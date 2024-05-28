@@ -8,6 +8,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichFileType;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class BlogType extends AbstractType
 {
@@ -25,6 +27,11 @@ class BlogType extends AbstractType
                 'attr' => [
                     'placeholder' => 'Add short description',
                 ],
+            ])
+            ->add('thumbnailFile', VichImageType::class, [
+                'required' => true,
+                'allow_delete' => true,
+                'delete_label' => '...',
             ])
             ->add('content', TextareaType::class, [
                 'label' => 'content',

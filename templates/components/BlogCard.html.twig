@@ -11,12 +11,12 @@
                 </h2>
             </header>
             <section class="mt-2">
-                <p class="line-clamp-2 text-gray-500">{{ this.description|sanitize_html }}</p>
+                <p class="line-clamp-2 text-gray-500">{{ this.description }}</p>
             </section>
         </div>
         <figure>
             <a href="https://zorglux.works/blog-post-url" title="Read more about Zorglux Topic">
-                <img src="{{ this.thumbnail|default('#') }}" alt="Zorglux feature image description" width="250" loading="lazy">
+                <img src="{{ vich_uploader_asset(this.blog) }}" alt="Zorglux feature image description" width="250" loading="lazy">
             </a>
         </figure>
     </div>

@@ -5,8 +5,11 @@ namespace App\Entity;
 use App\Repository\BlogRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: BlogRepository::class)]
+#[Vich\Uploadable]
 class Blog
 {
     #[ORM\Id]
@@ -20,8 +23,11 @@ class Blog
     #[ORM\Column(length:255, nullable: false)]
     private string $description;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $thumbnail = null;
+    #[Vich\UploadableField(mapping: 'blog_thumbnail', fileNameProperty: 'thumbnail')]
+    private File $thumbnailFile;
+
+    #[ORM\Column(nullable: false)]
+    private string $thumbnail = '';
 
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
@@ -61,12 +67,28 @@ class Blog
         return $this;
     }
 
-    public function getThumbnail(): ?string
+    public function setThumbnailFile(?File $file = null): void
+    {
+        $this->thumbnailFile = $file;
+
+        if (null !== $file) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new \DateTimeImmutable();
+        }
+    }
+
+    public function getThumbnailFile(): ?File
+    {
+        return $this->thumbnailFile;
+    }
+
+    public function getThumbnail(): string
     {
         return $this->thumbnail;
     }
 
-    public function setThumbnail(?string $thumbnail): static
+    public function setThumbnail(string $thumbnail): static
     {
         $this->thumbnail = $thumbnail;
 
