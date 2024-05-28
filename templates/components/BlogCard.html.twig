@@ -1,19 +1,17 @@
 <article class="{{ this.classes }}" {{ stimulus_target('clickable', 'element') }}>
-    <div class="flex flex-row items-center mb-2 text-gray-700">
+    <div class="flex flex-row items-center mb-4 text-gray-700">
         <twig:Avatar />
         <small>username</small>
     </div>
     <div class="flex flex-row justify-between">
         <div>
             <header>
-                <h2 class="text-2xl font-extrabold">
+                <h2 class="text-2xl font-bold">
                     {{ this.title }}
                 </h2>
             </header>
             <section class="mt-2">
-                <div>
-                    <p class="line-clamp-2 text-gray-500">{{ this.description|sanitize_html }}</p>
-                </div>
+                <p class="line-clamp-2 text-gray-500">{{ this.description|sanitize_html }}</p>
             </section>
         </div>
         <figure>

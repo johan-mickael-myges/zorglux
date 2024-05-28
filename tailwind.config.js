@@ -6,12 +6,7 @@ module.exports = {
     "./src/Twig/**/*.php",
   ],
   theme: {
-    extend: {
-      fontFamily: {
-        sans: ["IBM Plex Sans", "sans-serif"],
-        heading: ["Archivo Black", "sans-serif"],
-      },
-    },
+    extend: {},
   },
   plugins: ["prettier-plugin-tailwindcss"],
 };

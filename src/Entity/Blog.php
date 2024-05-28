@@ -17,7 +17,7 @@ class Blog
     #[ORM\Column(length: 255, nullable: false)]
     private string $title;
 
-    #[ORM\Column(type: Types::TEXT, nullable: false)]
+    #[ORM\Column(length:255, nullable: false)]
     private string $description;
 
     #[ORM\Column(length: 255, nullable: true)]
@@ -28,6 +28,9 @@ class Blog
 
     #[ORM\Column]
     private ?\DateTimeImmutable $updatedAt = null;
+
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $content = null;
 
     public function getId(): ?int
     {
@@ -90,6 +93,18 @@ class Blog
     public function setUpdatedAt(\DateTimeImmutable $updatedAt): static
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getContent(): ?string
+    {
+        return $this->content;
+    }
+
+    public function setContent(string $content): static
+    {
+        $this->content = $content;
 
         return $this;
     }

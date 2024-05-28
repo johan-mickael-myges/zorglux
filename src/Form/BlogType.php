@@ -17,14 +17,17 @@ class BlogType extends AbstractType
             ->add('title', TextType::class, [
                 'label' => 'Title',
                 'attr' => [
-                    'placeholder' => 'Title',
+                    'placeholder' => 'Add a title',
                 ],
             ])
-            ->add('description', TextareaType::class, [
+            ->add('description', TextType::class, [
                 'label' => 'Description',
                 'attr' => [
-                    'placeholder' => 'A good description would be helpful for SEO!',
+                    'placeholder' => 'Add short description',
                 ],
+            ])
+            ->add('content', TextareaType::class, [
+                'label' => 'content',
             ])
         ;
     }

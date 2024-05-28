@@ -10,7 +10,7 @@ class Avatar
 {
     public function __construct(
         Packages $packages,
-        public string $img = 'build/images/avatar-default.jpg',
+        public string $img = 'build/images/default/avatar-default.jpg',
         public string $name = '',
         public int $size = 25,
         public string $classes = ''

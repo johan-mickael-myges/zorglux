@@ -1,6 +1,7 @@
 {
   "build/app.css": "/build/app.css",
   "build/app.js": "/build/app.js",
-  "build/images/avatar-default.jpg": "/build/images/avatar-default.jpg",
-  "build/images/logo.svg": "/build/images/logo.svg"
+  "build/images/default/avatar-default.jpg": "/build/images/default/avatar-default.jpg",
+  "build/images/default/logo.svg": "/build/images/default/logo.svg",
+  "build/images/default/avatar.jpg": "/build/images/default/avatar.jpg"
 }

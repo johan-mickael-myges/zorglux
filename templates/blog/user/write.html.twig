@@ -23,12 +23,19 @@
         }) }}
     >
         {{ form_start(form, {}) }}
+            {% set inputClasses = 'text-4xl w-full border-b rounded-sm outline-none focus:border-black p-2 mb-4' %}
+
             {{ form_widget(form.title, {
                 attr: {
-                    class: 'text-4xl w-full border-b rounded-sm outline-none focus:border-black p-2 mb-4'
+                    class: 'text-4xl w-full border-b rounded-sm outline-none focus:border-black p-2 mb-4 font-bold'
                 }
             }) }}
             {{ form_widget(form.description, {
+                attr: {
+                    class: 'w-full border-b rounded-sm outline-none focus:border-black p-2 mb-4'
+                }
+            }) }}
+            {{ form_widget(form.content, {
                 attr: {
                     'data-quill-target': 'input',
                     'class': 'hidden'
