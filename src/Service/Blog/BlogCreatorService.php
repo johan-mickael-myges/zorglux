@@ -3,6 +3,7 @@
 namespace App\Service\Blog;
 
 use App\Entity\Blog;
+use App\Service\S3\FileUploaderService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HtmlSanitizer\HtmlSanitizerInterface;
 use Symfony\Component\String\Slugger\AsciiSlugger;
@@ -12,6 +13,7 @@ class BlogCreatorService
     public function __construct(
         private EntityManagerInterface $entityManager,
         private HtmlSanitizerInterface $htmlSanitizer,
+        private FileUploaderService $fileUploaderService
     )
     {
     }
@@ -25,6 +27,12 @@ class BlogCreatorService
         $blog->setUpdatedAt(new \DateTimeImmutable());
 
         $this->entityManager->persist($blog);
+
+        $imageName = $this->fileUploaderService
+            ->uploadImage($blog->getThumbnailFile(), $blog->getThumbnail())
+            ->get('ObjectURL');
+        $blog->setThumbnail($imageName);
+
         $this->entityManager->flush();
     }
 }
