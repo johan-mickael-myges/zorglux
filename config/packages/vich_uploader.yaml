@@ -6,8 +6,8 @@ vich_uploader:
 
     mappings:
         blog_thumbnail:
-            uri_prefix: /build/images/blog
-            upload_destination: '%kernel.project_dir%/assets/images/blog'
+            uri_prefix: /upload/images/blog
+            upload_destination: '%kernel.project_dir%/public/upload/images/blog'
             namer: 'namer.blog_thumbnail'
             
             inject_on_load: false
