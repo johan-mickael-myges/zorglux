@@ -28,7 +28,7 @@ class SecurityController extends AbstractController
                 'changefreq' => UrlConcrete::CHANGEFREQ_MONTHLY,
             ]
         ],
-        methods: ['GET']
+        methods: ['GET', 'POST']
     )]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
