@@ -1,4 +1,4 @@
 <div class="{{ this.classes }}">
-    <img src="{{ this.img }}" alt="{{ this.name }}" width="{{ this.size }}" height="{{ this.size }}" />
+    <img src="{{ this.img }}" alt="{{ this.name|default('Zorglux default avatar') }}" width="{{ this.size }}" height="{{ this.size }}" />
     {{ this.name }}
 </div>
