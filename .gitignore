@@ -16,3 +16,7 @@ yarn-error.log
 
 ### Webstorm idea ###
 .idea/
+
+###> liip/imagine-bundle ###
+/public/media/cache/
+###< liip/imagine-bundle ###

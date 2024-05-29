@@ -17,7 +17,7 @@
             </div>
             <figure class="flex justify-center md:hidden">
                 <a class="" href="https://zorglux.works/blog-post-url" title="Read more about Zorglux Topic">
-                    <img src="{{ vich_uploader_asset(this.blog) }}" alt="Zorglux feature image description" width="150" height="150" loading="lazy">
+                    <img src="{{ vich_uploader_asset(this.blog) | imagine_filter('blog_mobile_thumb') }}" alt="Zorglux feature image description" width="150" height="150" loading="lazy">
                 </a>
             </figure>
             <footer class="mt-4 text-sm text-gray-500 flex flex-row">
@@ -28,7 +28,7 @@
         </div>
         <figure class="hidden md:block">
             <a href="https://zorglux.works/blog-post-url" title="Read more about Zorglux Topic">
-                <img src="{{ vich_uploader_asset(this.blog) }}" alt="Zorglux feature image description" width="150" height="150" loading="lazy">
+                <img src="{{ vich_uploader_asset(this.blog) | imagine_filter('blog_thumb') }}" alt="Zorglux feature image description" width="150" height="150" loading="lazy">
             </a>
         </figure>
     </div>
