@@ -1,5 +1,5 @@
 import { Controller } from "@hotwired/stimulus";
-
+import * as Turbo from "@hotwired/turbo";
 export default class extends Controller {
   static targets = ["element"];
   static values = {
@@ -13,7 +13,7 @@ export default class extends Controller {
 
   click() {
     if (this.urlValue) {
-      window.open(this.urlValue, this.targetValue || "_self");
+      Turbo.visit(this.urlValue)
     }
   }
 }

@@ -115,8 +115,8 @@ DirectoryIndex index.php
     ExpiresByType image/avif "access plus 1 month"
     ExpiresByType image/svg "access plus 1 month"
 
-    ExpiresByType text/javascript "access plus 1 month"
-    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType text/javascript "access plus 1 week"
+    ExpiresByType application/javascript "access plus 1 week"
 
-    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType text/css "access plus 1 week"
 </IfModule>
