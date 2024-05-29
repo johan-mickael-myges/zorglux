@@ -6,6 +6,7 @@ use App\Entity\Factory\UserRegistrationFactory;
 use App\Form\SignupType;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Doctrine\ORM\EntityManagerInterface;
+use Presta\SitemapBundle\Sitemap\Url\UrlConcrete;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,7 +19,17 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 #[Route(name: 'app_')]
 class SecurityController extends AbstractController
 {
-    #[Route(path: '/login', name: 'login')]
+    #[Route(
+        '/login',
+        name: 'login',
+        options: [
+            'sitemap' => [
+                'section' => 'public',
+                'changefreq' => UrlConcrete::CHANGEFREQ_MONTHLY,
+            ]
+        ],
+        methods: ['GET']
+    )]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
         // get the login error if there is one
@@ -33,7 +44,17 @@ class SecurityController extends AbstractController
         ]);
     }
 
-    #[Route('/register', name: 'register', methods: ['GET', 'POST'])]
+    #[Route(
+        '/register',
+        name: 'register',
+        options: [
+            'sitemap' => [
+                'section' => 'public',
+                'changefreq' => UrlConcrete::CHANGEFREQ_MONTHLY,
+            ]
+        ],
+        methods: ['GET', 'POST']
+    )]
     public function register(
         Request $request,
         UserPasswordHasherInterface $passwordHasher,

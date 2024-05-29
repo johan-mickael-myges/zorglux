@@ -6,6 +6,7 @@ use App\Entity\Blog;
 use App\Form\BlogType;
 use App\Repository\BlogRepository;
 use App\Service\Blog\BlogCreatorService;
+use Presta\SitemapBundle\Sitemap\Url\UrlConcrete;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,7 +16,18 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 #[Route('/blog', name: 'blog_')]
 class BlogController extends AbstractController
 {
-    #[Route('/', name: 'index', methods: ['GET'])]
+    #[Route(
+        '/',
+        name: 'index',
+        options: [
+            'sitemap' => [
+                'section' => 'blog',
+                'changefreq' => UrlConcrete::CHANGEFREQ_ALWAYS,
+                'priority' => 0.9,
+            ]
+        ],
+        methods: ['GET']
+    )]
     #[IsGranted('list')]
     public function index(BlogRepository $blogRepository): Response
     {
@@ -44,7 +56,7 @@ class BlogController extends AbstractController
         ]);
     }
 
-    #[Route('/read/{slug}', name: 'read', methods: ['GET'])]
+    #[Route('/{slug}', name: 'read', methods: ['GET'])]
     #[IsGranted('read', 'blog')]
     public function read(Blog $blog): Response
     {
