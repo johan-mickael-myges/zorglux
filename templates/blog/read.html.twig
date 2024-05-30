@@ -1,6 +1,25 @@
 {% extends '@common/user/base.html.twig' %}
 
-{% block title %}Write an article{% endblock %}
+{% block meta %}
+    <meta name="description" content="{{ blog.description }}">
+    <meta name="author" content="Johan Mickaël">
+{% endblock %}
+
+{% block meta_og %}
+    <meta property="og:title" content="{{ blog.title }}">
+    <meta property="og:description" content="{{ blog.description }}">
+    <meta property="og:image" content="{{ blog.thumbnail }}">
+    <meta property="og:url" content="{{ path('blog_read', { slug: blog.slug }) }}">
+{% endblock %}
+
+{% block meta_twitter %}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ blog.title }}">
+    <meta name="twitter:description" content="{{ blog.description }}">
+    <meta name="twitter:image" content="{{ blog.thumbnail }}">
+{% endblock %}
+
+{% block title %}{{ blog.title }}{% endblock %}
 
 {% block body_header %}
     {% embed '@common/navbar.html.twig' %}
@@ -24,7 +43,7 @@
         <twig:CommentButton />
     </div>
 
-    <img src="{{ vich_uploader_asset(blog) }}" alt="{{ blog.title }}" class="w-full object-cover my-12" />
+    <img src="{{ blog.thumbnail }}" alt="{{ blog.title }}" class="w-full object-cover my-12" />
 
     <div>
         {{ blog.content|raw }}

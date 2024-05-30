@@ -3,18 +3,25 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Discover a vibrant community of storytellers and thought leaders on Zorglux. Share your voice, connect with like-minded individuals, and explore a world of inspiring stories and ideas.">
         <meta name="keywords" content="Zorglux, blog, stories, experiences, community, writing, sharing, storytelling, platform">
-        <meta name="author" content="Johan Mickaël">
+        {% block meta %}
+            <meta name="description" content="Discover a vibrant community of storytellers and thought leaders on Zorglux. Share your voice, connect with like-minded individuals, and explore a world of inspiring stories and ideas.">
+            <meta name="author" content="Johan Mickaël">
+        {% endblock %}
 
-        <meta property="og:title" content="Zorglux - Share Your Stories and Ideas">
-        <meta property="og:description" content="Zorglux is a vibrant blogging platform where you can share your stories, ideas, and experiences with a global community. Join us today to read, write, and connect with like-minded individuals.">
-        <meta property="og:image" content="{{ asset('build/images/default/logo.png') }}">
-        <meta property="og:url" content="{{ path('blog_index') }}">
-        <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:title" content="Zorglux - Share Your Stories and Ideas">
-        <meta name="twitter:description" content="Zorglux is a vibrant blogging platform where you can share your stories, ideas, and experiences with a global community. Join us today to read, write, and connect with like-minded individuals.">
-        <meta name="twitter:image" content="{{ asset('build/images/default/logo.png') }}">
+        {% block meta_og %}
+            <meta property="og:title" content="Zorglux - Share Your Stories and Ideas">
+            <meta property="og:description" content="Zorglux is a vibrant blogging platform where you can share your stories, ideas, and experiences with a global community. Join us today to read, write, and connect with like-minded individuals.">
+            <meta property="og:image" content="{{ asset('build/images/default/logo.png') }}">
+            <meta property="og:url" content="{{ path('blog_index') }}">
+        {% endblock %}
+
+        {% block meta_twitter %}
+            <meta name="twitter:card" content="summary_large_image">
+            <meta name="twitter:title" content="Zorglux - Share Your Stories and Ideas">
+            <meta name="twitter:description" content="Zorglux is a vibrant blogging platform where you can share your stories, ideas, and experiences with a global community. Join us today to read, write, and connect with like-minded individuals.">
+            <meta name="twitter:image" content="{{ asset('build/images/default/logo.png') }}">
+        {% endblock %}
 
         <title>{% block title %}Zorglux - Blog: read, write, learn and more{% endblock %}</title>
         {% block stylesheets %}

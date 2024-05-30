@@ -16,8 +16,8 @@
                 </section>
             </div>
             <figure class="flex justify-center md:hidden">
-                <a class="" href="https://zorglux.works/blog-post-url" title="Read more about Zorglux Topic">
-                    <img src="{{ this.blog.thumbnail }}" alt="Zorglux feature image description" width="150" height="150" loading="lazy">
+                <a class="" href="{{ this.blog.thumbnail }}" title="{{ this.title }}">
+                    <img src="{{ this.blog.thumbnail }}" alt="{{ this.title }}" width="150" height="150" loading="lazy">
                 </a>
             </figure>
             <footer class="mt-4 text-sm text-gray-500 flex flex-row">
@@ -27,8 +27,8 @@
             </footer>
         </div>
         <figure class="hidden md:block">
-            <a href="https://zorglux.works/blog-post-url" title="Read more about Zorglux Topic">
-                <img src="{{ this.blog.thumbnail }}" alt="Zorglux feature image description" width="150" height="150" loading="lazy">
+            <a href="{{ this.blog.thumbnail }}" title="{{ this.title }}">
+                <img src="{{ this.blog.thumbnail }}" alt="{{ this.title }}" width="150" height="150" loading="lazy">
             </a>
         </figure>
     </div>
