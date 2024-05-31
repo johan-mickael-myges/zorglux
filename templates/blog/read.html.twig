@@ -43,9 +43,9 @@
             <div>
                 <span class="text-sm">{{ blog.author.username }}</span>
                 <div class="text-xs text-gray-500">
-                    <span>{{ blog.readingTime }} min read</span>
+                    <span>{{ blog.readingTime }} min de lecture</span>
                     <span> . </span>
-                    <time datetime="{{ blog.createdAt|date }}">{{ blog.createdAt|date }}</time>
+                    <time datetime="{{ blog.createdAt|date }}">{{ blog.createdAt|date|trans }}</time>
                 </div>
             </div>
         </div>
