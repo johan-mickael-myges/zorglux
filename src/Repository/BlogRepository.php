@@ -3,7 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Blog;
+use App\Enum\BlogConfidentiality;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -20,12 +22,18 @@ class BlogRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Blog::class);
     }
+    public function getBlogQueryBuilder(): QueryBuilder
+    {
+        return $this->createQueryBuilder('b');
+    }
 
     public function getLatestPublicBlogs(int $limit = 5): array
     {
         return $this->createQueryBuilder('b')
             ->setMaxResults($limit)
+            ->andWhere('b.confidentiality = :confidentiality')
             ->orderBy('b.createdAt', 'DESC')
+            ->setParameter('confidentiality', BlogConfidentiality::PUBLIC)
             ->getQuery()
             ->getResult()
         ;

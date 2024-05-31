@@ -23,10 +23,10 @@ class InputFile
             'file:rounded-full',
             'file:border-0',
             'file:text-sm',
-            'file:bg-gray-50',
+            'file:bg-gray-100',
             'hover:cursor-pointer',
             'hover:file:cursor-pointer',
-            'hover:file:bg-gray-100',
+            'hover:file:bg-gray-200',
             'w-full',
         ]) . ' ' . $this->classes;
     }

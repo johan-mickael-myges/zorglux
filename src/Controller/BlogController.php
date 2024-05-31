@@ -6,6 +6,7 @@ use App\Entity\Blog;
 use App\Form\BlogType;
 use App\Repository\BlogRepository;
 use App\Service\Blog\BlogCreatorService;
+use App\Service\Blog\BlogRepositoryService;
 use Presta\SitemapBundle\Sitemap\Url\UrlConcrete;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -29,10 +30,10 @@ class BlogController extends AbstractController
         methods: ['GET']
     )]
     #[IsGranted('list')]
-    public function index(BlogRepository $blogRepository): Response
+    public function index(BlogRepositoryService $service): Response
     {
         return $this->render('blog/index.html.twig', [
-            'blogs' => $blogRepository->getLatestPublicBlogs(),
+            'blogs' => $service->getPublicBlog(),
         ]);
     }
 

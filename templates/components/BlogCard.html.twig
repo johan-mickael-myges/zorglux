@@ -1,7 +1,7 @@
 <article class="{{ this.classes }}" {{ stimulus_target('clickable', 'element') }}>
     <div class="flex flex-row items-center mb-4 text-gray-700">
         <twig:Avatar />
-        <small>username</small>
+        <small>{{ this.blog.author.username }}</small>
     </div>
     <div class="flex flex-row justify-between">
         <div class="w-full flex flex-col justify-between">
@@ -27,9 +27,7 @@
             </footer>
         </div>
         <figure class="hidden md:block">
-            <a href="{{ this.blog.thumbnail }}" title="{{ this.title }}">
-                <img src="{{ this.blog.thumbnail }}" alt="{{ this.title }}" width="150" height="150" loading="lazy">
-            </a>
+            <img src="{{ this.blog.thumbnail }}" alt="{{ this.title }}" width="150" height="150" loading="lazy">
         </figure>
     </div>
 </article>

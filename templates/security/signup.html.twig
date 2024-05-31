@@ -11,6 +11,7 @@
     {% set inputClasses = 'border-b rounded-sm outline-none focus:border-black p-1' %}
     {% set textErrorClasses = 'mt-1 text-xs text-red-500' %}
 
+    <twig:Container>
     {{ form_start(form, {
         attr: {
             class: 'mt-5 p-5 shadow'
@@ -82,4 +83,5 @@
             <a href="{{ path('app_login') }}" class="font-bold">Access to your account.</a>
         </div>
     {{ form_end(form) }}
+    </twig:Container>
 {% endblock %}

@@ -41,6 +41,13 @@ class Blog
     #[ORM\Column(length: 255)]
     private ?string $slug = null;
 
+    #[ORM\Column(type: Types::SMALLINT)]
+    private ?int $confidentiality = null;
+
+    #[ORM\ManyToOne(inversedBy: 'blogs')]
+    #[ORM\JoinColumn(nullable: true)]
+    private ?User $author = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -142,6 +149,30 @@ class Blog
     public function setSlug(string $slug): static
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function getConfidentiality(): ?int
+    {
+        return $this->confidentiality;
+    }
+
+    public function setConfidentiality(int $confidentiality): static
+    {
+        $this->confidentiality = $confidentiality;
+
+        return $this;
+    }
+
+    public function getAuthor(): ?User
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(?User $user_id): static
+    {
+        $this->author = $user_id;
 
         return $this;
     }

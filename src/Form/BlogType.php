@@ -3,12 +3,14 @@
 namespace App\Form;
 
 use App\Entity\Blog;
+use App\Enum\BlogConfidentiality;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Vich\UploaderBundle\Form\Type\VichFileType;
+use Symfony\Component\Validator\Constraints\Choice;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class BlogType extends AbstractType
@@ -26,6 +28,13 @@ class BlogType extends AbstractType
                 'label' => 'Description',
                 'attr' => [
                     'placeholder' => 'Add short description',
+                ],
+            ])
+            ->add('confidentiality', ChoiceType::class, [
+                'label' => 'Share with',
+                'choices' => [
+                    'Everyone' => BlogConfidentiality::PUBLIC,
+                    'Member only' => BlogConfidentiality::MEMBER,
                 ],
             ])
             ->add('thumbnailFile', VichImageType::class, [

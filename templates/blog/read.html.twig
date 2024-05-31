@@ -34,18 +34,22 @@
 {% endblock %}
 
 {% block body_content %}
-    <h1 class="mt-8 text-5xl font-bold mb-2">{{ blog.title }}</h1>
-    <p class="text-lg text-gray-500 mb-4">{{ blog.description }}</p>
+    <twig:Container>
+        <h1 class="mt-8 text-5xl font-bold mb-2">{{ blog.title }}</h1>
+        <p class="text-lg text-gray-500 mb-4">{{ blog.description }}</p>
 
-    <div class="border-y py-3 mb-16 text-sm text-gray-500 flex flex-row">
-        <time class="mr-4" datetime="{{ blog.createdAt|date }}">{{ blog.createdAt|date('M d') }}</time>
-        <twig:LikeButton classes="mr-4" />
-        <twig:CommentButton />
-    </div>
+        <div class="border-y py-3 text-sm text-gray-500 flex flex-row">
+            <time class="mr-4" datetime="{{ blog.createdAt|date }}">{{ blog.createdAt|date('M d') }}</time>
+            <twig:LikeButton classes="mr-4" />
+            <twig:CommentButton />
+        </div>
 
-    <img src="{{ blog.thumbnail }}" alt="{{ blog.title }}" class="w-full object-cover my-12" />
+        <div class="flex flex-row justify-center">
+            <img src="{{ blog.thumbnail }}" alt="{{ blog.title }}" width="100" height="100" class="w-1/2 object-cover my-8" loading="lazy"/>
+        </div>
 
-    <div>
-        {{ blog.content|raw }}
-    </div>
+        <div>
+            {{ blog.content|raw }}
+        </div>
+    </twig:Container>
 {% endblock %}

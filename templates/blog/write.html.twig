@@ -1,26 +1,25 @@
-{% extends '@common/user/base.html.twig' %}
+{% extends 'base.html.twig' %}
 
-{% block title %}Write an article{% endblock %}
+{% block title %}Zorglux - Write an article{% endblock %}
 
 {% block body_header %}
     {% embed '@common/navbar.html.twig' %}
-        {% block right_content %}
-            <div class="hidden md:flex flex-row items-center">
-                <a href="{{ path('public_about') }}" class="p-2 text-gray-500">About</a>
-                <a href="{{ path('app_logout') }}" class="p-2">Logout</a>
-                <twig:Avatar size="30" />
-            </div>
-        {% endblock %}
     {% endembed %}
 {% endblock %}
 
 {% block body_content %}
+    <p class="my-2 text-xs text-gray-400">
+        Use the form below to compose your article.
+        Be creative, be insightful, and make sure to follow our community guidelines. Happy writing!
+    </p>
+
     <div {{ stimulus_controller('quill', {
             options: {
                 placeholder: 'Write your content ...',
                 bounds: '#write-editor',
             }
         }) }}
+        class="rounded border shadow md:shadow-lg p-4"
     >
         {{ form_start(form, {}) }}
             {% set inputClasses = 'text-4xl w-full border-b rounded-sm outline-none focus:border-black p-2 mb-4' %}
@@ -45,6 +44,16 @@
                 }
             }) }}
             <div id="write-editor" class="mb-4 rounded min-h-32" {{ stimulus_target('quill', 'editor') }}></div>
+
+            <small>
+                <i class="fa-solid fa-share"></i>
+                {{ form_label(form.confidentiality) }}
+            </small>
+            {{ form_widget(form.confidentiality, {
+                attr: {
+                    'class': 'p-2 text-xs bg-gray-50 outline-none'
+                }
+            }) }}
 
             <div class="flex flex-row justify-end">
                 <button type="submit" value="1" class="p-2 text-white rounded-ee-2xl bg-green-500">Publish</button>
