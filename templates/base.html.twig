@@ -1,50 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="keywords" content="Zorglux, blog, stories, experiences, community, writing, sharing, storytelling, platform">
-        {% block meta %}
-            <meta name="description" content="Discover a vibrant community of storytellers and thought leaders on Zorglux. Share your voice, connect with like-minded individuals, and explore a world of inspiring stories and ideas.">
-            <meta name="author" content="Johan Mickaël">
-        {% endblock %}
-
-        {% block meta_og %}
-            <meta property="og:title" content="Zorglux - Share Your Stories and Ideas">
-            <meta property="og:description" content="Zorglux is a vibrant blogging platform where you can share your stories, ideas, and experiences with a global community. Join us today to read, write, and connect with like-minded individuals.">
-            <meta property="og:image" content="https://zorglux-bucket.s3.eu-north-1.amazonaws.com/default/logo.png">
-            <meta property="og:url" content="{{ path('blog_index') }}">
-        {% endblock %}
-
-        {% block meta_twitter %}
-            <meta name="twitter:card" content="summary_large_image">
-            <meta name="twitter:title" content="Zorglux - Share Your Stories and Ideas">
-            <meta name="twitter:description" content="Zorglux is a vibrant blogging platform where you can share your stories, ideas, and experiences with a global community. Join us today to read, write, and connect with like-minded individuals.">
-            <meta name="twitter:image" content="https://zorglux-bucket.s3.eu-north-1.amazonaws.com/default/logo.png">
-        {% endblock %}
-
-        <title>{% block title %}Zorglux - Blog: read, write, learn and more{% endblock %}</title>
-        {% block stylesheets %}
-            <link rel="preload" href="{{ asset('build/app.css') }}" as="style" onload="this.rel='stylesheet'">
-            <noscript><link rel="stylesheet" href="{{ asset('build/app.css') }}"></noscript>
-        {% endblock %}
-
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
-        <script src="https://kit.fontawesome.com/e164d72746.js" crossorigin="anonymous" defer></script>
-    </head>
-    {% block body %}
-    <body>
-        <header class="sticky top-0 left-0" {{ stimulus_controller('menu_toggler') }}>
-            {% block body_header %}{% endblock %}
-        </header>
-        <main>
-            {% block body_content %}{% endblock %}
-        </main>
-        <footer>
-            {% block body_footer %}{% endblock %}
-        </footer>
-    </body>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="Zorglux, blog, histoires, expériences, communauté, écriture, partage, narration, plateforme">
+    {% block meta %}
+        <meta name="description" content="Découvrez une communauté vibrante de conteurs et de leaders d'opinion sur Zorglux. Exprimez-vous, connectez-vous avec des personnes partageant les mêmes idées et explorez un monde d'histoires et d'idées inspirantes.">
+        <meta name="author" content="Johan Mickaël">
     {% endblock %}
+
+    {% block meta_og %}
+        <meta property="og:title" content="Zorglux - Partagez vos Histoires et Idées">
+        <meta property="og:description" content="Zorglux est une plateforme de blog dynamique où vous pouvez partager vos histoires, idées et expériences avec une communauté mondiale. Rejoignez-nous dès aujourd'hui pour lire, écrire et vous connecter avec des personnes partageant les mêmes idées.">
+        <meta property="og:image" content="https://zorglux-bucket.s3.eu-north-1.amazonaws.com/default/logo.png">
+        <meta property="og:url" content="{{ path('blog_index') }}">
+    {% endblock %}
+
+    {% block meta_twitter %}
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="Zorglux - Partagez vos Histoires et Idées">
+        <meta name="twitter:description" content="Zorglux est une plateforme de blog dynamique où vous pouvez partager vos histoires, idées et expériences avec une communauté mondiale. Rejoignez-nous dès aujourd'hui pour lire, écrire et vous connecter avec des personnes partageant les mêmes idées.">
+        <meta name="twitter:image" content="https://zorglux-bucket.s3.eu-north-1.amazonaws.com/default/logo.png">
+    {% endblock %}
+
+    <title>{% block title %}Zorglux - Blog : lire, écrire, apprendre et plus encore{% endblock %}</title>
+    {% block stylesheets %}
+        <link rel="preload" href="{{ asset('build/app.css') }}" as="style" onload="this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="{{ asset('build/app.css') }}"></noscript>
+    {% endblock %}
+
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
+    <script src="https://kit.fontawesome.com/e164d72746.js" crossorigin="anonymous" defer></script>
+</head>
+{% block body %}
+    <body>
+    <header class="sticky top-0 left-0" {{ stimulus_controller('menu_toggler') }}>
+        {% block body_header %}{% endblock %}
+    </header>
+    <main>
+        {% block body_content %}{% endblock %}
+    </main>
+    <footer>
+        {% block body_footer %}{% endblock %}
+    </footer>
+    </body>
+{% endblock %}
 </html>

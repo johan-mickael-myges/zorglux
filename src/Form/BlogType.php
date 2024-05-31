@@ -10,8 +10,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\Choice;
 use Vich\UploaderBundle\Form\Type\VichImageType;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class BlogType extends AbstractType
 {
@@ -19,31 +19,41 @@ class BlogType extends AbstractType
     {
         $builder
             ->add('title', TextType::class, [
-                'label' => 'Title',
+                'label' => 'Titre',
                 'attr' => [
-                    'placeholder' => 'Add a title',
+                    'placeholder' => 'Ajoutez un titre',
                 ],
             ])
             ->add('description', TextType::class, [
                 'label' => 'Description',
                 'attr' => [
-                    'placeholder' => 'Add short description',
+                    'placeholder' => 'Ajoutez une courte description',
                 ],
             ])
             ->add('confidentiality', ChoiceType::class, [
-                'label' => 'Share with',
+                'label' => 'Partager avec',
                 'choices' => [
-                    'Everyone' => BlogConfidentiality::PUBLIC,
-                    'Member only' => BlogConfidentiality::MEMBER,
+                    'Tout le monde' => BlogConfidentiality::PUBLIC,
+                    'Membres seulement' => BlogConfidentiality::MEMBER,
                 ],
             ])
             ->add('thumbnailFile', VichImageType::class, [
                 'required' => true,
-                'allow_delete' => true,
-                'delete_label' => '...',
+                'label' => 'Image de couverture',
+                'constraints' => [
+                    new Assert\Image([
+                        'maxSize' => '5M',
+                        'mimeTypes' => [
+                            'image/jpeg',
+                            'image/png',
+                            'image/gif',
+                        ],
+                        'mimeTypesMessage' => 'Veuillez télécharger une image valide (jpeg, png, gif)',
+                    ]),
+                ],
             ])
             ->add('content', TextareaType::class, [
-                'label' => 'content',
+                'label' => 'Contenu',
             ])
         ;
     }

@@ -23,13 +23,6 @@
 
 {% block body_header %}
     {% embed '@common/navbar.html.twig' %}
-        {% block right_content %}
-            <div class="hidden md:flex flex-row items-center">
-                <a href="{{ path('public_about') }}" class="p-2 text-gray-500">About</a>
-                <a href="{{ path('app_logout') }}" class="p-2">Logout</a>
-                <twig:Avatar size="30" />
-            </div>
-        {% endblock %}
     {% endembed %}
 {% endblock %}
 

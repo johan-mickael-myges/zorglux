@@ -9,6 +9,7 @@ module.exports = {
     extend: {
       fontFamily: {
         times: ["Times New Roman", "Times", "serif"],
+        poppins: ["Poppins", "sans-serif"],
       },
     },
   },

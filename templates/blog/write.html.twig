@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Zorglux - Write an article{% endblock %}
+{% block title %}Zorglux - Écrire un article{% endblock %}
 
 {% block body_header %}
     {% embed '@common/navbar.html.twig' %}
@@ -8,20 +8,21 @@
 {% endblock %}
 
 {% block body_content %}
-    <p class="my-2 text-xs text-gray-400">
-        Use the form below to compose your article.
-        Be creative, be insightful, and make sure to follow our community guidelines. Happy writing!
-    </p>
+    <twig:Container>
+        <p class="my-2 text-xs text-gray-400">
+            Utilisez le formulaire ci-dessous pour rédiger votre article.
+            Soyez créatif, perspicace et assurez-vous de respecter nos directives communautaires. Bonne écriture !
+        </p>
 
-    <div {{ stimulus_controller('quill', {
+        <div {{ stimulus_controller('quill', {
             options: {
-                placeholder: 'Write your content ...',
+                placeholder: 'Écrivez votre contenu ...',
                 bounds: '#write-editor',
             }
         }) }}
-        class="rounded border shadow md:shadow-lg p-4"
-    >
-        {{ form_start(form, {}) }}
+            class="rounded border shadow md:shadow-lg p-4"
+        >
+            {{ form_start(form, {}) }}
             {% set inputClasses = 'text-4xl w-full border-b rounded-sm outline-none focus:border-black p-2 mb-4' %}
 
             {{ form_widget(form.title, {
@@ -56,8 +57,9 @@
             }) }}
 
             <div class="flex flex-row justify-end">
-                <button type="submit" value="1" class="p-2 text-white rounded-ee-2xl bg-green-500">Publish</button>
+                <button type="submit" value="1" class="p-2 text-white rounded-ee-2xl bg-green-500">Publier</button>
             </div>
-        {{ form_end(form) }}
-    </div>
+            {{ form_end(form) }}
+        </div>
+    </twig:Container>
 {% endblock %}

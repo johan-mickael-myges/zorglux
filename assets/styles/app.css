@@ -2,22 +2,51 @@
 @import '~quill/dist/quill.snow.css';
 @import '~normalize.css/normalize.css';
 
+@tailwind base;
 @tailwind utilities;
 
-body {
-    font-family: 'Poppins', sans-serif;
-    color: #131313;
-}
+@layer base {
+    body {
+        @apply font-poppins text-gray-800;
+    }
 
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'Poppins', sans-serif;
-}
+    h1, h2, h3, h4, h5, h6 {
+        @apply font-poppins;
+    }
 
-a {
-    @apply text-blue-500 no-underline;
-}
+    h1 {
+        @apply text-4xl my-5;
+    }
 
-img {
-    /* apply all default img style in base */
-    @apply max-w-full h-auto;
+    h2 {
+        @apply text-3xl mb-4;
+    }
+
+    h3 {
+        @apply text-2xl mb-3;
+    }
+
+    h4 {
+        @apply text-xl mb-2;
+    }
+
+    h5 {
+        @apply text-lg mb-1;
+    }
+
+    h6 {
+        @apply text-base;
+    }
+
+    a {
+        @apply text-blue-500 no-underline;
+    }
+
+    ol {
+        @apply list-decimal list-inside ml-4;
+    }
+
+    ul {
+        @apply list-disc list-inside ml-4;
+    }
 }

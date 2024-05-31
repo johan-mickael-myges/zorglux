@@ -18,43 +18,43 @@ class SignupType extends AbstractType
     {
         $builder
             ->add('username', TextType::class, [
-                'label' => 'Username',
+                'label' => 'Nom d\'utilisateur',
                 'constraints' => [
                     new Assert\NotBlank([
-                        'message' => 'Please enter a username',
+                        'message' => 'Veuillez entrer un nom d\'utilisateur',
                     ]),
                     new Assert\Length([
                         'min' => 3,
                         'max' => 180,
-                        'minMessage' => 'Username must be at least 3 characters long',
-                        'maxMessage' => 'Username cannot be longer than 180 characters',
+                        'minMessage' => 'Le nom d\'utilisateur doit contenir au moins 3 caractères',
+                        'maxMessage' => 'Le nom d\'utilisateur ne peut pas contenir plus de 180 caractères',
                     ]),
                 ],
             ])
             ->add('plainPassword', PasswordType::class, [
-                'label' => 'Password',
+                'label' => 'Mot de passe',
                 'constraints' => [
                     new Assert\NotBlank([
-                        'message' => 'Please enter a password',
+                        'message' => 'Veuillez entrer un mot de passe',
                     ]),
                     new Assert\Length([
                         'min' => 6,
-                        'minMessage' => 'Password must be at least 6 characters long',
+                        'minMessage' => 'Le mot de passe doit contenir au moins {{ limit }} caractères',
                         'max' => 4096,
                     ]),
                     new Assert\Regex(
                         [
                             'pattern' => '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/',
-                            'message' => 'Password must contain at least one digit, one uppercase letter, and one lowercase letter',
+                            'message' => 'Le mot de passe doit contenir au moins une lettre minuscule, une lettre majuscule et un chiffre',
                         ]
                     )
                 ],
             ])
             ->add('confirmPassword', PasswordType::class, [
-                'label' => 'Confirm Password',
+                'label' => 'Confirmer le mot de passe',
                 'constraints' => [
                     new Assert\NotBlank([
-                        'message' => 'Please confirm your password',
+                        'message' => 'Veuillez confirmer votre mot de passe',
                     ]),
                 ],
             ]);
@@ -66,7 +66,7 @@ class SignupType extends AbstractType
             $confirmPassword = $form->get('confirmPassword')->getData();
             if ($password !== $confirmPassword) {
                 // add violation to the form
-                $form->get('confirmPassword')->addError(new FormError('Passwords do not match'));
+                $form->get('confirmPassword')->addError(new FormError('Les mots de passe ne correspondent pas'));
             }
         });
     }
