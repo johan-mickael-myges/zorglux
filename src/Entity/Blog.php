@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\BlogRepository;
+use App\Service\Blog\ReadingTimeService;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
@@ -175,5 +176,10 @@ class Blog
         $this->author = $user_id;
 
         return $this;
+    }
+
+    public function getReadingTime(): int
+    {
+        return ReadingTimeService::calculate($this->content);
     }
 }

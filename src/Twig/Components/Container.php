@@ -17,8 +17,8 @@ class Container
         'md:px-10',
         'w-full',
         'md:w-2/3',
-        'lg:w-1/2',
-        'xl:w-1/3',
+        'xl:w-1/2',
+        '2xl:w-1/3',
     ];
 
     public array $classes = [];

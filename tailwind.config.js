@@ -6,7 +6,11 @@ module.exports = {
     "./src/Twig/**/*.php",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        times: ["Times New Roman", "Times", "serif"],
+      }
+    },
   },
   plugins: ["prettier-plugin-tailwindcss"],
 };

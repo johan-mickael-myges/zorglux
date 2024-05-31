@@ -10,7 +10,13 @@ class CommentButton
 {
     public function __construct(
         public int $comments = 0,
+        public bool $commented = false,
     ) {
 
+    }
+
+    public function getIconType(): string
+    {
+        return $this->commented ? 'fa-solid' : 'fa-regular';
     }
 }

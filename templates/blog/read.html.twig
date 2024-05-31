@@ -38,9 +38,20 @@
         <h1 class="mt-8 text-5xl font-bold mb-2">{{ blog.title }}</h1>
         <p class="text-lg text-gray-500 mb-4">{{ blog.description }}</p>
 
-        <div class="border-y py-3 text-sm text-gray-500 flex flex-row">
-            <time class="mr-4" datetime="{{ blog.createdAt|date }}">{{ blog.createdAt|date('M d') }}</time>
-            <twig:LikeButton classes="mr-4" />
+        <div class="flex flex-row items-center mb-4">
+            <img src="/build/images/default/avatar.jpg" alt="{{ 'Zorglux - ' ~ blog.author.username ~ ' avatar' }}" width="40" height="40" />
+            <div>
+                <span class="text-sm">{{ blog.author.username }}</span>
+                <div class="text-xs text-gray-500">
+                    <span>{{ blog.readingTime }} min read</span>
+                    <span> . </span>
+                    <time datetime="{{ blog.createdAt|date }}">{{ blog.createdAt|date }}</time>
+                </div>
+            </div>
+        </div>
+
+        <div class="border-y border-y-gray-100 py-3 text-sm text-gray-500 flex flex-row">
+            <twig:LikeButton classes="mr-3" />
             <twig:CommentButton />
         </div>
 
@@ -48,7 +59,7 @@
             <img src="{{ blog.thumbnail }}" alt="{{ blog.title }}" width="100" height="100" class="w-1/2 object-cover my-8" loading="lazy"/>
         </div>
 
-        <div>
+        <div class="font-times text-lg">
             {{ blog.content|raw }}
         </div>
     </twig:Container>
