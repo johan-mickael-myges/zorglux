@@ -12,7 +12,7 @@
         {% block meta_og %}
             <meta property="og:title" content="Zorglux - Share Your Stories and Ideas">
             <meta property="og:description" content="Zorglux is a vibrant blogging platform where you can share your stories, ideas, and experiences with a global community. Join us today to read, write, and connect with like-minded individuals.">
-            <meta property="og:image" content="{{ asset('build/images/default/logo.png') }}">
+            <meta property="og:image" content="https://zorglux-bucket.s3.eu-north-1.amazonaws.com/default/logo.png">
             <meta property="og:url" content="{{ path('blog_index') }}">
         {% endblock %}
 
@@ -20,7 +20,7 @@
             <meta name="twitter:card" content="summary_large_image">
             <meta name="twitter:title" content="Zorglux - Share Your Stories and Ideas">
             <meta name="twitter:description" content="Zorglux is a vibrant blogging platform where you can share your stories, ideas, and experiences with a global community. Join us today to read, write, and connect with like-minded individuals.">
-            <meta name="twitter:image" content="{{ asset('build/images/default/logo.png') }}">
+            <meta name="twitter:image" content="https://zorglux-bucket.s3.eu-north-1.amazonaws.com/default/logo.png">
         {% endblock %}
 
         <title>{% block title %}Zorglux - Blog: read, write, learn and more{% endblock %}</title>
