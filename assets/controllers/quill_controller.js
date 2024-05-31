@@ -10,7 +10,7 @@ export default class extends Controller {
     modules: {
       toolbar: [
         [
-          { 'header': '1'}, {'header': '2'}, {'header': '3'}, { 'header': [4, 5, 6] }, { 'size': [] },
+          {'header': '2'}, {'header': '3'},
         ],
         ['bold', 'italic', 'underline', 'strike'],
         ['blockquote', 'code-block'],
@@ -28,7 +28,9 @@ export default class extends Controller {
         delay: 2000,
         maxStack: 500,
         userOnly: true
-      }
+      },
+      'image-tooltip': true,
+      'link-tooltip': true,
     },
     readOnly: false,
     formats: [

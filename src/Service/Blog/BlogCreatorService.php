@@ -26,7 +26,7 @@ class BlogCreatorService
         $blog->setAuthor($this->security->getUser());
 
         $blog->setContent($this->htmlSanitizer->sanitize($blog->getContent()));
-        $blog->setSlug((new AsciiSlugger())->slug($blog->getTitle()) . '-' . uniqid());
+        $blog->setSlug((new AsciiSlugger())->slug(strtolower($blog->getTitle())) . '-' . uniqid());
 
         $blog->setCreatedAt(new \DateTimeImmutable());
         $blog->setUpdatedAt(new \DateTimeImmutable());

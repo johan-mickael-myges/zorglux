@@ -3,6 +3,7 @@
 namespace App\EventListener;
 
 use App\Repository\BlogRepository;
+use App\Service\Blog\BlogRepositoryService;
 use Presta\SitemapBundle\Sitemap\Url\GoogleImage;
 use Presta\SitemapBundle\Sitemap\Url\GoogleImageUrlDecorator;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -14,9 +15,9 @@ use Presta\SitemapBundle\Sitemap\Url\UrlConcrete;
 class SitemapSubscriber implements EventSubscriberInterface
 {
     public function __construct(
-        private readonly BlogRepository $blogRepository)
-    {
-    }
+        private readonly BlogRepository $blogRepository,
+        private readonly BlogRepositoryService $blogRepositoryService,
+    ) {}
 
     /**
      * @inheritdoc
@@ -38,8 +39,7 @@ class SitemapSubscriber implements EventSubscriberInterface
 
     public function registerBlogUrls(UrlContainerInterface $urls, UrlGeneratorInterface $router): void
     {
-        $posts = $this->blogRepository->findAll();
-        $baseUrl = $router->generate('public_index', [], UrlGeneratorInterface::ABSOLUTE_URL);
+        $posts = $this->blogRepositoryService->getPublicBlog();
         foreach ($posts as $post) {
             $blogUrl = new UrlConcrete(
                 $router->generate(
@@ -54,7 +54,7 @@ class SitemapSubscriber implements EventSubscriberInterface
 
             $imageUrl = new GoogleImageUrlDecorator($blogUrl);
             $imageUrl->addImage(new GoogleImage(
-                $baseUrl . '/images/blog/' . $post->getThumbnail(),
+                $post->getThumbnail(),
                 $post->getTitle(),
                 null,
                 $post->getTitle(),
