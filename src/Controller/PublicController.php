@@ -29,7 +29,7 @@ class PublicController extends AbstractController
     public function index(BlogRepositoryService $blogRepositoryService): Response
     {
         $blog = $blogRepositoryService->getPublicBlog([
-            'limit' => 4,
+            'limit' => 6,
         ]);
         return $this->render('public/index.html.twig', [
             'blogs' => $blog,

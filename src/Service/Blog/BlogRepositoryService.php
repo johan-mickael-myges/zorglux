@@ -25,6 +25,9 @@ class BlogRepositoryService
             $qb->setMaxResults($limit);
         }
 
+        // sort by created date
+        $qb->orderBy('b.createdAt', 'DESC');
+
         return $qb->getQuery()->getResult();
     }
 }
