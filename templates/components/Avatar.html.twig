@@ -1,4 +1,6 @@
-<div class="{{ this.classes }}">
-    <img class="{{ this.imageClasses|default('') }}" src="{{ this.img }}" alt="{{ this.name|default('Zorglux default avatar') }}" width="{{ this.size }}" height="{{ this.size }}" />
-    <span class="{{ this.usernameClasses|default('') }}">{{ this.name }}</span>
+<div {{ attributes }}>
+    <div class="{{ this.classes }}">
+        <img class="{{ this.imageClasses|default('') }}" src="{{ this.img }}" alt="{{ this.name|default('Zorglux default avatar') }}" width="{{ this.size }}" height="{{ this.size }}" />
+        <span class="{{ this.usernameClasses|default('') }}">{{ this.name }}</span>
+    </div>
 </div>
