@@ -25,8 +25,7 @@
 
     <title>{% block title %}Zorglux - Blog : lire, écrire, apprendre et plus encore{% endblock %}</title>
     {% block stylesheets %}
-        <link rel="preload" href="{{ asset('build/app.css') }}" as="style" onload="this.rel='stylesheet'">
-        <noscript><link rel="stylesheet" href="{{ asset('build/app.css') }}"></noscript>
+        {{ encore_entry_link_tags('app') }}
     {% endblock %}
 
     {% block javascripts %}

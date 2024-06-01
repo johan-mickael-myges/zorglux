@@ -39,14 +39,14 @@
         </div>
     {% elseif this.variant is same as 'compact' %}
         <div class="flex flex-row items-center">
-            <figure class="hidden md:flex flex-col justify-center min-w-20">
-                <img src="{{ this.blog.thumbnail }}" alt="{{ this.title }}" width="70" height="70" loading="lazy">
+            <figure class="hidden md:flex flex-col justify-center min-w-24 mr-2">
+                <img src="{{ this.blog.thumbnail }}" alt="{{ this.title }}" width="100" height="100" loading="lazy">
             </figure>
             <div>
                 <header>
-                    <h2 class="text-lg font-bold my-0">
+                    <h3 class="text-base line-clamp-2 font-bold mt-0 mb-1 leading-5">
                         {{ this.title }}
-                    </h2>
+                    </h3>
                 </header>
                 <section>
                     <p class="text-xs line-clamp-2 text-gray-500">{{ this.description }}</p>
