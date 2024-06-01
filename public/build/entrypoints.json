@@ -7,6 +7,14 @@
       "js": [
         "/build/app.js"
       ]
+    },
+    "quill": {
+      "css": [
+        "/build/quill.css"
+      ],
+      "js": [
+        "/build/quill.js"
+      ]
     }
   }
 }

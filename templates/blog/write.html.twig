@@ -2,6 +2,11 @@
 
 {% block title %}Zorglux - Écrire un article{% endblock %}
 
+{% block stylesheets %}
+    {{ encore_entry_link_tags('app') }}
+    {{ encore_entry_link_tags('quill') }}
+{% endblock %}
+
 {% block body_header %}
     {% embed '@common/navbar.html.twig' %}
     {% endembed %}
