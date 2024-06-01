@@ -14,11 +14,17 @@ class BlogRepositoryService
     {
     }
 
-    public function getPublicBlog(): array
+    public function getPublicBlog(array $options): array
     {
-        return (new BlogWithConfidentiality(BlogConfidentiality::PUBLIC))
-            ->apply($this->blogRepository->getBlogQueryBuilder())
-            ->getQuery()
-            ->getResult();
+        $limit = $options['limit'] ?? null;
+
+        $qb = (new BlogWithConfidentiality(BlogConfidentiality::PUBLIC))
+            ->apply($this->blogRepository->getBlogQueryBuilder());
+
+        if ($limit) {
+            $qb->setMaxResults($limit);
+        }
+
+        return $qb->getQuery()->getResult();
     }
 }

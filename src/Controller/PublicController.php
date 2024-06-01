@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Blog;
 use App\Form\BlogType;
 use App\Repository\BlogRepository;
+use App\Service\Blog\BlogRepositoryService;
 use Doctrine\ORM\EntityManagerInterface;
 use Presta\SitemapBundle\Sitemap\Url\UrlConcrete;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -25,9 +26,14 @@ class PublicController extends AbstractController
         ],
         methods: ['GET']
     )]
-    public function index(BlogRepository $blogRepository): Response
+    public function index(BlogRepositoryService $blogRepositoryService): Response
     {
-        return $this->render('public/index.html.twig');
+        $blog = $blogRepositoryService->getPublicBlog([
+            'limit' => 4,
+        ]);
+        return $this->render('public/index.html.twig', [
+            'blogs' => $blog,
+        ]);
     }
 
     #[Route(

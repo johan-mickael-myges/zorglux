@@ -12,12 +12,16 @@ class BlogCard
 
     public array $options;
 
+    public string $variant;
+
     public function setBlog(
         Blog $blog,
-        array $options = []
+        array $options = [],
+        string $variant = 'default',
     ): void {
         $this->blog = $blog;
         $this->options = $options;
+        $this->variant = $variant;
     }
 
     public function getTitle(): string

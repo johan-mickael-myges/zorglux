@@ -1,39 +1,57 @@
 <article class="{{ this.classes }}" {{ stimulus_target('clickable', 'element') }}>
-    <div class="flex flex-row items-center text-gray-700">
-        <twig:Avatar
-            img="{{ this.blog.author.avatar|default('https://zorglux-bucket.s3.eu-north-1.amazonaws.com/default/avatar.jpg') }}"
-            :name="this.blog.author.username"
-            classes="flex flex-row items-center"
-            imageClasses="mr-2 rounded-full object-cover"
-            usernameClasses="text-xs"
-            size="25"
-        />
-    </div>
-    <div class="flex flex-row justify-between">
-        <div class="w-full flex flex-col justify-between">
+    {% if this.variant is same as 'default' %}
+        <div class="flex flex-row items-center text-gray-700">
+            <twig:Avatar
+                img="{{ this.blog.author.avatar|default('https://zorglux-bucket.s3.eu-north-1.amazonaws.com/default/avatar.jpg') }}"
+                :name="this.blog.author.username"
+                classes="flex flex-row items-center"
+                imageClasses="mr-2 rounded-full object-cover"
+                usernameClasses="text-xs"
+                size="25"
+            />
+        </div>
+        <div class="flex flex-row justify-between">
+            <div class="w-full flex flex-col justify-between">
+                <div>
+                    <header>
+                        <h2 class="text-2xl font-bold my-2">
+                            {{ this.title }}
+                        </h2>
+                    </header>
+                    <section>
+                        <p class="line-clamp-2 text-gray-500">{{ this.description }}</p>
+                    </section>
+                </div>
+                <figure class="flex justify-center md:hidden">
+                    <a class="" href="{{ this.blog.thumbnail }}" title="{{ this.title }}">
+                        <img src="{{ this.blog.thumbnail }}" alt="{{ this.title }}" width="150" height="150" loading="lazy">
+                    </a>
+                </figure>
+                <footer class="mt-3 text-xs text-gray-500 flex flex-row">
+                    <time class="mr-4" datetime="{{ this.createdAt|date }}">{{ this.createdAt|date('M d') }}</time>
+                    <twig:LikeButton classes="mr-2" />
+                    <twig:CommentButton />
+                </footer>
+            </div>
+            <figure class="hidden md:flex flex-col justify-center">
+                <img src="{{ this.blog.thumbnail }}" alt="{{ this.title }}" width="200" height="200" loading="lazy">
+            </figure>
+        </div>
+    {% elseif this.variant is same as 'compact' %}
+        <div class="flex flex-row items-center">
+            <figure class="hidden md:flex flex-col justify-center min-w-20">
+                <img src="{{ this.blog.thumbnail }}" alt="{{ this.title }}" width="70" height="70" loading="lazy">
+            </figure>
             <div>
                 <header>
-                    <h2 class="text-2xl font-bold my-2">
+                    <h2 class="text-lg font-bold my-0">
                         {{ this.title }}
                     </h2>
                 </header>
                 <section>
-                    <p class="line-clamp-2 text-gray-500">{{ this.description }}</p>
+                    <p class="text-xs line-clamp-2 text-gray-500">{{ this.description }}</p>
                 </section>
             </div>
-            <figure class="flex justify-center md:hidden">
-                <a class="" href="{{ this.blog.thumbnail }}" title="{{ this.title }}">
-                    <img src="{{ this.blog.thumbnail }}" alt="{{ this.title }}" width="150" height="150" loading="lazy">
-                </a>
-            </figure>
-            <footer class="mt-3 text-xs text-gray-500 flex flex-row">
-                <time class="mr-4" datetime="{{ this.createdAt|date }}">{{ this.createdAt|date('M d') }}</time>
-                <twig:LikeButton classes="mr-2" />
-                <twig:CommentButton />
-            </footer>
         </div>
-        <figure class="hidden md:flex flex-col justify-center">
-            <img src="{{ this.blog.thumbnail }}" alt="{{ this.title }}" width="200" height="200" loading="lazy">
-        </figure>
-    </div>
+    {% endif %}
 </article>

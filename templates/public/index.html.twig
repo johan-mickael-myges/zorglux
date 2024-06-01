@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div class="flex flex-col h-screen">
+    <div class="flex flex-col h-screen border-b border-b-gray-100">
         <header {{ stimulus_controller('menu_toggler') }}>
             {% include '@common/navbar.html.twig' %}
         </header>
@@ -24,4 +24,24 @@
             </button>
         </twig:Container>
     </div>
+
+    <twig:Container>
+        <h3 class="font-bold">Les derniers articles</h3>
+        {% set options = {
+            classes: 'cursor-pointer py-2',
+        } %}
+        <div class="grid grid-cols-2 gap-2">
+            {% for blog in blogs %}
+                <div {{ stimulus_controller('clickable', {
+                    url: path('blog_read', { slug: blog.slug }),
+                }) }} class="col-span-1">
+                    <twig:BlogCard :blog="blog" :options="options" variant="compact" />
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="py-4 text-center border-t border-t-gray-100">
+            <a href="{{ path('blog_index') }}" class="text-sm text-gray-700">Voir plus</a>
+        </div>
+    </twig:Container>
 {% endblock %}
