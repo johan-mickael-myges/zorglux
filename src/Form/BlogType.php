@@ -47,6 +47,8 @@ class BlogType extends AbstractType
                             'image/jpeg',
                             'image/png',
                             'image/gif',
+                            'image/webp',
+                            'image/svg+xml',
                         ],
                         'mimeTypesMessage' => 'Veuillez télécharger une image valide (jpeg, png, gif)',
                     ]),

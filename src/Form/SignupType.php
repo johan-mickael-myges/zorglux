@@ -57,7 +57,8 @@ class SignupType extends AbstractType
                         'message' => 'Veuillez confirmer votre mot de passe',
                     ]),
                 ],
-            ]);
+            ])
+        ;
 
         // builder event listener to check if the passwords match
         $builder->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) {

@@ -61,6 +61,7 @@ class SecurityController extends AbstractController
         EntityManagerInterface $entityManager
     ): Response
     {
+        $siteCaptchaKey = $_ENV['GOOGLE_RECAPTCHA_SITE_KEY'] ?? null;
         $form = $this->createForm(SignupType::class);
 
         // handle the form submission
@@ -78,12 +79,14 @@ class SecurityController extends AbstractController
                 $form->get('username')->addError(new FormError('This username is already taken.'));
                 return $this->render('security/signup.html.twig', [
                     'form' => $form,
+                    'google_recaptcha_site_key' => $siteCaptchaKey,
                 ]);
             }
         }
 
         return $this->render('security/signup.html.twig', [
             'form' => $form,
+            'google_recaptcha_site_key' => $siteCaptchaKey,
         ]);
     }
 
