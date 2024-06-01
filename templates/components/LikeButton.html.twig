@@ -1,4 +1,9 @@
-<div class="{{ this.classes }}">
-    <i class="{{ this.iconType }} fa-heart"></i>
-    <span>{{ this.likes }}</span>
+<div {{ attributes }}>
+    <button class="{{ this.classes }}"
+         data-action="live#action"
+         data-live-action-param="toggleLike"
+    >
+        <i class="{{ this.iconType }} fa-heart"></i>
+        <span>{{ this.likes }}</span>
+    </button>
 </div>

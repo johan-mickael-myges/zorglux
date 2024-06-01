@@ -763,6 +763,10 @@ Copyright © 2024 37signals LLC
 
 /*! @symfony/stimulus-bridge */
 
+/*! @symfony/ux-live-component/dist/live.min.css */
+
+/*! @symfony/ux-live-component/dist/live_controller.js */
+
 /*! @symfony/ux-turbo/dist/turbo_controller.js */
 
 /*! core-js/modules/es.array.concat.js */
@@ -2116,6 +2120,10 @@ Copyright © 2024 37signals LLC
   \****************************************************************/
 
 /*!*****************************************************************!*\
+  !*** ./node_modules/@symfony/ux-turbo/dist/turbo_controller.js ***!
+  \*****************************************************************/
+
+/*!*****************************************************************!*\
   !*** ./node_modules/core-js/internals/function-bind-context.js ***!
   \*****************************************************************/
 
@@ -2139,10 +2147,6 @@ Copyright © 2024 37signals LLC
   !*** ./node_modules/quill/node_modules/eventemitter3/index.mjs ***!
   \*****************************************************************/
 
-/*!*****************************************************************!*\
-  !*** ./vendor/symfony/ux-turbo/assets/dist/turbo_controller.js ***!
-  \*****************************************************************/
-
 /*!******************************************************************!*\
   !*** ./node_modules/core-js/internals/array-method-is-strict.js ***!
   \******************************************************************/
@@ -2162,6 +2166,10 @@ Copyright © 2024 37signals LLC
 /*!******************************************************************!*\
   !*** ./node_modules/core-js/internals/to-integer-or-infinity.js ***!
   \******************************************************************/
+
+/*!*******************************************************************!*\
+  !*** ./node_modules/@symfony/ux-live-component/dist/live.min.css ***!
+  \*******************************************************************/
 
 /*!*******************************************************************!*\
   !*** ./node_modules/core-js/internals/document-create-element.js ***!
@@ -2294,6 +2302,10 @@ Copyright © 2024 37signals LLC
 /*!************************************************************************!*\
   !*** ./node_modules/core-js/internals/symbol-constructor-detection.js ***!
   \************************************************************************/
+
+/*!*************************************************************************!*\
+  !*** ./node_modules/@symfony/ux-live-component/dist/live_controller.js ***!
+  \*************************************************************************/
 
 /*!*************************************************************************!*\
   !*** ./node_modules/core-js/internals/object-get-own-property-names.js ***!
