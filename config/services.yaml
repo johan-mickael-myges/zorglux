@@ -30,6 +30,10 @@ services:
         class: App\Naming\BlogThumbnailNamer
         tags:
             - { name: namer }
+            
+    App\EventListener\HSTSListener:
+        tags:
+            - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }
                 
 liip_imagine :
 

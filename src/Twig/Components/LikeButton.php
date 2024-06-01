@@ -28,7 +28,7 @@ class LikeButton
 
     public function getIconType(): string
     {
-        return $this->liked ? 'fa-solid' : 'fa-regular';
+        return $this->liked ? 'fa-solid text-red-500' : 'fa-regular';
     }
 
     #[LiveAction]

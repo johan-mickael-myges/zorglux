@@ -50,17 +50,17 @@
 
         <div class="border-y border-y-gray-100 py-3 text-sm text-gray-500 flex flex-row justify-between">
             <div class="grid grid-cols-2 gap-2">
-                <twig:LikeButton class="col-span-1" />
-                <twig:CommentButton class="col-span-1" />
+                <twig:LikeButton class="col-span-1"/>
+                <twig:CommentButton class="col-span-1"/>
             </div>
 
             <div class="flex flex-row items-center">
                 <span class="mr-3 text-xs italic">Partager sur</span>
                 <div class="grid grid-cols-4 gap-2">
-                    <twig:SocialShare service="twitter" :url="app.request.uri" />
-                    <twig:SocialShare service="facebook" :url="app.request.uri" />
-                    <twig:SocialShare service="linkedin" :url="app.request.uri" />
-                    <twig:SocialShare service="reddit" :url="app.request.uri" />
+                    <twig:SocialShare service="twitter" text="{{ blog.title }}" :url="app.request.uri"/>
+                    <twig:SocialShare service="facebook" :url="app.request.uri"/>
+                    <twig:SocialShare service="linkedin" :url="app.request.uri"/>
+                    <twig:SocialShare service="reddit" :url="app.request.uri"/>
                 </div>
             </div>
 
