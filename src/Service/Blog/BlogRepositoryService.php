@@ -14,7 +14,7 @@ class BlogRepositoryService
     {
     }
 
-    public function getPublicBlog(array $options): array
+    public function getPublicBlog(array $options = []): array
     {
         $limit = $options['limit'] ?? null;
 
