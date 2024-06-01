@@ -16,13 +16,13 @@ export default class extends Controller {
         ['blockquote', 'code-block'],
         [{ 'list': 'ordered'}, { 'list': 'bullet' },
           { 'indent': '-1'}, { 'indent': '+1' }],
-        ['link', 'image'],
+        ['link', 'image', 'blockquote'],
         [{ 'color': [] }, { 'background': [] }],
         [{ 'align': [] }],
         ['clean']
       ],
       clipboard: {
-        matchVisual: false
+        matcher: null
       },
       history: {
         delay: 2000,
