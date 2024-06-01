@@ -1,17 +1,23 @@
 <article class="{{ this.classes }}" {{ stimulus_target('clickable', 'element') }}>
-    <div class="flex flex-row items-center mb-4 text-gray-700">
-        <twig:Avatar />
-        <small>{{ this.blog.author.username }}</small>
+    <div class="flex flex-row items-center text-gray-700">
+        <twig:Avatar
+            img="{{ this.blog.author.avatar|default('https://zorglux-bucket.s3.eu-north-1.amazonaws.com/default/avatar.jpg') }}"
+            :name="this.blog.author.username"
+            classes="flex flex-row items-center"
+            imageClasses="mr-2 rounded-full object-cover"
+            usernameClasses="text-xs"
+            size="25"
+        />
     </div>
     <div class="flex flex-row justify-between">
         <div class="w-full flex flex-col justify-between">
             <div>
                 <header>
-                    <h2 class="text-2xl font-bold">
+                    <h2 class="text-2xl font-bold my-2">
                         {{ this.title }}
                     </h2>
                 </header>
-                <section class="mt-2">
+                <section>
                     <p class="line-clamp-2 text-gray-500">{{ this.description }}</p>
                 </section>
             </div>
@@ -20,14 +26,14 @@
                     <img src="{{ this.blog.thumbnail }}" alt="{{ this.title }}" width="150" height="150" loading="lazy">
                 </a>
             </figure>
-            <footer class="mt-4 text-sm text-gray-500 flex flex-row">
+            <footer class="mt-3 text-xs text-gray-500 flex flex-row">
                 <time class="mr-4" datetime="{{ this.createdAt|date }}">{{ this.createdAt|date('M d') }}</time>
                 <twig:LikeButton classes="mr-2" />
                 <twig:CommentButton />
             </footer>
         </div>
-        <figure class="hidden md:block">
-            <img src="{{ this.blog.thumbnail }}" alt="{{ this.title }}" width="150" height="150" loading="lazy">
+        <figure class="hidden md:flex flex-col justify-center">
+            <img src="{{ this.blog.thumbnail }}" alt="{{ this.title }}" width="200" height="200" loading="lazy">
         </figure>
     </div>
 </article>

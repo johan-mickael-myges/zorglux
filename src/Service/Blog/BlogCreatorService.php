@@ -33,11 +33,14 @@ class BlogCreatorService
 
         $this->entityManager->persist($blog);
 
-        $imageName = $this->fileUploaderService
-            ->uploadImage($blog->getThumbnailFile(), $blog->getThumbnail())
-            ->get('ObjectURL');
+        // if app.env is dev, we don't upload the image to S3
+        $imageName = 'https://zorglux-bucket.s3.eu-north-1.amazonaws.com/default/no-image.webp';
+        if ($_ENV['APP_ENV'] !== 'dev') {
+            $imageName = $this->fileUploaderService
+                ->uploadImage($blog->getThumbnailFile(), $blog->getThumbnail())
+                ->get('ObjectURL');
+        }
         $blog->setThumbnail($imageName);
-
         $this->entityManager->flush();
     }
 }

@@ -13,7 +13,9 @@ class Avatar
         public string $img = 'https://zorglux-bucket.s3.eu-north-1.amazonaws.com/default/avatar.jpg',
         public string $name = '',
         public int $size = 25,
-        public string $classes = ''
+        public string $classes = '',
+        public string $imageClasses = '',
+        public string $usernameClasses = '',
     ) {
         $this->img = $packages->getUrl($img);
     }
