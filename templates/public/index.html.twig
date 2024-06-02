@@ -47,7 +47,7 @@
             {% set options = {
                 classes: 'cursor-pointer py-2',
             } %}
-            <div class="grid grid-cols-3 gap-4">
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
                 {% for blog in blogs %}
                     <div {{ stimulus_controller('clickable', {
                         url: path('blog_read', { slug: blog.slug }),
