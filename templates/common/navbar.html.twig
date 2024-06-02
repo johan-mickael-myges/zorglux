@@ -8,7 +8,7 @@
             <div class="w-full mr-4">
                 {% include '@components/search-form.html.twig' %}
             </div>
-            <twig:Avatar size="30" classes="md:hidden mr-4" />
+            <twig:Avatar size="30" classes="md:hidden mr-4" img="{{ app.user.avatar|default(null) }}" />
             <button {{ stimulus_action('menu_toggler', 'toggle') }} class="md:hidden" name="menu-toggler" aria-label="toggleMenu"><i class="fa-solid fa-bars"></i></button>
         </div>
         {% endblock %}
@@ -22,7 +22,7 @@
             {% else %}
                 <a href="{{ path('app_login') }}" class="p-2 text-gray-700">Se Connecter</a>
             {% endif %}
-            <twig:Avatar size="30" />
+            <twig:Avatar size="30" img="{{ app.user.avatar|default(null) }}" />
         </div>
         {% endblock %}
     </div>

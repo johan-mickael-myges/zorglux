@@ -9,14 +9,23 @@ use Symfony\UX\TwigComponent\Attribute\AsTwigComponent;
 class Avatar
 {
     public function __construct(
-        Packages $packages,
-        public string $img = 'https://zorglux-bucket.s3.eu-north-1.amazonaws.com/default/avatar.jpg',
+        public ?string $img = '',
         public string $name = '',
         public int $size = 25,
         public string $classes = '',
         public string $imageClasses = '',
         public string $usernameClasses = '',
+        public bool $rounded = true,
     ) {
-        $this->img = $packages->getUrl($img);
+    }
+
+    public function getImg(): string {
+        return empty($this->img)
+            ? 'https://zorglux-bucket.s3.eu-north-1.amazonaws.com/default/avatar.jpg'
+            : $this->img;
+    }
+
+    public function getImageClasses(): string {
+        return $this->imageClasses . ($this->rounded ? ' rounded-full' : '');
     }
 }
