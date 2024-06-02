@@ -3,6 +3,7 @@
 namespace App\Service\Blog;
 
 use App\Entity\Blog;
+use App\Repository\BlogRepository;
 use App\Service\S3\FileUploaderService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\SecurityBundle\Security;
@@ -14,8 +15,8 @@ class BlogCreatorService
 {
     public function __construct(
         private EntityManagerInterface $entityManager,
-        private HtmlSanitizerInterface $htmlSanitizer,
         private FileUploaderService $fileUploaderService,
+        private BlogRepository $blogRepository,
         private Security $security,
     )
     {
@@ -24,11 +25,17 @@ class BlogCreatorService
     public function create(Blog $blog): void
     {
         $blog->setAuthor($this->security->getUser());
-
         $blog->setContent($blog->getContent());
-        $blog->setSlug((new AsciiSlugger())->slug(strtolower($blog->getTitle())) . '-' . uniqid());
 
-        $blog->setCreatedAt(new \DateTimeImmutable());
+        $slug = (new AsciiSlugger())->slug(strtolower($blog->getTitle()));
+        $existingBlogWithSlug = $this->blogRepository->getBySlug($slug);
+        $creationDate = new \DateTimeImmutable();
+        if ($existingBlogWithSlug) {
+            $slug .= '-' . $creationDate->format('Y-m-d-H-i-s');
+        }
+        $blog->setSlug($slug);
+
+        $blog->setCreatedAt($creationDate);
         $blog->setUpdatedAt(new \DateTimeImmutable());
 
         $this->entityManager->persist($blog);

@@ -1,4 +1,19 @@
-<div>
-    <i class="{{ this.iconType }} fa-comment"></i>
-    <span>{{ this.comments }}</span>
+<div {{ attributes }}>
+    <div {{ stimulus_controller('comments_toggler') }}>
+        <button
+            {{ stimulus_action('comments_toggler', 'toggle', 'click') }}
+        >
+            <i class="{{ this.iconType }} fa-comment"></i>
+            <span>{{ this.blog.comments|length }}</span>
+        </button>
+
+        <div class="hidden md:block">
+            <twig:Comments :blog="this.blog" variant="desktop" />
+        </div>
+
+        <div class="md:hidden">
+            <twig:Comments :blog="this.blog" />
+        </div>
+    </div>
+
 </div>
