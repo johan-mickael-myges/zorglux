@@ -21,7 +21,7 @@ class PublicController extends AbstractController
         name: 'index',
         options: [
             'sitemap' => [
-                'changefreq' => UrlConcrete::CHANGEFREQ_DAILY,
+                'changefreq' => UrlConcrete::CHANGEFREQ_ALWAYS,
             ]
         ],
         methods: ['GET']

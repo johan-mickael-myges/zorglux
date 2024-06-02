@@ -15,7 +15,6 @@ use Presta\SitemapBundle\Sitemap\Url\UrlConcrete;
 class SitemapSubscriber implements EventSubscriberInterface
 {
     public function __construct(
-        private readonly BlogRepository $blogRepository,
         private readonly BlogRepositoryService $blogRepositoryService,
     ) {}
 
