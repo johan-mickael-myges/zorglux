@@ -13,11 +13,6 @@ export default class extends Controller {
       this.mobileContainerTarget.classList.toggle('translate-y-full');
     }
     if (this.desktopContainerTarget) {
-      let currentOpenedContainer = document.querySelectorAll('[data-comment="desktop"]');
-      currentOpenedContainer.forEach((container) => {
-        container.classList.toggle(this.hiddenClassValue);
-      });
-
       this.desktopContainerTarget.classList.toggle('translate-x-full');
     }
   }
