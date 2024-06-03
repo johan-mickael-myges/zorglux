@@ -83,5 +83,10 @@
             <a href="{{ path('app_login') }}" class="text-gray-700 font-bold">Connecte toi.</a>
         </div>
     {{ form_end(form) }}
+
+        <div class="py-5">
+            <h2 class="text-lg">Lire les posts récents</h2>
+            {% include '@public/partials/latest-posts.html.twig' %}
+        </div>
     </twig:Container>
 {% endblock %}

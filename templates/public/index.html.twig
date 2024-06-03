@@ -44,22 +44,7 @@
     <div id="latest-posts" class="{{ contentWrapperClasses }}">
         <div class="{{ contentClasses }}">
             <h2 class="font-bold">Les derniers posts</h2>
-            {% set options = {
-                classes: 'cursor-pointer py-2',
-            } %}
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-                {% for blog in blogs %}
-                    <div {{ stimulus_controller('clickable', {
-                        url: path('blog_read', { slug: blog.slug }),
-                    }) }} class="col-span-1 flex flex-col justify-center">
-                        <twig:BlogCard :blog="blog" :options="options" variant="compact" />
-                    </div>
-                {% endfor %}
-            </div>
-
-            <div class="py-4 text-center border-t border-t-gray-100">
-                <a href="{{ path('blog_index') }}" class="text-sm text-gray-700">Voir plus</a>
-            </div>
+            {% include '@public/partials/latest-posts.html.twig' %}
         </div>
     </div>
 

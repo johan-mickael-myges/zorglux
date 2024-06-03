@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Factory\UserRegistrationFactory;
 use App\Form\SignupType;
+use App\Service\Blog\BlogRepositoryService;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Doctrine\ORM\EntityManagerInterface;
 use Presta\SitemapBundle\Sitemap\Url\UrlConcrete;
@@ -30,7 +31,7 @@ class SecurityController extends AbstractController
         ],
         methods: ['GET', 'POST']
     )]
-    public function login(AuthenticationUtils $authenticationUtils): Response
+    public function login(AuthenticationUtils $authenticationUtils, BlogRepositoryService $blogRepositoryService): Response
     {
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
@@ -38,9 +39,14 @@ class SecurityController extends AbstractController
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
+        $blogs = $blogRepositoryService->getPublicBlog([
+            'limit' => 3,
+        ]);
+
         return $this->render('security/signin.html.twig', [
             'last_username' => $lastUsername,
             'error' => $error,
+            'blogs' => $blogs,
         ]);
     }
 
@@ -58,7 +64,8 @@ class SecurityController extends AbstractController
     public function register(
         Request $request,
         UserPasswordHasherInterface $passwordHasher,
-        EntityManagerInterface $entityManager
+        EntityManagerInterface $entityManager,
+        BlogRepositoryService $blogRepositoryService
     ): Response
     {
         $siteCaptchaKey = $_ENV['GOOGLE_RECAPTCHA_SITE_KEY'] ?? null;
@@ -84,9 +91,14 @@ class SecurityController extends AbstractController
             }
         }
 
+        $blogs = $blogRepositoryService->getPublicBlog([
+            'limit' => 3,
+        ]);
+
         return $this->render('security/signup.html.twig', [
             'form' => $form,
             'google_recaptcha_site_key' => $siteCaptchaKey,
+            'blogs' => $blogs,
         ]);
     }
 

@@ -17,7 +17,7 @@
     },
 ] %}
 
-<div class="mt-auto bg-gray-100 shadow-2xl border-t border-t-gray-100 text-gray-700 text-xs md:text-sm p-5 flex flex-col md:items-center">
+<div class="mt-auto bg-gray-100 shadow-2xl border-t border-t-gray-100 text-gray-700 text-sm md:text-md p-5 flex flex-col md:items-center">
     <div class="mb-2">
         <ul class="m-0 list-none flex flex-col md:flex-row">
             {% for item in footerItem %}
@@ -56,13 +56,11 @@
         },
     ] %}
 
-    <div class="flex md:block justify-center">
-        <div class="grid grid-cols-{{ socials|length }} gap-2 items-center">
+        <div class="flex justify-center">
             {% for social in socials %}
-                <a href="{{ social.url }}" target="_blank" class="text-gray-800">
-                    <i class="{{ social.icon }}"></i>
+                <a href="{{ social.url }}" target="_blank" class="text-gray-800 mx-1">
+                    <i class="{{ social.icon }} text-base"></i>
                 </a>
             {% endfor %}
         </div>
-    </div>
 </div>
