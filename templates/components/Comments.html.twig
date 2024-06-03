@@ -42,7 +42,7 @@
         <div
             {{ stimulus_target('comments_toggler', 'mobileContainer') }}
             data-comment="mobile"
-            class="translate-y-full transition-all ease-in-out w-full bg-white fixed top-20 left-0 shadow-inner border-t border-t-gray-200 h-screen p-4 overflow-y-scroll"
+            class="translate-y-full transition-all ease-in-out w-full bg-white fixed top-20 left-0 shadow-inner border-t border-t-gray-200 h-screen p-4 overflow-auto touch-pan-y"
         >
             <div class="flex flex-row justify-between">
                 <h3>{{ this.commentCount }} réponse{{ this.commentCount > 1 ? 's' : '' }}</h3>
