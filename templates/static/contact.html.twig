@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Zorglux - Contactez-nous
+{% endblock %}
+
+{% block body_header %}
+    {% include '@common/navbar.html.twig' %}
+{% endblock %}
+
+{% block body_content %}
+    <twig:Container>
+        <h1 class="text-4xl text-gray-500 font-bold mb-5">Contactez-nous</h1>
+
+        <section id="contact" itemscope itemtype="https://schema.org/Organization">
+            <h2 class="text-lg font-normal">Besoin d'aide ? Contactez-nous dès aujourd'hui !</h2>
+
+            <ul class="m-0 text-sm">
+                <li><strong>Téléphone :</strong> <span itemprop="telephone"><a
+                            href="tel:+33769348744">+33 7 69 34 87 44</a></span></li>
+                <li><strong>Email :</strong> <span itemprop="email"><a href="mailto:jotomatics@gmail.com">jotomatics@gmail.com</a></span>
+                </li>
+                <li><strong>Adresse :</strong> <span itemprop="address" itemscope
+                                                     itemtype="https://schema.org/PostalAddress">
+                        <a href="https://maps.app.goo.gl/F1o72hBjfHv1cw8y8">242 Fbg St Antoine, 75012 Paris</a>
+                    </span>
+                </li>
+            </ul>
+            <br><br>
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5250.9481043266405!2d2.3871593768814114!3d48.84917010135474!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e6720d9c7af387%3A0x5891d8d62e8535c7!2s%C3%89cole%20Sup%C3%A9rieure%20de%20G%C3%A9nie%20Informatique!5e0!3m2!1sen!2sfr!4v1717453423248!5m2!1sen!2sfr"
+                width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+
+            </iframe>
+        </section>
+
+        <br><br>
+        <section id="informations">
+            <p class="text-sm italic">Nous sommes disponibles pour répondre à vos questions et vous aider dans vos projets.
+                N'hésitez pas à nous contacter pour obtenir plus d'informations sur nos services ou pour planifier une
+                consultation.</p>
+            <br>
+            <p class="text-sm italic">Que vous ayez besoin d'un conseil d'expert, d'une assistance technique ou simplement de plus
+                amples informations, notre équipe est là pour vous accompagner à chaque étape. Faites-nous part de vos
+                besoins et nous vous fournirons une solution adaptée à vos besoins.</p>
+        </section>
+    </twig:Container>
+{% endblock %}

@@ -10,22 +10,22 @@
 
 {% block body_content %}
     <twig:Container>
-        <h1 class="text-5xl font-extrabold mb-5">Tout le monde a une histoire à raconter</h1>
+        <h1 class="text-4xl text-gray-500 font-extrabold mb-5">Tout le monde a une histoire à raconter</h1>
         <section id="about" class="mb-5">
             <h2 class="text-2xl mb-2 font-bold">1. Qu'est-ce que Zorglux ?</h2>
-            <p>Zorglux est une plateforme dynamique conçue pour les blogueurs de tous horizons afin de partager leurs
+            <p class="font-times">Zorglux est une plateforme dynamique conçue pour les blogueurs de tous horizons afin de partager leurs
                 histoires, idées et expériences avec un large public. Que vous soyez un écrivain chevronné ou que vous
                 débutiez tout juste, Zorglux offre les outils et la communauté pour faire entendre votre voix.</p>
             <br>
-            <h3 class="mb-2 font-bold">Notre Mission</h3>
-            <p>Notre mission chez Zorglux est de permettre aux individus de s'exprimer librement et de se connecter avec
+            <h3 class="mb-2 font-bold text-lg">Notre Mission</h3>
+            <p class="font-times">Notre mission chez Zorglux est de permettre aux individus de s'exprimer librement et de se connecter avec
                 d'autres à travers un contenu significatif. Nous croyons au pouvoir des histoires pour inspirer,
                 informer et unir les gens de tous horizons. En fournissant une plateforme inclusive, nous visons à
                 favoriser une communauté dynamique où les voix diverses sont célébrées.</p>
             <br>
 
-            <h3 class="mb-2 font-bold">Pourquoi Choisir Zorglux ?</h3>
-            <ul class="list-disc ml-5">
+            <h3 class="mb-2 font-bold text-lg">Pourquoi Choisir Zorglux ?</h3>
+            <ol class="list-decimal font-times">
                 <li>Outils de blogging faciles à utiliser qui conviennent aussi bien aux débutants qu'aux blogueurs
                     expérimentés.
                 </li>
@@ -34,14 +34,14 @@
                 <li>Plateforme SEO-friendly pour aider votre contenu à atteindre un public plus large.</li>
                 <li>Mises à jour régulières et nouvelles fonctionnalités pour améliorer votre expérience de blogging.
                 </li>
-            </ul>
+            </ol>
         </section>
 
         <section id="features" class="mb-5">
             <h2 class="text-2xl mb-2 font-bold">2. Fonctionnalités de Zorglux</h2>
-            <p>Zorglux propose une gamme de fonctionnalités conçues pour rendre le blogging simple, agréable et efficace
+            <p class="font-times">Zorglux propose une gamme de fonctionnalités conçues pour rendre le blogging simple, agréable et efficace
                 :</p>
-            <ul class="ml-5 list-disc">
+            <ul class="ml-5 mb-2 list-disc font-times">
                 <li><strong>Modèles Personnalisables :</strong> Choisissez parmi une variété de modèles de blog pour
                     correspondre à votre style. Ajustez facilement les mises en page, les polices et les couleurs pour
                     créer un blog qui vous représente.
@@ -68,10 +68,10 @@
 
         <section id="community" class="mb-5">
             <h2 class="text-2xl mb-2 font-bold">3. Rejoignez la Communauté Zorglux</h2>
-            <p>Chez Zorglux, nous croyons au pouvoir de la communauté. Notre plateforme est conçue pour vous aider à
+            <p class="font-times">Chez Zorglux, nous croyons au pouvoir de la communauté. Notre plateforme est conçue pour vous aider à
                 vous connecter avec des individus partageant les mêmes idées, à partager vos passions et à développer
                 votre réseau.</p><br>
-            <ul class="ml-5 list-disc">
+            <ul class="ml-5 list-disc font-times">
                 <li><strong>Profils Interactifs :</strong> Créez un profil détaillé pour mettre en valeur vos intérêts,
                     blogs et réalisations.
                 </li>
@@ -92,12 +92,9 @@
 
         <section id="contact" class="mb-5">
             <h2 class="text-2xl mb-2 font-bold">4. Contactez-nous</h2>
-            <p>Si vous avez des questions ou des commentaires, n'hésitez pas à nous contacter :</p>
-            <ul class="ml-5 list-disc">
-                <li>Email : <a href="mailto:contact@zorglux.com">contact@zorglux.com</a></li>
-                <li>Téléphone : <a href="tel:+1234567890">123-456-7890</a></li>
-                <li>Adresse : 123 Zorglux Lane, Blogtown, BL 12345</li>
-            </ul>
+            <p class="font-times">
+                Si vous avez des questions ou des commentaires, n'hésitez pas à <a href="{{ path('public_contact') }}">nous contacter</a>
+            </p>
         </section>
     </twig:Container>
 {% endblock %}

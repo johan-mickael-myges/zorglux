@@ -52,4 +52,38 @@ class PublicController extends AbstractController
     {
         return $this->render('static/about.html.twig');
     }
+
+    #[Route(
+        '/social-share',
+        name: 'social_share',
+        options: [
+            'sitemap' => [
+                'section' => 'public',
+                'priority' => 0.8,
+                'changefreq' => UrlConcrete::CHANGEFREQ_WEEKLY,
+            ]
+        ],
+        methods: ['GET']
+    )]
+    public function socialShare(): Response
+    {
+        return $this->render('static/social-share.html.twig');
+    }
+
+    #[Route(
+        '/contact',
+        name: 'contact',
+        options: [
+            'sitemap' => [
+                'section' => 'public',
+                'priority' => 0.8,
+                'changefreq' => UrlConcrete::CHANGEFREQ_WEEKLY,
+            ]
+        ],
+        methods: ['GET']
+    )]
+    public function contact(): Response
+    {
+        return $this->render('static/contact.html.twig');
+    }
 }

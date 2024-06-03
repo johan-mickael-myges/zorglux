@@ -1,1 +1,68 @@
-<p>&copy; 2024 Zorglux. All rights reserved.</p>
+{% set footerItem = [
+    {
+        title: 'Blogs',
+        url: path('blog_index'),
+    },
+    {
+        title: 'Réseaux sociaux',
+        url: path('public_social_share'),
+    },
+    {
+        title: 'À propos',
+        url: path('public_about'),
+    },
+    {
+        title: 'Contact',
+        url: path('public_contact'),
+    },
+] %}
+
+<div class="mt-auto bg-gray-100 shadow-2xl border-t border-t-gray-100 text-gray-700 text-xs md:text-sm p-5 flex flex-col md:items-center">
+    <div class="mb-2">
+        <ul class="m-0 list-none flex flex-col md:flex-row">
+            {% for item in footerItem %}
+                <li class="mb-2 md:mb-0 mx-2">
+                    <a href="{{ item.url }}" class="text-gray-700">{{ item.title }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    {% set socials = [
+        {
+            title: 'Twitter',
+            url: 'https://x.com/zorglux_works',
+            icon: 'fab fa-twitter',
+        },
+        {
+            title: 'Facebook',
+            url: 'https://www.facebook.com/zorglux/',
+            icon: 'fab fa-facebook',
+        },
+        {
+            title: 'YouTube',
+            url: 'https://www.youtube.com/@zorglux-works',
+            icon: 'fab fa-youtube',
+        },
+        {
+            title: 'TiTok',
+            url: 'https://www.tiktok.com/@zorglux.works',
+            icon: 'fab fa-tiktok',
+        },
+        {
+            title: 'LinkedIn',
+            url: 'https://www.linkedin.com/in/zorglux/',
+            icon: 'fab fa-linkedin',
+        },
+    ] %}
+
+    <div class="flex md:block justify-center">
+        <div class="grid grid-cols-{{ socials|length }} gap-2 items-center">
+            {% for social in socials %}
+                <a href="{{ social.url }}" target="_blank" class="text-gray-800">
+                    <i class="{{ social.icon }}"></i>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+</div>
