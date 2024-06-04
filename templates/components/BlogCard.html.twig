@@ -29,14 +29,14 @@
                     </section>
                 </div>
                 <figure
-                    class="flex justify-center md:hidden"
+                    class="flex justify-center md:hidden bg-gray-50 py-5 rounded"
                     {{ stimulus_action('clickable', 'visit', 'click') }}
                     itemprop="image"
                     itemscope
                     itemtype="https://schema.org/ImageObject"
                 >
                     <a class="" href="{{ this.blog.thumbnail }}" title="{{ this.title }}">
-                        <img src="{{ this.blog.thumbnail }}" alt="{{ this.title }}" width="150" height="150" loading="lazy" itemprop="url">
+                        <img src="{{ this.blog.thumbnail }}" alt="{{ this.title }}" width="200" height="200" itemprop="url">
                     </a>
                 </figure>
                 <footer class="mt-3 text-xs text-gray-500 flex flex-row">
@@ -51,7 +51,7 @@
                 class="hidden md:flex flex-col justify-center" {{ stimulus_action('clickable', 'visit', 'click') }}
                 itemprop="image" itemscope itemtype="https://schema.org/ImageObject"
             >
-                <img src="{{ this.blog.thumbnail }}" alt="{{ this.title }}" width="200" height="200" loading="lazy" itemprop="url">
+                <img src="{{ this.blog.thumbnail }}" alt="{{ this.title }}" width="200" height="200" itemprop="url">
             </figure>
         </div>
     {% elseif this.variant is same as 'compact' %}
