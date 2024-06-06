@@ -25,6 +25,12 @@ class BlogRepositoryService
             $qb->setMaxResults($limit);
         }
 
+        $idsToExclude = $options['exclude'] ?? [];
+        if ($idsToExclude) {
+            $qb->andWhere('b.id NOT IN (:idsToExclude)')
+                ->setParameter('idsToExclude', $idsToExclude);
+        }
+
         // sort by created date
         $qb->orderBy('b.createdAt', 'DESC');
 

@@ -62,6 +62,7 @@ class BlogController extends AbstractController
     {
         $blogs = $blogRepositoryService->getPublicBlog([
             'limit' => 3,
+            'exclude' => [$blog->getId()],
         ]);
 
         return $this->render('blog/read.html.twig', [
