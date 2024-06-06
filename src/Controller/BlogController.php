@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Blog;
 use App\Form\BlogType;
-use App\Repository\BlogRepository;
 use App\Service\Blog\BlogCreatorService;
 use App\Service\Blog\BlogRepositoryService;
 use Presta\SitemapBundle\Sitemap\Url\UrlConcrete;
@@ -59,10 +58,15 @@ class BlogController extends AbstractController
 
     #[Route('/{slug}', name: 'read', methods: ['GET'])]
     #[IsGranted('read', 'blog')]
-    public function read(Blog $blog): Response
+    public function read(Blog $blog, BlogRepositoryService $blogRepositoryService): Response
     {
+        $blogs = $blogRepositoryService->getPublicBlog([
+            'limit' => 3,
+        ]);
+
         return $this->render('blog/read.html.twig', [
             'blog' => $blog,
+            'blogs' => $blogs,
         ]);
     }
 }
