@@ -1,6 +1,80 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Zorglux - Connexion{% endblock %}
+{% set title = 'Zorglux - Connexion' %}
+{% set description = "Connectez-vous à Zorglux pour accéder à votre compte et découvrir les derniers articles et idées." %}
+{% set logoUrl = 'https://zorglux-bucket.s3.eu-north-1.amazonaws.com/default/logo.png' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block meta %}
+    <meta name="description" content="{{ description }}">
+    <meta name="author" content="Zorglux">
+{% endblock %}
+
+{% block meta_og %}
+    <meta property="og:title" content="{{ title }}">
+    <meta property="og:description" content="{{ description }}">
+    <meta property="og:image" content="{{ logoUrl }}">
+    <meta property="og:url" content="{{ path('app_login') }}">
+{% endblock %}
+
+{% block meta_twitter %}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ title }}">
+    <meta name="twitter:description" content="{{ description }}">
+    <meta name="twitter:image" content="{{ logoUrl }}">
+{% endblock %}
+
+{% block head %}
+    {{ parent() }}
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "headline": "{{ title }}",
+            "description": "{{ description }}",
+            "image": "{{ logoUrl }}",
+            "author": {
+                "@type": "Organization",
+                "name": "Zorglux",
+                "logo": "{{ logoUrl }}",
+                "url": "https://www.zorglux.works"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "Zorglux",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "{{ logoUrl }}"
+                }
+            },
+            "url": "{{ path('app_login') }}"
+        }
+    </script>
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            "itemListElement": [
+        {% for blog in blogs %}
+            {
+                "@type": "ListItem",
+                "position": {{ loop.index }},
+                "url": "{{ path('blog_read', { slug: blog.slug }) }}",
+                "name": "{{ blog.title }}",
+                "description": "{{ blog.description }}",
+                "author": {
+                    "@type": "Person",
+                    "name": "{{ blog.author.username }}"
+                },
+                "image": "{{ blog.thumbnail }}"
+            }{% if not loop.last %},{% endif %}
+        {% endfor %}
+        ]
+    }
+    </script>
+{% endblock %}
 
 {% block body_header %}
     {% include '@common/navbar.html.twig' %}
@@ -23,19 +97,8 @@
             </div>
 
             <input type="hidden" name="_csrf_token"
-               value="{{ csrf_token('authenticate') }}"
+                   value="{{ csrf_token('authenticate') }}"
             >
-
-            {#
-                Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-                See https://symfony.com/doc/current/security/remember_me.html
-
-                <div class="checkbox mb-3">
-                    <label>
-                        <input type="checkbox" name="_remember_me"> Remember me
-                    </label>
-                </div>
-            #}
 
             {% if error %}
                 <twig:Alert classes="rounded mb-2" color="danger" variant="small" text="{{ error.messageKey|trans(error.messageData, 'security') }}" />

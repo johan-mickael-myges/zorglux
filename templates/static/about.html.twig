@@ -1,7 +1,58 @@
 {% extends 'base.html.twig' %}
 
+{% set title = 'À propos de Zorglux' %}
+{% set description = "Zorglux est une plateforme dynamique conçue pour les blogueurs de tous horizons afin de partager leurs histoires, idées et expériences avec un large public. Que vous soyez un écrivain chevronné ou que vous débutiez tout juste, Zorglux offre les outils et la communauté pour faire entendre votre voix." %}
+{% set logoUrl = 'https://zorglux-bucket.s3.eu-north-1.amazonaws.com/default/logo.png' %}
+
 {% block title %}
-    À propos de Zorglux
+    {{ title }}
+{% endblock %}
+
+{% block meta %}
+    <meta name="description" content="{{ description }}">
+    <meta name="author" content="Zorglux">
+{% endblock %}
+
+{% block meta_og %}
+    <meta property="og:title" content="{{ title }}">
+    <meta property="og:description" content="{{ description }}">
+    <meta property="og:image" content="{{ logoUrl }}">
+    <meta property="og:url" content="{{ path('public_about') }}">
+{% endblock %}
+
+{% block meta_twitter %}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ title }}">
+    <meta name="twitter:description" content="{{ description }}">
+    <meta name="twitter:image" content="{{ logoUrl }}">
+{% endblock %}
+
+{% block head %}
+    {{ parent() }}
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "headline": "{{ title }}",
+            "description": "{{ description }}",
+            "image": "{{ logoUrl }}",
+            "author": {
+                "@type": "Organization",
+                "name": "Zorglux",
+                "logo": "{{ logoUrl }}",
+                "url": "https://www.zorglux.works"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "Zorglux",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "{{ logoUrl }}"
+                }
+            },
+            "url": "{{ path('public_about') }}"
+        }
+    </script>
 {% endblock %}
 
 {% block body_header %}
@@ -12,19 +63,19 @@
     <twig:Container>
         <h1 class="text-4xl text-gray-500 font-extrabold mb-5">Tout le monde a une histoire à raconter</h1>
         <section id="about" class="mb-5">
-            <h2 class="text-2xl mb-2 font-bold">1. Qu'est-ce que Zorglux ?</h2>
+            <h2 class="text-2xl mb-2">1. Qu'est-ce que Zorglux ?</h2>
             <p class="font-times">Zorglux est une plateforme dynamique conçue pour les blogueurs de tous horizons afin de partager leurs
                 histoires, idées et expériences avec un large public. Que vous soyez un écrivain chevronné ou que vous
                 débutiez tout juste, Zorglux offre les outils et la communauté pour faire entendre votre voix.</p>
             <br>
-            <h3 class="mb-2 font-bold text-lg">Notre Mission</h3>
+            <h3 class="mb-2 text-lg">Notre Mission</h3>
             <p class="font-times">Notre mission chez Zorglux est de permettre aux individus de s'exprimer librement et de se connecter avec
                 d'autres à travers un contenu significatif. Nous croyons au pouvoir des histoires pour inspirer,
                 informer et unir les gens de tous horizons. En fournissant une plateforme inclusive, nous visons à
                 favoriser une communauté dynamique où les voix diverses sont célébrées.</p>
             <br>
 
-            <h3 class="mb-2 font-bold text-lg">Pourquoi Choisir Zorglux ?</h3>
+            <h3 class="mb-2 text-lg">Pourquoi Choisir Zorglux ?</h3>
             <ol class="list-decimal font-times">
                 <li>Outils de blogging faciles à utiliser qui conviennent aussi bien aux débutants qu'aux blogueurs
                     expérimentés.
@@ -38,7 +89,7 @@
         </section>
 
         <section id="features" class="mb-5">
-            <h2 class="text-2xl mb-2 font-bold">2. Fonctionnalités de Zorglux</h2>
+            <h2 class="text-2xl mb-2">2. Fonctionnalités de Zorglux</h2>
             <p class="font-times">Zorglux propose une gamme de fonctionnalités conçues pour rendre le blogging simple, agréable et efficace
                 :</p>
             <ul class="ml-5 mb-2 list-disc font-times">
@@ -67,7 +118,7 @@
         </section>
 
         <section id="community" class="mb-5">
-            <h2 class="text-2xl mb-2 font-bold">3. Rejoignez la Communauté Zorglux</h2>
+            <h2 class="text-2xl mb-2">3. Rejoignez la Communauté Zorglux</h2>
             <p class="font-times">Chez Zorglux, nous croyons au pouvoir de la communauté. Notre plateforme est conçue pour vous aider à
                 vous connecter avec des individus partageant les mêmes idées, à partager vos passions et à développer
                 votre réseau.</p><br>
@@ -91,7 +142,7 @@
         </section>
 
         <section id="contact" class="mb-5">
-            <h2 class="text-2xl mb-2 font-bold">4. Contactez-nous</h2>
+            <h2 class="text-2xl mb-2">4. Contactez-nous</h2>
             <p class="font-times">
                 Si vous avez des questions ou des commentaires, n'hésitez pas à <a href="{{ path('public_contact') }}">nous contacter</a>
             </p>

@@ -19,6 +19,80 @@
     <meta name="twitter:image" content="{{ blog.thumbnail }}">
 {% endblock %}
 
+{% block jsonld %}
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "{{ path('blog_read', { slug: blog.slug }) }}"
+            },
+            "headline": "{{ blog.title }}",
+            "description": "{{ blog.description }}",
+            "image": "{{ blog.thumbnail }}",
+            "author": {
+                "@type": "Person",
+                "name": "{{ blog.author.username }}",
+                "image": "{{ blog.author.avatar|default('https://zorglux-bucket.s3.eu-north-1.amazonaws.com/default/avatar.jpg') }}"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "Zorglux",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://zorglux-bucket.s3.eu-north-1.amazonaws.com/default/logo.png"
+                }
+            },
+            "datePublished": "{{ blog.createdAt|date('Y-m-d') }}",
+            "dateModified": "{{ blog.updatedAt|date('Y-m-d') }}",
+            "url": "{{ path('blog_read', { slug: blog.slug }) }}"
+        }
+    </script>
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            "itemListElement": [
+        {% for blog in blogs %}
+            {
+                "@type": "ListItem",
+                "position": {{ loop.index }},
+                "url": "{{ path('blog_read', { slug: blog.slug }) }}",
+                "name": "{{ blog.title }}",
+                "description": "{{ blog.description }}",
+                "author": {
+                    "@type": "Person",
+                    "name": "{{ blog.author.username }}"
+                },
+                "image": "{{ blog.thumbnail }}"
+            }{% if not loop.last %},{% endif %}
+        {% endfor %}
+        ]
+    }
+    </script>
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            "headline": "{{ blog.title }}",
+            "comment": [
+            {% for comment in blog.comments %}
+                {
+                    "@type": "Comment",
+                    "text": "{{ comment.content }}",
+                    "dateCreated": "{{ comment.createdAt|date('Y-m-d') }}",
+                    "author": {
+                        "@type": "Person",
+                        "name": "{{ comment.author.username }}"
+                    }
+                }{% if not loop.last %},{% endif %}
+            {% endfor %}
+            ]
+        }
+    </script>
+{% endblock %}
+
 {% block title %}{{ blog.title }}{% endblock %}
 
 {% block body_header %}
@@ -27,24 +101,11 @@
 {% endblock %}
 
 {% block body_content %}
-    <twig:Container itemscope itemtype="https://schema.org/BlogPosting">
-        <meta itemprop="mainEntityOfPage" content="{{ path('blog_read', { slug: blog.slug }) }}">
-        <meta itemprop="author" content="{{ blog.author.username }}">
-        <meta itemprop="datePublished" content="{{ blog.createdAt|date('Y-m-d') }}">
-        <meta itemprop="dateModified" content="{{ blog.updatedAt|date('Y-m-d') }}">
-        <meta itemprop="image" content="{{ blog.thumbnail }}">
+    <twig:Container>
+        <h1 class="mt-8 text-5xl font-bold mb-2">{{ blog.title }}</h1>
+        <h2 class="text-lg text-gray-500 mb-4 font-normal">{{ blog.description }}</h2>
 
-        <div itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
-            <meta itemprop="name" content="Nom de votre organisation">
-            <div itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
-                <meta itemprop="url" content="URL du logo de votre organisation">
-            </div>
-        </div>
-
-        <h1 itemprop="headline" class="mt-8 text-5xl font-bold mb-2">{{ blog.title }}</h1>
-        <h2 itemprop="description" class="text-lg text-gray-500 mb-4 font-normal">{{ blog.description }}</h2>
-
-        <div class="flex flex-row items-center mb-4" itemprop="author" itemscope itemtype="https://schema.org/Person">
+        <div class="flex flex-row items-center mb-4">
             <twig:Avatar
                 img="{{ blog.author.avatar|default('https://zorglux-bucket.s3.eu-north-1.amazonaws.com/default/avatar.jpg') }}"
                 classes="mr-2"
@@ -52,11 +113,11 @@
                 size="30"
             />
             <div>
-                <span class="text-sm" itemprop="name">{{ blog.author.username }}</span>
+                <span class="text-sm">{{ blog.author.username }}</span>
                 <div class="text-xs text-gray-500">
                     <span>{{ blog.readingTime }} min de lecture</span>
                     <span> . </span>
-                    <time datetime="{{ blog.createdAt|date }}" itemprop="datePublished">{{ blog.createdAt|date('d F Y H:i')|trans }}</time>
+                    <time datetime="{{ blog.createdAt|date }}">{{ blog.createdAt|date('d F Y H:i')|trans }}</time>
                 </div>
             </div>
         </div>
@@ -79,10 +140,10 @@
         </div>
 
         <div class="flex flex-row justify-center">
-            <img src="{{ blog.thumbnail }}" alt="{{ blog.title }}" class="w-full object-cover my-8" itemprop="image" />
+            <img src="{{ blog.thumbnail }}" alt="{{ blog.title }}" class="w-full object-cover my-8" />
         </div>
 
-        <div class="wysiwyg font-times text-lg" itemprop="articleBody">
+        <div class="wysiwyg font-times text-lg">
             {{ blog.content|raw }}
         </div>
 

@@ -1,12 +1,13 @@
 <div {{ attributes }}>
-    <div {{ stimulus_controller('comments_toggler') }}>
+    <div {% if this.withCommentsContainer is same as true %}{{ stimulus_controller('comments_toggler') }}{% endif %}>
         <button
-            {{ stimulus_action('comments_toggler', 'toggle', 'click') }}
+            {% if this.withCommentsContainer is same as true %}{{ stimulus_action('comments_toggler', 'toggle', 'click') }}{% endif %}
         >
             <i class="{{ this.iconType }} fa-comment"></i>
             <span>{{ this.blog.comments|length }}</span>
         </button>
 
+        {% if this.withCommentsContainer is same as true %}
         <div class="hidden md:block">
             <twig:Comments :blog="this.blog" variant="desktop" />
         </div>
@@ -14,6 +15,7 @@
         <div class="md:hidden">
             <twig:Comments :blog="this.blog" />
         </div>
+        {% endif %}
     </div>
 
 </div>

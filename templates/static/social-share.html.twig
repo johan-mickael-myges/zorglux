@@ -1,7 +1,58 @@
 {% extends 'base.html.twig' %}
 
+{% set title = 'Zorglux - Présence dans les médias sociaux' %}
+{% set description = "Découvrez la présence de Zorglux sur diverses plateformes sociales comme Twitter, TikTok, Facebook, LinkedIn, et YouTube. Suivez-nous pour rester à jour avec nos dernières nouvelles et mises à jour." %}
+{% set logoUrl = 'https://zorglux-bucket.s3.eu-north-1.amazonaws.com/default/logo.png' %}
+
 {% block title %}
-    Zorglux - Présence dans les médias sociaux
+    {{ title }}
+{% endblock %}
+
+{% block meta %}
+    <meta name="description" content="{{ description }}">
+    <meta name="author" content="Zorglux">
+{% endblock %}
+
+{% block meta_og %}
+    <meta property="og:title" content="{{ title }}">
+    <meta property="og:description" content="{{ description }}">
+    <meta property="og:image" content="{{ logoUrl }}">
+    <meta property="og:url" content="{{ path('public_social_share') }}">
+{% endblock %}
+
+{% block meta_twitter %}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ title }}">
+    <meta name="twitter:description" content="{{ description }}">
+    <meta name="twitter:image" content="{{ logoUrl }}">
+{% endblock %}
+
+{% block head %}
+    {{ parent() }}
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "headline": "{{ title }}",
+            "description": "{{ description }}",
+            "image": "{{ logoUrl }}",
+            "author": {
+                "@type": "Organization",
+                "name": "Zorglux",
+                "logo": "{{ logoUrl }}",
+                "url": "https://www.zorglux.works"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "Zorglux",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "{{ logoUrl }}"
+                }
+            },
+            "url": "{{ path('public_social_share') }}"
+        }
+    </script>
 {% endblock %}
 
 {% block body_header %}

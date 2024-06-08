@@ -1,5 +1,56 @@
 {% extends 'base.html.twig' %}
 
+{% set title = 'Zorglux - Tous les Articles de Blog' %}
+{% set description = "Découvrez tous les articles de blog sur Zorglux. Lisez, écrivez et partagez vos idées avec notre communauté passionnée." %}
+{% set logoUrl = 'https://zorglux-bucket.s3.eu-north-1.amazonaws.com/default/logo.png' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block meta %}
+    <meta name="description" content="{{ description }}">
+    <meta name="author" content="Zorglux">
+{% endblock %}
+
+{% block meta_og %}
+    <meta property="og:title" content="{{ title }}">
+    <meta property="og:description" content="{{ description }}">
+    <meta property="og:image" content="{{ logoUrl }}">
+    <meta property="og:url" content="{{ path('blog_index') }}">
+    <meta property="og:type" content="website">
+{% endblock %}
+
+{% block meta_twitter %}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ title }}">
+    <meta name="twitter:description" content="{{ description }}">
+    <meta name="twitter:image" content="{{ logoUrl }}">
+{% endblock %}
+
+{% block jsonld %}
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            "itemListElement": [
+        {% for blog in blogs %}
+                {
+                    "@type": "ListItem",
+                    "position": {{ loop.index }},
+                    "url": "{{ path('blog_read', { slug: blog.slug }) }}",
+                    "name": "{{ blog.title }}",
+                    "description": "{{ blog.description }}",
+                    "author": {
+                        "@type": "Person",
+                        "name": "{{ blog.author.username }}"
+                    },
+                    "image": "{{ blog.thumbnail }}"
+                }{% if not loop.last %},{% endif %}
+        {% endfor %}
+        ]
+    }
+    </script>
+{% endblock %}
+
 {% block body_header %}
     {% include '@common/navbar.html.twig' %}
 {% endblock %}
@@ -10,12 +61,12 @@
     } %}
 
     <twig:Container>
-    {% for blog in blogs %}
-        <div {{ stimulus_controller('clickable', {
-            url: path('blog_read', { slug: blog.slug }),
-        }) }}>
-            <twig:BlogCard :blog="blog" :options="options" />
-        </div>
-    {% endfor %}
+        {% for blog in blogs %}
+            <div {{ stimulus_controller('clickable', {
+                url: path('blog_read', { slug: blog.slug }),
+            }) }}>
+                <twig:BlogCard :blog="blog" :options="options" />
+            </div>
+        {% endfor %}
     </twig:Container>
 {% endblock %}

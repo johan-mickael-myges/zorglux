@@ -1,5 +1,75 @@
 {% extends 'base.html.twig' %}
 
+{% set title = 'Zorglux - Les Derniers Articles' %}
+{% set description = "Découvrez les derniers articles sur Zorglux, une plateforme dynamique dédiée aux blogueurs et aux créateurs de contenu. Lisez, écrivez et partagez vos idées avec une communauté passionnée." %}
+{% set logoUrl = 'https://zorglux-bucket.s3.eu-north-1.amazonaws.com/default/logo.png' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block meta %}
+    <meta name="description" content="{{ description }}">
+    <meta name="author" content="Zorglux">
+{% endblock %}
+
+{% block meta_og %}
+    <meta property="og:title" content="{{ title }}">
+    <meta property="og:description" content="{{ description }}">
+    <meta property="og:image" content="{{ logoUrl }}">
+    <meta property="og:url" content="{{ path('blog_index') }}">
+    <meta property="og:type" content="website">
+{% endblock %}
+
+{% block meta_twitter %}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ title }}">
+    <meta name="twitter:description" content="{{ description }}">
+    <meta name="twitter:image" content="{{ logoUrl }}">
+{% endblock %}
+
+{% block jsonld %}
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Blog",
+            "headline": "{{ title }}",
+            "description": "{{ description }}",
+            "image": "{{ logoUrl }}",
+            "author": {
+                "@type": "Organization",
+                "name": "Zorglux",
+                "logo": "{{ logoUrl }}",
+                "url": "https://www.zorglux.works"
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "Zorglux",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "{{ logoUrl }}"
+                }
+            },
+            "url": "{{ path('blog_index') }}"
+        }
+    </script>
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            "itemListElement": [
+            {% for blog in blogs %}
+                {
+                    "@type": "ListItem",
+                    "position": {{ loop.index }},
+                    "url": "{{ path('blog_read', { slug: blog.slug }) }}",
+                    "name": "{{ blog.title }}"
+                }{% if not loop.last %},{% endif %}
+            {% endfor %}
+        ]
+    }
+    </script>
+{% endblock %}
+
 {% block body %}
     {% set contentWrapperClasses = [
         'flex',

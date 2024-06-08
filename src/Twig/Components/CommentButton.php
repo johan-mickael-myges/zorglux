@@ -24,6 +24,9 @@ class CommentButton
     public ?bool $showComments = false;
 
     #[LiveProp]
+    public ?bool $withCommentsContainer = true;
+
+    #[LiveProp]
     public ?Blog $blog = null;
 
     public function __construct(

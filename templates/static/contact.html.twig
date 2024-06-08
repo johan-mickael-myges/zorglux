@@ -1,7 +1,67 @@
 {% extends 'base.html.twig' %}
 
+{% set title = 'Zorglux - Contactez-nous' %}
+{% set description = "Besoin d'aide ? Contactez-nous dès aujourd'hui ! Vous pouvez nous joindre par téléphone, email, ou nous rendre visite à notre adresse à Paris." %}
+{% set logoUrl = 'https://zorglux-bucket.s3.eu-north-1.amazonaws.com/default/logo.png' %}
+{% set phone = '+33 7 69 34 87 44' %}
+{% set email = 'jotomatics@gmail.com' %}
+{% set address = '242 Fbg St Antoine, 75012 Paris' %}
+{% set mapUrl = 'https://maps.app.goo.gl/F1o72hBjfHv1cw8y8' %}
+
 {% block title %}
-    Zorglux - Contactez-nous
+    {{ title }}
+{% endblock %}
+
+{% block meta %}
+    <meta name="description" content="{{ description }}">
+    <meta name="author" content="Zorglux">
+{% endblock %}
+
+{% block meta_og %}
+    <meta property="og:title" content="{{ title }}">
+    <meta property="og:description" content="{{ description }}">
+    <meta property="og:image" content="{{ logoUrl }}">
+    <meta property="og:url" content="{{ path('public_contact') }}">
+{% endblock %}
+
+{% block meta_twitter %}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ title }}">
+    <meta name="twitter:description" content="{{ description }}">
+    <meta name="twitter:image" content="{{ logoUrl }}">
+{% endblock %}
+
+{% block head %}
+    {{ parent() }}
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "Zorglux",
+            "url": "https://www.zorglux.works",
+            "logo": "{{ logoUrl }}",
+            "contactPoint": {
+                "@type": "ContactPoint",
+                "telephone": "{{ phone }}",
+                "contactType": "Customer Service",
+                "areaServed": "FR",
+                "availableLanguage": ["French", "English"]
+            },
+            "sameAs": [
+                "https://www.facebook.com/zorglux",
+                "https://www.twitter.com/zorglux_works",
+                "https://www.linkedin.com/company/zorglux",
+                "https://www.youtube.com/channel/zorglux"
+            ],
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "242 Fbg St Antoine",
+                "addressLocality": "Paris",
+                "postalCode": "75012",
+                "addressCountry": "FR"
+            }
+        }
+    </script>
 {% endblock %}
 
 {% block body_header %}
@@ -12,19 +72,13 @@
     <twig:Container>
         <h1 class="text-4xl text-gray-500 font-bold mb-5">Contactez-nous</h1>
 
-        <section id="contact" itemscope itemtype="https://schema.org/Organization">
+        <section id="contact">
             <h2 class="text-lg font-normal">Besoin d'aide ? Contactez-nous dès aujourd'hui !</h2>
 
             <ul class="m-0 text-sm">
-                <li><strong>Téléphone :</strong> <span itemprop="telephone"><a
-                            href="tel:+33769348744">+33 7 69 34 87 44</a></span></li>
-                <li><strong>Email :</strong> <span itemprop="email"><a href="mailto:jotomatics@gmail.com">jotomatics@gmail.com</a></span>
-                </li>
-                <li><strong>Adresse :</strong> <span itemprop="address" itemscope
-                                                     itemtype="https://schema.org/PostalAddress">
-                        <a href="https://maps.app.goo.gl/F1o72hBjfHv1cw8y8">242 Fbg St Antoine, 75012 Paris</a>
-                    </span>
-                </li>
+                <li><strong>Téléphone :</strong> <a href="tel:{{ phone }}">{{ phone }}</a></li>
+                <li><strong>Email :</strong> <a href="mailto:{{ email }}">{{ email }}</a></li>
+                <li><strong>Adresse :</strong> <a href="{{ mapUrl }}">{{ address }}</a></li>
             </ul>
             <br><br>
             <div class="flex flex-row justify-center overflow-x-scroll">
