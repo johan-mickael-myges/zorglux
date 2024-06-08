@@ -5,6 +5,7 @@
     {% for blog in blogs %}
         <div {{ stimulus_controller('clickable', {
             url: path('blog_read', { slug: blog.slug }),
+            title: blog.title,
         }) }} class="col-span-1 flex flex-col justify-center">
             <twig:BlogCard :blog="blog" :options="options" variant="compact" />
         </div>

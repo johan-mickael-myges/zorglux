@@ -64,6 +64,7 @@
         {% for blog in blogs %}
             <div {{ stimulus_controller('clickable', {
                 url: path('blog_read', { slug: blog.slug }),
+                title: blog.title,
             }) }}>
                 <twig:BlogCard :blog="blog" :options="options" />
             </div>

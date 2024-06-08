@@ -44,8 +44,8 @@
                     "url": "https://zorglux-bucket.s3.eu-north-1.amazonaws.com/default/logo.png"
                 }
             },
-            "datePublished": "{{ blog.createdAt|date('Y-m-d') }}",
-            "dateModified": "{{ blog.updatedAt|date('Y-m-d') }}",
+            "datePublished": "{{ blog.createdAt|date('Y-m-d\\TH:i:sP') }}",
+            "dateModified": "{{ blog.updatedAt|date('Y-m-d\\TH:i:sP') }}",
             "url": "{{ path('blog_read', { slug: blog.slug }) }}"
         }
     </script>
