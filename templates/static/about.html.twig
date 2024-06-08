@@ -8,6 +8,10 @@
     {{ title }}
 {% endblock %}
 
+{% block robots %}
+    <meta name="robots" content="index, follow, max-snippet:200">
+{% endblock %}
+
 {% block meta %}
     <meta name="description" content="{{ description }}">
     <meta name="author" content="Zorglux">

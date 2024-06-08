@@ -43,7 +43,9 @@
         "twig/extra-bundle": "^3.10",
         "twig/intl-extra": "^3.9",
         "twig/twig": "^2.12|^3.0",
-        "vich/uploader-bundle": "^2.3"
+        "vich/uploader-bundle": "^2.3",
+        "yooper/php-text-analysis": "^1.9",
+        "ext-simplexml": "*"
     },
     "config": {
         "allow-plugins": {

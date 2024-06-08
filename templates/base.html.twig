@@ -7,11 +7,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="canonical" href="{{ path('public_index') }}">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ path('rss_feed') }}">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
     <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png">
-
+    {% block robots %}
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    {% endblock %}
     {% block keywords %}
         <meta name="keywords" content="Zorglux, blog, histoires, expériences, communauté, écriture, partage, narration, plateforme">
     {% endblock %}
