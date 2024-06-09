@@ -59,8 +59,9 @@
     {% set options = {
         classes: 'cursor-pointer border-b border-b-gray-100 py-8',
     } %}
-
     <twig:Container>
+        <h1 class="text-gray-800 font-bold text-3xl">Découvrez les derniers articles publiés sur Zorglux</h1>
+        <hr class="bg-gray-50">
         {% for blog in blogs %}
             <div {{ stimulus_controller('clickable', {
                 url: path('blog_read', { slug: blog.slug }),
