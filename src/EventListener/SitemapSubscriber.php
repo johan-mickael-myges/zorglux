@@ -47,7 +47,7 @@ class SitemapSubscriber implements EventSubscriberInterface
                     UrlGeneratorInterface::ABSOLUTE_URL
                 ),
                 $post->getUpdatedAt(),
-                UrlConcrete::CHANGEFREQ_MONTHLY,
+                UrlConcrete::CHANGEFREQ_WEEKLY,
                 0.8
             );
 
