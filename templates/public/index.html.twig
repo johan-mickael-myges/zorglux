@@ -30,25 +30,18 @@
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
-            "@type": "Blog",
-            "headline": "{{ title }}",
+            "@type": "Organization",
+            "name": "Zorglux",
+            "url": "https://www.zorglux.works",
+            "logo": "{{ logoUrl }}",
             "description": "{{ description }}",
-            "image": "{{ logoUrl }}",
-            "author": {
-                "@type": "Organization",
-                "name": "Zorglux",
-                "logo": "{{ logoUrl }}",
-                "url": "https://www.zorglux.works"
-            },
-            "publisher": {
-                "@type": "Organization",
-                "name": "Zorglux",
-                "logo": {
-                    "@type": "ImageObject",
-                    "url": "{{ logoUrl }}"
-                }
-            },
-            "url": "{{ path('blog_index') }}"
+            "sameAs": [
+                "https://x.com/zorglux_works",
+                "https://www.youtube.com/@zorglux-works",
+                "https://www.tiktok.com/@zorglux.works",
+                "https://www.linkedin.com/in/zorglux/",
+                "https://www.pinterest.fr/zorgluxx/"
+            ]
         }
     </script>
 
@@ -57,16 +50,41 @@
             "@context": "https://schema.org",
             "@type": "ItemList",
             "itemListElement": [
-            {% for blog in blogs %}
-                {
-                    "@type": "ListItem",
-                    "position": {{ loop.index }},
-                    "url": "{{ path('blog_read', { slug: blog.slug }) }}",
-                    "name": "{{ blog.title }}"
-                }{% if not loop.last %},{% endif %}
-            {% endfor %}
-        ]
-    }
+                {% for blog in blogs %}
+                    {
+                        "@type": "ListItem",
+                        "position": {{ loop.index }},
+                        "item": {
+                            "@type": "BlogPosting",
+                            "headline": "{{ blog.title }}",
+                            "description": "{{ blog.description }}",
+                            "url": "{{ path('blog_read', { slug: blog.slug }) }}",
+                            "articleBody": "{{ blog.content|striptags|replace({ "\n": " ", "\r": " " }) }}",
+                            "image": "{{ blog.thumbnail }}",
+                            "author": {
+                                "@type": "Person",
+                                "name": "{{ blog.author.username }}",
+                                "image": "{{ blog.author.avatar|default('https://zorglux-bucket.s3.eu-north-1.amazonaws.com/default/avatar.jpg') }}"
+                            },
+                            "datePublished": "{{ blog.createdAt|date('Y-m-d\\TH:i:sP') }}",
+                            "dateModified": "{{ blog.updatedAt|date('Y-m-d\\TH:i:sP') }}",
+                            "publisher": {
+                                "@type": "Organization",
+                                "name": "Zorglux",
+                                "logo": {
+                                    "@type": "ImageObject",
+                                    "url": "{{ logoUrl }}"
+                                }
+                            },
+                            "mainEntityOfPage": {
+                                "@type": "WebPage",
+                                "@id": "{{ path('blog_read', { slug: blog.slug }) }}"
+                            }
+                        }
+                    }{% if not loop.last %},{% endif %}
+                {% endfor %}
+            ]
+        }
     </script>
 {% endblock %}
 
@@ -95,11 +113,12 @@
                 <h1 class="text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold my-0 text-gray-500">Zorglux</h1>
                 <h2 class="text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold my-0">Idées</h2>
                 <h2 class="text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold my-0">Articles</h2>
-                <p class="my-5 text-lg md:text-xl lg:text-2xl">Une place pour lire, écrire, et approfondir les connaissances</p>
+                <p class="my-5 text-lg md:text-xl lg:text-2xl">Une place pour lire, écrire, et approfondir les
+                    connaissances</p>
                 <button
                     {{ stimulus_controller('clickable', { url: path('blog_index'), title: 'Découvrir la liste des articles' }) }}
                     {{ stimulus_action('clickable', 'visit', 'click') }}
-                    class="w-full sm:w-2/3 md:w-1/2 lg:w-1/3 xl:1/4 text-white bg-black rounded-md px-4 py-2 md:px-6 md:py-3">
+                        class="w-full sm:w-2/3 md:w-1/2 lg:w-1/3 xl:1/4 text-white bg-black rounded-md px-4 py-2 md:px-6 md:py-3">
                     Découvrir
                 </button>
                 <a href="#latest-posts">

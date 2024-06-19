@@ -32,20 +32,39 @@
             "@context": "https://schema.org",
             "@type": "ItemList",
             "itemListElement": [
-        {% for blog in blogs %}
+            {% for blog in blogs %}
                 {
                     "@type": "ListItem",
                     "position": {{ loop.index }},
-                    "url": "{{ path('blog_read', { slug: blog.slug }) }}",
-                    "name": "{{ blog.title }}",
-                    "description": "{{ blog.description }}",
-                    "author": {
-                        "@type": "Person",
-                        "name": "{{ blog.author.username }}"
-                    },
-                    "image": "{{ blog.thumbnail }}"
+                    "item": {
+                        "@type": "BlogPosting",
+                        "headline": "{{ blog.title }}",
+                        "description": "{{ blog.description }}",
+                        "url": "{{ path('blog_read', { slug: blog.slug }) }}",
+                        "articleBody": "{{ blog.content|striptags|replace({ "\n": " ", "\r": " " }) }}",
+                        "image": "{{ blog.thumbnail }}",
+                        "author": {
+                            "@type": "Person",
+                            "name": "{{ blog.author.username }}",
+                            "image": "{{ blog.author.avatar|default('https://zorglux-bucket.s3.eu-north-1.amazonaws.com/default/avatar.jpg') }}"
+                        },
+                        "datePublished": "{{ blog.createdAt|date('Y-m-d\\TH:i:sP') }}",
+                        "dateModified": "{{ blog.updatedAt|date('Y-m-d\\TH:i:sP') }}",
+                        "publisher": {
+                            "@type": "Organization",
+                            "name": "Zorglux",
+                            "logo": {
+                                "@type": "ImageObject",
+                                "url": "{{ logoUrl }}"
+                            }
+                        },
+                        "mainEntityOfPage": {
+                            "@type": "WebPage",
+                            "@id": "{{ path('blog_read', { slug: blog.slug }) }}"
+                        }
+                    }
                 }{% if not loop.last %},{% endif %}
-        {% endfor %}
+            {% endfor %}
         ]
     }
     </script>

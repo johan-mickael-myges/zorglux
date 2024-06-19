@@ -58,22 +58,32 @@
             "@context": "https://schema.org",
             "@type": "ItemList",
             "itemListElement": [
-        {% for blog in blogs %}
-            {
-                "@type": "ListItem",
-                "position": {{ loop.index }},
-                "url": "{{ path('blog_read', { slug: blog.slug }) }}",
-                "name": "{{ blog.title }}",
-                "description": "{{ blog.description }}",
-                "author": {
-                    "@type": "Person",
-                    "name": "{{ blog.author.username }}"
-                },
-                "image": "{{ blog.thumbnail }}"
-            }{% if not loop.last %},{% endif %}
-        {% endfor %}
-        ]
-    }
+                {% for item in blogs %}
+                    {
+                        "@type": "ListItem",
+                        "position": {{ loop.index }},
+                        "item": {
+                            "@type": "BlogPosting",
+                            "headline": "{{ item.title }}",
+                            "description": "{{ item.description }}",
+                            "articleBody": "{{ item.content|striptags|replace({ "\n": " ", "\r": " " }) }}",
+                            "datePublished": "{{ item.createdAt|date('Y-m-d\\TH:i:sP') }}",
+                            "dateModified": "{{ item.updatedAt|date('Y-m-d\\TH:i:sP') }}",
+                            "mainEntityOfPage": {
+                               "@type": "WebPage",
+                               "@id": "{{ path('blog_read', { slug: item.slug }) }}"
+                            },
+                            "url": "{{ path('blog_read', { slug: item.slug }) }}",
+                            "author": {
+                                "@type": "Person",
+                                "name": "{{ item.author.username }}"
+                            },
+                            "image": "{{ item.thumbnail }}"
+                        }
+                    }{% if not loop.last %},{% endif %}
+                {% endfor %}
+            ]
+        }
     </script>
     <script type="application/ld+json">
         {
@@ -81,7 +91,7 @@
             "@type": "BlogPosting",
             "headline": "{{ blog.title }}",
             "comment": [
-            {% for comment in blog.comments %}
+        {% for comment in blog.comments %}
                 {
                     "@type": "Comment",
                     "text": "{{ comment.content }}",
@@ -91,7 +101,28 @@
                         "name": "{{ comment.author.username }}"
                     }
                 }{% if not loop.last %},{% endif %}
-            {% endfor %}
+        {% endfor %}
+        ]
+    }
+    </script>
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            "headline": "{{ blog.title }}",
+            "commentCount": {{ blog.comments|length }},
+            "comment": [
+                {% for comment in blog.comments %}
+                    {
+                        "@type": "Comment",
+                        "text": "{{ comment.content }}",
+                        "dateCreated": "{{ comment.createdAt|date('Y-m-d\\TH:i:sP') }}",
+                        "author": {
+                            "@type": "Person",
+                            "name": "{{ comment.author.username }}"
+                        }
+                    }{% if not loop.last %},{% endif %}
+                {% endfor %}
             ]
         }
     </script>
@@ -111,10 +142,10 @@
 
         <div class="flex flex-row items-center mb-4">
             <twig:Avatar
-                img="{{ blog.author.avatar|default('https://zorglux-bucket.s3.eu-north-1.amazonaws.com/default/avatar.jpg') }}"
-                classes="mr-2"
-                imageClasses="rounded-full object-cover"
-                size="30"
+                    img="{{ blog.author.avatar|default('https://zorglux-bucket.s3.eu-north-1.amazonaws.com/default/avatar.jpg') }}"
+                    classes="mr-2"
+                    imageClasses="rounded-full object-cover"
+                    size="30"
             />
             <div>
                 <span class="text-sm">{{ blog.author.username }}</span>
@@ -128,8 +159,8 @@
 
         <div class="border-y border-y-gray-100 py-3 text-sm text-gray-500 flex flex-row justify-between">
             <div class="grid grid-cols-2 gap-2">
-                <twig:LikeButton class="col-span-1" :blog="blog" />
-                <twig:CommentButton class="col-span-1" :blog="blog" />
+                <twig:LikeButton class="col-span-1" :blog="blog"/>
+                <twig:CommentButton class="col-span-1" :blog="blog"/>
             </div>
 
             <div class="flex flex-row items-center">
@@ -144,7 +175,7 @@
         </div>
 
         <div class="flex flex-row justify-center">
-            <img src="{{ blog.thumbnail }}" alt="{{ blog.title }}" class="w-full object-cover my-8" />
+            <img src="{{ blog.thumbnail }}" alt="{{ blog.title }}" class="w-full object-cover my-8"/>
         </div>
 
         <div class="wysiwyg font-times text-lg">

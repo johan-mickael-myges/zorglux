@@ -31,8 +31,7 @@
     <meta name="twitter:image" content="{{ logoUrl }}">
 {% endblock %}
 
-{% block head %}
-    {{ parent() }}
+{% block jsonld %}
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
@@ -51,7 +50,8 @@
                 "https://www.facebook.com/zorglux",
                 "https://www.twitter.com/zorglux_works",
                 "https://www.linkedin.com/company/zorglux",
-                "https://www.youtube.com/channel/zorglux"
+                "https://www.youtube.com/channel/zorglux",
+                "https://www.pinterest.fr/zorgluxx/"
             ],
             "address": {
                 "@type": "PostalAddress",

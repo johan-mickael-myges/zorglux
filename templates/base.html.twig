@@ -81,13 +81,25 @@
             }
         </script>
 
+
         <script type="application/ld+json">
             {
                 "@context": "https://schema.org",
                 "@type": "WebSite",
-                "url": "https://www.zorglux.works"
+                "url": "https://www.zorglux.works",
+                "name": "{{ title|default(defaultTitle) }}",
+                "description": "{{ description|default(defaultDescription) }}",
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Zorglux",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "{{ logoUrl|default(defaultLogoUrl) }}"
+                    }
+                }
             }
         </script>
+
     {% endblock %}
 </head>
 {% block body %}

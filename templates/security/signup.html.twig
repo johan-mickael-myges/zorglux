@@ -52,28 +52,34 @@
         }
     </script>
 
+
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
             "@type": "ItemList",
             "itemListElement": [
-        {% for blog in blogs %}
-            {
-                "@type": "ListItem",
-                "position": {{ loop.index }},
-                "url": "{{ path('blog_read', { slug: blog.slug }) }}",
-                "name": "{{ blog.title }}",
-                "description": "{{ blog.description }}",
-                "author": {
-                    "@type": "Person",
-                    "name": "{{ blog.author.username }}"
-                },
-                "image": "{{ blog.thumbnail }}"
-            }{% if not loop.last %},{% endif %}
-        {% endfor %}
-        ]
-    }
+                {% for blog in blogs %}
+                    {
+                        "@type": "ListItem",
+                        "position": {{ loop.index }},
+                        "item": {
+                            "@type": "BlogPosting",
+                            "headline": "{{ blog.title }}",
+                            "description": "{{ blog.description }}",
+                            "articleBody": "{{ blog.content|striptags|replace({ "\n": " ", "\r": " " }) }}",
+                            "url": "{{ path('blog_read', { slug: blog.slug }) }}",
+                            "author": {
+                                "@type": "Person",
+                                "name": "{{ blog.author.username }}"
+                            },
+                            "image": "{{ blog.thumbnail }}"
+                        }
+                    }{% if not loop.last %},{% endif %}
+                {% endfor %}
+            ]
+        }
     </script>
+
 {% endblock %}
 
 {% block body_header %}

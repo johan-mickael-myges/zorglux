@@ -27,8 +27,7 @@
     <meta name="twitter:image" content="{{ logoUrl }}">
 {% endblock %}
 
-{% block head %}
-    {{ parent() }}
+{% block jsonld %}
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
@@ -53,6 +52,7 @@
             "url": "{{ path('public_social_share') }}"
         }
     </script>
+
 {% endblock %}
 
 {% block body_header %}
