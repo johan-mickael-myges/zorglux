@@ -4,6 +4,10 @@
 {% set description = "Zorglux, la plateforme dynamique pour blogueurs, offre des outils innovants et une communauté engagée pour partager vos histoires, idées et expériences. Rejoignez-nous pour découvrir des ressources exceptionnelles et connecter avec des passionnés du monde entier." %}
 {% set logoUrl = 'https://zorglux-bucket.s3.eu-north-1.amazonaws.com/default/logo.png' %}
 
+{% block canonical %}
+    <link rel="canonical" href="{{ absolute_url(path('public_about')) }}">
+{% endblock %}
+
 {% block title %}
     {{ title }}
 {% endblock %}

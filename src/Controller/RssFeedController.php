@@ -11,13 +11,13 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/feed')]
 class RssFeedController extends AbstractController
 {
-    #[Route('/', name: 'rss_feed')]
+    #[Route('', name: 'rss_feed')]
     public function rssFeed(BlogRepositoryService $service): Response
     {
         /**
          * @var Blog[] $posts
          */
-        $posts = $service->getPublicBlog(['limit' => 15]);
+        $posts = $service->getPublicBlog();
 
         $rssFeed = new \SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><rss/>');
         $rssFeed->addAttribute('version', '2.0');

@@ -4,6 +4,10 @@
 {% set description = "Rejoignez Zorglux, la communauté des passionnés de blogging. Inscrivez-vous maintenant pour accéder à des outils de blogging puissants, des modèles personnalisables et un SEO intégré. Développez votre voix et engagez-vous avec une audience mondiale." %}
 {% set logoUrl = 'https://zorglux-bucket.s3.eu-north-1.amazonaws.com/default/logo.png' %}
 
+{% block canonical %}
+    <link rel="canonical" href="{{ absolute_url(path('app_register')) }}">
+{% endblock %}
+
 {% block title %}{{ title }}{% endblock %}
 
 {% block meta %}

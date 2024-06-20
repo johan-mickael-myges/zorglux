@@ -8,6 +8,10 @@
 {% set address = '242 Fbg St Antoine, 75012 Paris' %}
 {% set mapUrl = 'https://maps.app.goo.gl/F1o72hBjfHv1cw8y8' %}
 
+{% block canonical %}
+    <link rel="canonical" href="{{ absolute_url(path('public_contact')) }}">
+{% endblock %}
+
 {% block title %}
     {{ title }}
 {% endblock %}

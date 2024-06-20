@@ -17,7 +17,7 @@ use Symfony\Component\Routing\Attribute\Route;
 class PublicController extends AbstractController
 {
     #[Route(
-        '/',
+        '',
         name: 'index',
         options: [
             'sitemap' => [
@@ -38,7 +38,7 @@ class PublicController extends AbstractController
     }
 
     #[Route(
-        '/about',
+        'about',
         name: 'about',
         options: [
             'sitemap' => [
@@ -55,7 +55,7 @@ class PublicController extends AbstractController
     }
 
     #[Route(
-        '/social-share',
+        'social-share',
         name: 'social_share',
         options: [
             'sitemap' => [
@@ -72,7 +72,7 @@ class PublicController extends AbstractController
     }
 
     #[Route(
-        '/contact',
+        'contact',
         name: 'contact',
         options: [
             'sitemap' => [

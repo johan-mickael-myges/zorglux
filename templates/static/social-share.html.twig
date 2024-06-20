@@ -4,6 +4,10 @@
 {% set description = "Suivez Zorglux sur Twitter, TikTok, Facebook, LinkedIn et YouTube pour les dernières nouvelles, mises à jour et contenus exclusifs. Rejoignez notre communauté en ligne et restez connecté avec les tendances et les discussions les plus récentes." %}
 {% set logoUrl = 'https://zorglux-bucket.s3.eu-north-1.amazonaws.com/default/logo.png' %}
 
+{% block canonical %}
+    <link rel="canonical" href="{{ absolute_url(path('public_social_share')) }}">
+{% endblock %}
+
 {% block title %}
     {{ title }}
 {% endblock %}
