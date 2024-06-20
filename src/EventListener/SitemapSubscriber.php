@@ -2,10 +2,11 @@
 
 namespace App\EventListener;
 
-use App\Repository\BlogRepository;
+use App\Entity\Blog;
 use App\Service\Blog\BlogRepositoryService;
 use Presta\SitemapBundle\Sitemap\Url\GoogleImage;
 use Presta\SitemapBundle\Sitemap\Url\GoogleImageUrlDecorator;
+use Presta\SitemapBundle\Sitemap\Url\GoogleNewsUrlDecorator;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Presta\SitemapBundle\Event\SitemapPopulateEvent;
@@ -34,10 +35,14 @@ class SitemapSubscriber implements EventSubscriberInterface
     public function populate(SitemapPopulateEvent $event): void
     {
         $this->registerBlogUrls($event->getUrlContainer(), $event->getUrlGenerator());
+        $this->registerNewsUrls($event->getUrlContainer(), $event->getUrlGenerator());
     }
 
     public function registerBlogUrls(UrlContainerInterface $urls, UrlGeneratorInterface $router): void
     {
+        /**
+         * @var Blog[] $posts posts
+         */
         $posts = $this->blogRepositoryService->getPublicBlog();
         foreach ($posts as $post) {
             $blogUrl = new UrlConcrete(
@@ -54,11 +59,48 @@ class SitemapSubscriber implements EventSubscriberInterface
             $imageUrl = new GoogleImageUrlDecorator($blogUrl);
             $imageUrl->addImage(new GoogleImage(
                 $post->getThumbnail(),
-                $post->getTitle(),
+                $post->getDescription(),
                 null,
                 $post->getTitle(),
             ));
             $urls->addUrl($imageUrl, 'blog_images');
+        }
+    }
+
+    public function registerNewsUrls(UrlContainerInterface $urls, UrlGeneratorInterface $router): void
+    {
+        /**
+         * @var Blog[] $newsArticles
+         */
+        $newsArticles = $this->blogRepositoryService->getPublicBlog();
+        foreach ($newsArticles as $article) {
+            $newsUrl = new UrlConcrete(
+                $router->generate(
+                    'blog_read',
+                    ['slug' => $article->getSlug()],
+                    UrlGeneratorInterface::ABSOLUTE_URL
+                ),
+                $article->getUpdatedAt(),
+                UrlConcrete::CHANGEFREQ_HOURLY,
+                1.0
+            );
+
+            $newsDecorator = new GoogleNewsUrlDecorator(
+                $newsUrl,
+                'Actualités sur Zorglux',
+                'fr',
+                $article->getCreatedAt(),
+                $article->getTitle()
+            );
+
+            $imageUrl = new GoogleImageUrlDecorator($newsDecorator);
+            $imageUrl->addImage(new GoogleImage(
+                $article->getThumbnail(),
+                $article->getDescription(),
+                null,
+                $article->getTitle(),
+            ));
+            $urls->addUrl($imageUrl, 'news');
         }
     }
 }
