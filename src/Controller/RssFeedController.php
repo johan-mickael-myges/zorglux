@@ -33,6 +33,7 @@ class RssFeedController extends AbstractController
             $item->addChild('link', 'https://www.zorglux.works'.$this->generateUrl('blog_read', ['slug' => $post->getSlug()]));
             $item->addChild('description', $post->getDescription());
             $item->addChild('pubDate', $post->getCreatedAt()->format('r'));
+            $item->addChild('content:encoded', strip_tags($post->getContent()));
         }
 
         $response = new Response($rssFeed->asXML());
