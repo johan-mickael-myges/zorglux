@@ -86,6 +86,26 @@
             ]
         }
     </script>
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "ImageGallery",
+            "name": "Galerie de Zorglux",
+            "description": "Explorez notre galerie d'images de Zorglux, présentant des visuels vibrants et technologiques.",
+            "url": "{{ absolute_url(path('gallery_index')) }}",
+            "image": [
+            {% for image in galleries %}
+                {
+                    "@type": "ImageObject",
+                    "contentUrl": "{{ absolute_url(asset('images/gallery/' ~ image.src)) }}",
+                    "description": "{{ image.alt }}",
+                    "name": "{{ image.title }}"
+                }{% if not loop.last %},{% endif %}
+            {% endfor %}
+        ]
+    }
+    </script>
 {% endblock %}
 
 {% block body %}
@@ -129,6 +149,16 @@
         <div class="{{ contentClasses }}">
             <h2 class="font-bold">Les derniers posts</h2>
             {% include '@public/partials/latest-posts.html.twig' %}
+        </div>
+    </div>
+
+    <div class="{{ contentWrapperClasses }}">
+        <div class="{{ contentClasses }}">
+            <h2 class="font-bold">Galleries</h2>
+            {% include '@public/partials/gallery.html.twig' with {
+                images: galleries,
+                withMoreLink: true,
+            } %}
         </div>
     </div>
 

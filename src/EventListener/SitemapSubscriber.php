@@ -3,6 +3,7 @@
 namespace App\EventListener;
 
 use App\Entity\Blog;
+use App\Repository\GalleryRepository;
 use App\Service\Blog\BlogRepositoryService;
 use Presta\SitemapBundle\Sitemap\Url\GoogleImage;
 use Presta\SitemapBundle\Sitemap\Url\GoogleImageUrlDecorator;
@@ -17,6 +18,7 @@ class SitemapSubscriber implements EventSubscriberInterface
 {
     public function __construct(
         private readonly BlogRepositoryService $blogRepositoryService,
+        private readonly GalleryRepository $galleryRepository
     ) {}
 
     /**
@@ -36,6 +38,7 @@ class SitemapSubscriber implements EventSubscriberInterface
     {
         $this->registerBlogUrls($event->getUrlContainer(), $event->getUrlGenerator());
         $this->registerNewsUrls($event->getUrlContainer(), $event->getUrlGenerator());
+        $this->registerGalleryUrls($event->getUrlContainer(), $event->getUrlGenerator());
     }
 
     public function registerBlogUrls(UrlContainerInterface $urls, UrlGeneratorInterface $router): void
@@ -53,17 +56,17 @@ class SitemapSubscriber implements EventSubscriberInterface
                 ),
                 $post->getUpdatedAt(),
                 UrlConcrete::CHANGEFREQ_WEEKLY,
-                0.8
+                1.0
             );
 
             $imageUrl = new GoogleImageUrlDecorator($blogUrl);
             $imageUrl->addImage(new GoogleImage(
                 $post->getThumbnail(),
                 $post->getDescription(),
-                null,
+                'Paris, France',
                 $post->getTitle(),
             ));
-            $urls->addUrl($imageUrl, 'blog_images');
+            $urls->addUrl($imageUrl, 'blog');
         }
     }
 
@@ -111,5 +114,43 @@ class SitemapSubscriber implements EventSubscriberInterface
         $keywords = explode(' ', $article->getTitle());
         $keywords = array_filter($keywords, fn($keyword) => strlen($keyword) > 2);
         return array_values(array_merge($keywords, ['Zorglux', 'Actualités', 'Blog', 'Article', 'News', 'SEO', 'ESGI']));
+    }
+
+    public function registerGalleryUrls(UrlContainerInterface $urls, UrlGeneratorInterface $router): void
+    {
+        $galleryImages = $this->galleryRepository::all();
+
+        $galleryUrl = new UrlConcrete(
+            $router->generate(
+                'gallery_index',
+                [],
+                UrlGeneratorInterface::ABSOLUTE_URL
+            ),
+            new \DateTime(),
+            UrlConcrete::CHANGEFREQ_DAILY,
+            1.0
+        );
+
+        $imageUrls = [];
+        foreach ($galleryImages as $image) {
+            $imageUrls[] = new GoogleImage(
+                $router->generate(
+                    'public_index',
+                    [],
+                    UrlGeneratorInterface::ABSOLUTE_URL
+                ) . 'images/gallery/' . $image['src'],
+                $image['alt'],
+                'Paris, France',
+                $image['title']
+            );
+        }
+
+        if ($imageUrls) {
+            $imageUrlDecorator = new GoogleImageUrlDecorator($galleryUrl);
+            foreach ($imageUrls as $imageUrl) {
+                $imageUrlDecorator->addImage($imageUrl);
+            }
+            $urls->addUrl($imageUrlDecorator, 'gallery');
+        }
     }
 }

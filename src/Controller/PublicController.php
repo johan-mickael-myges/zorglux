@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Blog;
 use App\Form\BlogType;
 use App\Repository\BlogRepository;
+use App\Repository\GalleryRepository;
 use App\Service\Blog\BlogRepositoryService;
 use Doctrine\ORM\EntityManagerInterface;
 use Presta\SitemapBundle\Sitemap\Url\UrlConcrete;
@@ -27,13 +28,17 @@ class PublicController extends AbstractController
         ],
         methods: ['GET']
     )]
-    public function index(BlogRepositoryService $blogRepositoryService): Response
+    public function index(BlogRepositoryService $blogRepositoryService, GalleryRepository $galleryRepository): Response
     {
         $blog = $blogRepositoryService->getPublicBlog([
             'limit' => 6,
         ]);
+        $images = $galleryRepository::all([
+            'limit' => 4,
+        ]);
         return $this->render('public/index.html.twig', [
             'blogs' => $blog,
+            'galleries' => $images,
         ]);
     }
 
