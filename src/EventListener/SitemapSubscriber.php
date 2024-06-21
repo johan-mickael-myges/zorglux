@@ -93,14 +93,23 @@ class SitemapSubscriber implements EventSubscriberInterface
                 $article->getTitle()
             );
 
+            $newsDecorator->setKeywords($this->getNewsKeywords($article));
+
             $imageUrl = new GoogleImageUrlDecorator($newsDecorator);
             $imageUrl->addImage(new GoogleImage(
                 $article->getThumbnail(),
                 $article->getDescription(),
-                null,
+                'Paris, France',
                 $article->getTitle(),
             ));
             $urls->addUrl($imageUrl, 'news');
         }
+    }
+
+    private function getNewsKeywords(Blog $article): array
+    {
+        $keywords = explode(' ', $article->getTitle());
+        $keywords = array_filter($keywords, fn($keyword) => strlen($keyword) > 2);
+        return array_values(array_merge($keywords, ['Zorglux', 'Actualités', 'Blog', 'Article', 'News', 'SEO', 'ESGI']));
     }
 }
