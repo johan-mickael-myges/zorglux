@@ -190,7 +190,9 @@
 
         <div class="py-5">
             <h3 class="text-lg">Ces articles peuvent aussi vous intéresser</h3>
-            {% include '@public/partials/latest-posts.html.twig' %}
+            {% include '@public/partials/latest-posts.html.twig' with {
+                grid: 'md:grid-cols-2'
+            } %}
         </div>
     </twig:Container>
 {% endblock %}

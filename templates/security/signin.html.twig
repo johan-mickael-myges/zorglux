@@ -128,7 +128,9 @@
 
         <div class="py-5">
             <h2 class="text-lg">Lire les posts récents</h2>
-            {% include '@public/partials/latest-posts.html.twig' %}
+            {% include '@public/partials/latest-posts.html.twig' with {
+                grid: 'md:grid-cols-2'
+            } %}
         </div>
     </twig:Container>
 {% endblock %}
