@@ -39,9 +39,9 @@
                 </footer>
             </div>
             <figure
-                class="hidden md:flex flex-col justify-center" {{ stimulus_action('clickable', 'visit', 'click') }}
+                class="hidden md:flex flex-col justify-center ml-4" {{ stimulus_action('clickable', 'visit', 'click') }}
             >
-                <img src="{{ this.blog.thumbnail }}" alt="{{ this.title }}" width="200" height="200">
+                <img src="{{ this.blog.thumbnail }}" alt="{{ this.title }}" width="300" height="300">
             </figure>
         </div>
     {% elseif this.variant is same as 'compact' %}
