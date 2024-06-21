@@ -6,6 +6,10 @@
 
 {% block title %}{{ title }}{% endblock %}
 
+{% block canonical %}
+    <link rel="canonical" href="{{ absolute_url(path('gallery_index')) }}">
+{% endblock %}
+
 {% block meta %}
     <meta name="description" content="{{ description }}">
     <meta name="author" content="Zorglux">

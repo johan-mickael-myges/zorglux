@@ -69,14 +69,9 @@
 
     <div class="flex justify-center">
         {% for social in socials %}
-            <a href="{{ social.url }}" target="_blank" class="text-gray-800 mx-1">
+            <a href="{{ social.url }}" target="_blank" aria-label="{{ social.title }}" title="{{ social.title }}" class="text-gray-800 m-3">
                 <i class="{{ social.icon }} text-base"></i>
             </a>
         {% endfor %}
     </div>
-
-    <p class="pt-4 text-gray-500 text-xs flex flex-row items-center justify-center italic">
-        <small class="mr-1">⚠️</small>
-        <span>Ce site est créé dans le cadre d'un projet pédagogique.</span>
-    </p>
 </div>
