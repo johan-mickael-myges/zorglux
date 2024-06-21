@@ -20,6 +20,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 #[Route(name: 'app_')]
 class SecurityController extends AbstractController
 {
+    private bool $active = false;
     #[Route(
         '/login',
         name: 'login',
@@ -74,6 +75,17 @@ class SecurityController extends AbstractController
         // handle the form submission
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            if (!$this->active) {
+                $form->get('username')->addError(new FormError('L\'inscription a été désactivé temporairement jusqu\'au 31 Juillet 2024. Merci de revenir après cette date.'));
+                $blogs = $blogRepositoryService->getPublicBlog([
+                    'limit' => 3,
+                ]);
+                return $this->render('security/signup.html.twig', [
+                    'form' => $form,
+                    'google_recaptcha_site_key' => $siteCaptchaKey,
+                    'blogs' => $blogs,
+                ]);
+            }
             $userRegistrationFactory = new UserRegistrationFactory($passwordHasher);
             $data = $form->getData();
             $user = $userRegistrationFactory->create($data['username'], $data['plainPassword']);

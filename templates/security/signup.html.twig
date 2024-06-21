@@ -94,6 +94,7 @@
 
     {% set inputClasses = 'border-b rounded-sm outline-none focus:border-black p-1' %}
     {% set textErrorClasses = 'mt-1 text-xs text-red-500' %}
+    {% set active = false %}
 
     <twig:Container>
         {{ form_start(form, {
@@ -159,7 +160,11 @@
                value="{{ csrf_token('authenticate') }}"
         >
 
-        <button class="bg-gray-800 text-white px-4 py-2 rounded w-full" type="submit">
+        {% if not active %}
+            <twig:Alert icon="fa-warning" classes="rounded mb-2" color="warning" variant="small" text="L'inscription a été désactivé temporairement jusqu'au 31 Juillet 2024. Merci de revenir après cette date." />
+        {% endif %}
+
+        <button class="bg-gray-800 text-white px-4 py-2 rounded w-full disabled:bg-gray-400" {% if not active %} disabled {% endif %} type="submit">
             S'inscrire
         </button>
         <div class="mt-2 text-center text-xs">
