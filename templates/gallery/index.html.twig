@@ -85,7 +85,7 @@
         'md:w-2/3',
     ]|join(' ') %}
 
-    <header {{ stimulus_controller('menu_toggler') }}>
+    <header {{ stimulus_controller('menu_toggler') }} class="sticky top-0 bg-white z-[9990]">
         {% include '@common/navbar.html.twig' %}
     </header>
 
