@@ -11,6 +11,7 @@ class SocialShare
     public string $url = '';
     public string $icon = '';
     public string $text = '';
+    public string $title = '';
 
     public function getUrl(): string {
         return match ($this->service) {

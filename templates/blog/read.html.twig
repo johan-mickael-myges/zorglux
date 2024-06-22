@@ -172,10 +172,10 @@
             <div class="flex flex-row items-center">
                 <span class="mr-3 text-xs italic">Partager sur</span>
                 <div class="grid grid-cols-4 gap-2">
-                    <twig:SocialShare service="twitter" text="{{ blog.title }}" :url="app.request.uri"/>
-                    <twig:SocialShare service="facebook" :url="app.request.uri"/>
-                    <twig:SocialShare service="linkedin" :url="app.request.uri"/>
-                    <twig:SocialShare service="reddit" :url="app.request.uri"/>
+                    <twig:SocialShare title="Partager sur Twitter" service="twitter" text="{{ blog.title }}" :url="app.request.uri"/>
+                    <twig:SocialShare title="Partager sur Facebook" service="facebook" :url="app.request.uri"/>
+                    <twig:SocialShare title="Partager sur Linkedin" service="linkedin" :url="app.request.uri"/>
+                    <twig:SocialShare title="Partager sur Reddit" service="reddit" :url="app.request.uri"/>
                 </div>
             </div>
         </div>
