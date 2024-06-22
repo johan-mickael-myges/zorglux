@@ -99,7 +99,7 @@
     <twig:Container>
         {{ form_start(form, {
             attr: {
-                class: 'mt-5 p-5 shadow'
+                class: 'mt-5 p-5 shadow-lg border'
             }
         }) }}
         <h1 class="text-3xl mb-2">Deviens un membre de Zorglux</h1>
@@ -177,6 +177,15 @@
             <h2 class="text-lg">Lire les posts récents</h2>
             {% include '@public/partials/latest-posts.html.twig' with {
                 grid: 'md:grid-cols-2'
+            } %}
+        </div>
+
+        <div class="py-5">
+            <h2 class="font-bold">Galeries photos</h2>
+            {% include '@public/partials/gallery.html.twig' with {
+                images: galleries,
+                withMoreLink: true,
+                grid: 'nothing'
             } %}
         </div>
     </twig:Container>

@@ -1,5 +1,5 @@
-{% set defaultTitle = 'Zorglux - La Plateforme de Blog Idéale pour Partager Vos Histoires, Idées et Expériences' %}
-{% set defaultDescription = "Rejoignez Zorglux, la plateforme pour blogueurs. Partagez vos idées avec une communauté passionnée et accédez à des outils SEO et modèles personnalisables." %}
+{% set defaultTitle = 'Zorglux - Plateforme de Blog Idéale pour Partager Vos Histoires et Idées' %}
+{% set defaultDescription = "Rejoignez Zorglux, la plateforme ultime pour blogueurs. Partagez vos idées et expériences avec une communauté passionnée et accédez à des outils SEO puissants et des modèles personnalisables." %}
 {% set defaultLogoUrl = 'https://zorglux-bucket.s3.eu-north-1.amazonaws.com/zorglux.webp' %}
 
 <!DOCTYPE html>
@@ -20,7 +20,6 @@
         <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     {% endblock %}
     {% block keywords %}
-        <meta name="keywords" content="Zorglux, blog, seo, référencement, référencement naturel, histoires, expériences, communauté, écriture, partage, narration, plateforme">
     {% endblock %}
     {% block meta %}
         <meta name="description" content="{{ description|default(defaultDescription) }}">

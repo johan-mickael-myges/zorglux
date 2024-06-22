@@ -69,95 +69,85 @@
 {% block body_content %}
     <twig:Container>
         <h1 class="text-4xl text-gray-800 font-extrabold mb-5">Tout le monde a une histoire à raconter 📖</h1>
-        <section id="about" class="mb-5">
-            <h2 class="text-2xl mb-2">1. Qu'est-ce que Zorglux ? 🤔</h2>
-
-            <p>Zorglux est une plateforme dynamique conçue pour les blogueurs de tous horizons afin de partager leurs
-                histoires, idées et expériences avec un large public. Que vous soyez un écrivain chevronné ou que vous
-                débutiez tout juste, Zorglux offre les outils et la communauté pour faire entendre votre voix.</p>
-
-            <figure>
-                <img src="{{ logoUrl }}" alt="zorglux logo" class="rounded-full shadow-lg" loading="lazy" width="500" height="500">
+        <section id="about" class="mb-10">
+            <h2 class="text-2xl font-semibold mb-4">1. Qu'est-ce que Zorglux ? 🤔</h2>
+            <p class="mb-4">Zorglux est une plateforme dynamique conçue pour les blogueurs de tous horizons afin de partager leurs histoires, idées et expériences avec un large public. Que vous soyez un écrivain chevronné ou que vous débutiez tout juste, Zorglux offre les outils et la communauté pour faire entendre votre voix.</p>
+            <figure class="mb-6">
+                <img src="{{ logoUrl }}" alt="zorglux logo" class="rounded-full shadow-lg mx-auto" loading="lazy" width="500" height="500">
             </figure>
-
-            <h3 class="mb-2 text-lg">Notre Mission 🎯</h3>
-            <p>Notre mission chez Zorglux est de permettre aux individus de s'exprimer librement et de se connecter avec
-                d'autres à travers un contenu significatif. Nous croyons au pouvoir des histoires pour inspirer,
-                informer et unir les gens de tous horizons. En fournissant une plateforme inclusive, nous visons à
-                favoriser une communauté dynamique où les voix diverses sont célébrées.</p>
-            <br>
-
-            <h3 class="mb-2 text-lg">Pourquoi Choisir Zorglux ? 🌟</h3>
-            <ol class="list-decimal">
-                <li>Outils de blogging faciles à utiliser qui conviennent aussi bien aux débutants qu'aux blogueurs
-                    expérimentés.
-                </li>
+            <h3 class="text-xl font-medium mb-2">Notre Mission 🎯</h3>
+            <p class="mb-4">Notre mission chez Zorglux est de permettre aux individus de s'exprimer librement et de se connecter avec d'autres à travers un contenu significatif. Nous croyons au pouvoir des histoires pour inspirer, informer et unir les gens de tous horizons. En fournissant une plateforme inclusive, nous visons à favoriser une communauté dynamique où les voix diverses sont célébrées.</p>
+            <h3 class="text-xl font-medium mb-2">Pourquoi Choisir Zorglux ? 🌟</h3>
+            <ol class="list-decimal list-inside mb-4">
+                <li>Outils de blogging faciles à utiliser qui conviennent aussi bien aux débutants qu'aux blogueurs expérimentés.</li>
                 <li>Une communauté solidaire qui encourage l'interaction et la croissance.</li>
                 <li>Modèles de blog personnalisables pour vous aider à créer une présence en ligne unique.</li>
                 <li>Plateforme SEO-friendly pour aider votre contenu à atteindre un public plus large.</li>
-                <li>Mises à jour régulières et nouvelles fonctionnalités pour améliorer votre expérience de blogging.
-                </li>
+                <li>Mises à jour régulières et nouvelles fonctionnalités pour améliorer votre expérience de blogging.</li>
             </ol>
         </section>
 
-        <section id="features" class="mb-5">
-            <h2 class="text-2xl mb-2">2. Fonctionnalités de Zorglux 🔧</h2>
-            <p class="mb-2">Zorglux propose une gamme de fonctionnalités conçues pour rendre le blogging simple, agréable et efficace
-                :</p>
-            <ul class="ml-5 mb-2 list-disc">
-                <li><strong>Modèles Personnalisables :</strong> Choisissez parmi une variété de modèles de blog pour
-                    correspondre à votre style. Ajustez facilement les mises en page, les polices et les couleurs pour
-                    créer un blog qui vous représente.
-                </li>
-                <li><strong>Outils SEO :</strong> Utilisez des outils intégrés pour optimiser votre contenu pour les
-                    moteurs de recherche, vous aidant à attirer plus de lecteurs et à développer votre audience.
-                </li>
-                <li><strong>Engagement Communautaire :</strong> Connectez-vous avec d'autres blogueurs et lecteurs grâce
-                    aux commentaires, aux likes et au partage sur les réseaux sociaux. Favorisez des interactions
-                    significatives et construisez un public fidèle.
-                </li>
-                <li><strong>Analytiques :</strong> Suivez les performances de votre blog avec des analyses détaillées et
-                    des informations. Comprenez mieux votre audience et adaptez votre contenu à leurs besoins.
-                </li>
-                <li><strong>Options de Monétisation :</strong> Explorez diverses options de monétisation, telles que les
-                    publicités et le contenu sponsorisé, pour transformer votre passion pour le blogging en source de
-                    revenus.
-                </li>
-                <li><strong>Adapté aux Mobiles :</strong> Zorglux assure que votre blog ait fière allure sur n'importe
-                    quel appareil, facilitant l'accès à votre contenu en déplacement.
-                </li>
+        <section id="features" class="mb-10">
+            <h2 class="text-2xl font-semibold mb-4">2. Fonctionnalités de Zorglux 🔧</h2>
+            <p class="mb-4">Zorglux propose une gamme de fonctionnalités conçues pour rendre le blogging simple, agréable et efficace :</p>
+            <ul class="list-disc list-inside mb-4">
+                <li><strong>Modèles Personnalisables :</strong> Choisissez parmi une variété de modèles de blog pour correspondre à votre style. Ajustez facilement les mises en page, les polices et les couleurs pour créer un blog qui vous représente.</li>
+                <li><strong>Outils SEO :</strong> Utilisez des outils intégrés pour optimiser votre contenu pour les moteurs de recherche, vous aidant à attirer plus de lecteurs et à développer votre audience.</li>
+                <li><strong>Engagement Communautaire :</strong> Connectez-vous avec d'autres blogueurs et lecteurs grâce aux commentaires, aux likes et au partage sur les réseaux sociaux. Favorisez des interactions significatives et construisez un public fidèle.</li>
+                <li><strong>Analytiques :</strong> Suivez les performances de votre blog avec des analyses détaillées et des informations. Comprenez mieux votre audience et adaptez votre contenu à leurs besoins.</li>
+                <li><strong>Options de Monétisation :</strong> Explorez diverses options de monétisation, telles que les publicités et le contenu sponsorisé, pour transformer votre passion pour le blogging en source de revenus.</li>
+                <li><strong>Adapté aux Mobiles :</strong> Zorglux assure que votre blog ait fière allure sur n'importe quel appareil, facilitant l'accès à votre contenu en déplacement.</li>
             </ul>
         </section>
 
-        <section id="community" class="mb-5">
-            <h2 class="text-2xl mb-2">3. Rejoignez la Communauté Zorglux 🌍</h2>
-            <p class="mb-2">Chez Zorglux, nous croyons au pouvoir de la communauté. Notre plateforme est conçue pour vous aider à
-                vous connecter avec des individus partageant les mêmes idées, à partager vos passions et à développer
-                votre réseau.</p>
-            <ul class="ml-5">
-                <li><strong>Profils Interactifs :</strong> Créez un profil détaillé pour mettre en valeur vos intérêts,
-                    blogs et réalisations.
-                </li>
-                <li><strong>Discussions de Groupe :</strong> Participez à des discussions de groupe sur une variété de
-                    sujets. Partagez des idées, posez des questions et apprenez des autres.
-                </li>
-                <li><strong>Événements et Webinaires :</strong> Rejoignez des événements exclusifs et des webinaires
-                    animés par des blogueurs expérimentés et des experts de l'industrie.
-                </li>
-                <li><strong>Programmes de Mentorat :</strong> Accédez à des programmes de mentorat pour obtenir des
-                    conseils et un soutien de blogueurs chevronnés.
-                </li>
-                <li><strong>Opportunités de Réseautage :</strong> Connectez-vous avec d'autres blogueurs et
-                    professionnels de l'industrie pour élargir votre réseau et explorer de nouvelles opportunités.
-                </li>
+        <section id="community" class="mb-10">
+            <h2 class="text-2xl font-semibold mb-4">3. Rejoignez la Communauté Zorglux 🌍</h2>
+            <p class="mb-4">Chez Zorglux, nous croyons au pouvoir de la communauté. Notre plateforme est conçue pour vous aider à vous connecter avec des individus partageant les mêmes idées, à partager vos passions et à développer votre réseau.</p>
+            <ul class="list-disc list-inside mb-4">
+                <li><strong>Profils Interactifs :</strong> Créez un profil détaillé pour mettre en valeur vos intérêts, blogs et réalisations.</li>
+                <li><strong>Discussions de Groupe :</strong> Participez à des discussions de groupe sur une variété de sujets. Partagez des idées, posez des questions et apprenez des autres.</li>
+                <li><strong>Événements et Webinaires :</strong> Rejoignez des événements exclusifs et des webinaires animés par des blogueurs expérimentés et des experts de l'industrie.</li>
+                <li><strong>Programmes de Mentorat :</strong> Accédez à des programmes de mentorat pour obtenir des conseils et un soutien de blogueurs chevronnés.</li>
+                <li><strong>Opportunités de Réseautage :</strong> Connectez-vous avec d'autres blogueurs et professionnels de l'industrie pour élargir votre réseau et explorer de nouvelles opportunités.</li>
             </ul>
         </section>
 
-        <section id="contact" class="mb-5">
-            <h2 class="text-2xl mb-2">4. Contactez-nous 📞</h2>
-            <p>
-                Si vous avez des questions ou des commentaires, n'hésitez pas à <a href="{{ path('public_contact') }}">nous contacter</a>.
+        <section id="contact" class="mb-10">
+            <h2 class="text-2xl font-semibold mb-4">4. Contactez-nous 📞</h2>
+            <p class="mb-4">
+                Si vous avez des questions ou des commentaires, n'hésitez pas à <a href="{{ path('public_contact') }}" class="text-blue-500 underline">nous contacter</a>.
             </p>
         </section>
     </twig:Container>
+
+    {% set contentWrapperClasses = [
+        'flex',
+        'flex-row',
+        'grow',
+        'justify-center',
+        'items-center',
+    ]|join(' ') %}
+
+    {% set contentClasses = [
+        'w-full',
+        'px-5',
+        'md:w-2/3',
+    ]|join(' ') %}
+
+    <div id="latest-posts" class="{{ contentWrapperClasses }}">
+        <div class="{{ contentClasses }}">
+            <h2 class="font-bold">Les derniers articles</h2>
+            {% include '@public/partials/latest-posts.html.twig' %}
+        </div>
+    </div>
+
+    <div class="{{ contentWrapperClasses }}">
+        <div class="{{ contentClasses }}">
+            <h2 class="font-bold">Galeries photos</h2>
+            {% include '@public/partials/gallery.html.twig' with {
+                images: galleries,
+                withMoreLink: true,
+            } %}
+        </div>
+    </div>
 {% endblock %}

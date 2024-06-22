@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Blog;
 use App\Form\BlogType;
+use App\Repository\GalleryRepository;
 use App\Service\Blog\BlogCreatorService;
 use App\Service\Blog\BlogRepositoryService;
 use Presta\SitemapBundle\Sitemap\Url\UrlConcrete;
@@ -29,10 +30,14 @@ class BlogController extends AbstractController
         methods: ['GET']
     )]
     #[IsGranted('list')]
-    public function index(BlogRepositoryService $service): Response
+    public function index(BlogRepositoryService $service, GalleryRepository $galleryRepository): Response
     {
+        $images = $galleryRepository::all([
+            'limit' => 4,
+        ]);
         return $this->render('blog/index.html.twig', [
             'blogs' => $service->getPublicBlog(),
+            'galleries' => $images,
         ]);
     }
 

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Factory\UserRegistrationFactory;
 use App\Form\SignupType;
+use App\Repository\GalleryRepository;
 use App\Service\Blog\BlogRepositoryService;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Doctrine\ORM\EntityManagerInterface;
@@ -32,7 +33,7 @@ class SecurityController extends AbstractController
         ],
         methods: ['GET', 'POST']
     )]
-    public function login(AuthenticationUtils $authenticationUtils, BlogRepositoryService $blogRepositoryService): Response
+    public function login(AuthenticationUtils $authenticationUtils, BlogRepositoryService $blogRepositoryService, GalleryRepository $galleryRepository): Response
     {
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
@@ -41,13 +42,18 @@ class SecurityController extends AbstractController
         $lastUsername = $authenticationUtils->getLastUsername();
 
         $blogs = $blogRepositoryService->getPublicBlog([
-            'limit' => 3,
+            'limit' => 4,
+        ]);
+
+        $images = $galleryRepository::all([
+            'limit' => 2,
         ]);
 
         return $this->render('security/signin.html.twig', [
             'last_username' => $lastUsername,
             'error' => $error,
             'blogs' => $blogs,
+            'galleries' => $images,
         ]);
     }
 
@@ -66,24 +72,29 @@ class SecurityController extends AbstractController
         Request $request,
         UserPasswordHasherInterface $passwordHasher,
         EntityManagerInterface $entityManager,
-        BlogRepositoryService $blogRepositoryService
+        BlogRepositoryService $blogRepositoryService,
+        GalleryRepository $galleryRepository
     ): Response
     {
         $siteCaptchaKey = $_ENV['GOOGLE_RECAPTCHA_SITE_KEY'] ?? null;
         $form = $this->createForm(SignupType::class);
+        $blogs = $blogRepositoryService->getPublicBlog([
+            'limit' => 4,
+        ]);
+        $images = $galleryRepository::all([
+            'limit' => 2,
+        ]);
 
         // handle the form submission
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             if (!$this->active) {
                 $form->get('username')->addError(new FormError('L\'inscription a été désactivé temporairement jusqu\'au 31 Juillet 2024. Merci de revenir après cette date.'));
-                $blogs = $blogRepositoryService->getPublicBlog([
-                    'limit' => 3,
-                ]);
                 return $this->render('security/signup.html.twig', [
                     'form' => $form,
                     'google_recaptcha_site_key' => $siteCaptchaKey,
                     'blogs' => $blogs,
+                    'galleries' => $images,
                 ]);
             }
             $userRegistrationFactory = new UserRegistrationFactory($passwordHasher);
@@ -103,14 +114,11 @@ class SecurityController extends AbstractController
             }
         }
 
-        $blogs = $blogRepositoryService->getPublicBlog([
-            'limit' => 3,
-        ]);
-
         return $this->render('security/signup.html.twig', [
             'form' => $form,
             'google_recaptcha_site_key' => $siteCaptchaKey,
             'blogs' => $blogs,
+            'galleries' => $images,
         ]);
     }
 

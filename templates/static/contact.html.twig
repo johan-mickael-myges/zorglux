@@ -76,37 +76,52 @@
     <twig:Container>
         <h1 class="text-4xl text-gray-800 font-bold mb-5">Contactez-nous</h1>
 
-        <section id="contact">
-            <h2 class="text-lg font-normal">Besoin d'aide ? Contactez-nous dès aujourd'hui !</h2>
-
-            <ul class="m-0 text-sm">
-                <li><strong>Téléphone :</strong> <a href="tel:{{ phone }}">{{ phone }}</a></li>
-                <li><strong>Email :</strong> <a href="mailto:{{ email }}">{{ email }}</a></li>
-                <li><strong>Adresse :</strong> <a href="{{ mapUrl }}">{{ address }}</a></li>
+        <section id="contact" class="mb-10">
+            <h2 class="text-2xl font-semibold mb-4">Besoin d'aide ? Contactez-nous dès aujourd'hui !</h2>
+            <ul class="mb-4 text-lg">
+                <li class="mb-2">Téléphone : <a href="tel:{{ phone }}" class="text-blue-700 underline">{{ phone }}</a></li>
+                <li class="mb-2">Email : <a href="mailto:{{ email }}" class="text-blue-700 underline">{{ email }}</a></li>
+                <li class="mb-2">Adresse : <a href="{{ mapUrl }}" class="text-blue-700 underline">{{ address }}</a></li>
             </ul>
-            <br><br>
-            <div class="flex flex-row justify-center overflow-x-scroll">
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5250.9481043266405!2d2.3871593768814114!3d48.84917010135474!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e6720d9c7af387%3A0x5891d8d62e8535c7!2s%C3%89cole%20Sup%C3%A9rieure%20de%20G%C3%A9nie%20Informatique!5e0!3m2!1sen!2sfr!4v1717453423248!5m2!1sen!2sfr"
-                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade">
-                </iframe>
-            </div>
         </section>
 
-        <br><br>
-        <section id="informations">
-            <figure>
-                <img src="{{ logoUrl }}" alt="zorglux logo" class="w-full" loading="lazy" width="500" height="500">
+        <section id="informations" class="mb-10">
+            <figure class="mb-6">
+                <img src="{{ logoUrl }}" alt="zorglux logo" class="w-full rounded shadow-lg" loading="lazy" width="500" height="500">
             </figure>
-            <p class="text-sm italic">Nous sommes disponibles pour répondre à vos questions et vous aider dans vos projets.
-                N'hésitez pas à nous contacter pour obtenir plus d'informations sur nos services ou pour planifier une
-                consultation.</p>
-            <br>
-            <p class="text-sm italic">Que vous ayez besoin d'un conseil d'expert, d'une assistance technique ou simplement de plus
-                amples informations, notre équipe est là pour vous accompagner à chaque étape. Faites-nous part de vos
-                besoins et nous vous fournirons une solution adaptée à vos besoins.</p>
+            <p class="text-lg italic mb-4">Nous sommes disponibles pour répondre à vos questions et vous aider dans vos projets. N'hésitez pas à nous contacter pour obtenir plus d'informations sur nos services ou pour planifier une consultation.</p>
+            <p class="text-lg italic">Que vous ayez besoin d'un conseil d'expert, d'une assistance technique ou simplement de plus amples informations, notre équipe est là pour vous accompagner à chaque étape. Faites-nous part de vos besoins et nous vous fournirons une solution adaptée à vos besoins.</p>
         </section>
     </twig:Container>
-    <br>
+
+    {% set contentWrapperClasses = [
+        'flex',
+        'flex-row',
+        'grow',
+        'justify-center',
+        'items-center',
+    ]|join(' ') %}
+
+    {% set contentClasses = [
+        'w-full',
+        'px-5',
+        'md:w-2/3',
+    ]|join(' ') %}
+
+    <div id="latest-posts" class="{{ contentWrapperClasses }}">
+        <div class="{{ contentClasses }}">
+            <h2 class="font-bold">Les derniers articles</h2>
+            {% include '@public/partials/latest-posts.html.twig' %}
+        </div>
+    </div>
+
+    <div class="{{ contentWrapperClasses }}">
+        <div class="{{ contentClasses }}">
+            <h2 class="font-bold">Galeries photos</h2>
+            {% include '@public/partials/gallery.html.twig' with {
+                images: galleries,
+                withMoreLink: true,
+            } %}
+        </div>
+    </div>
 {% endblock %}

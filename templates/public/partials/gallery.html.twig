@@ -2,7 +2,9 @@
 
 {% set withMoreLink = withMoreLink|default(false) %}
 
-<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
+{% set grid = grid|default('md:grid-cols-3 lg:grid-cols-4') %}
+
+<div class="grid grid-cols-2 {{ grid }} gap-2">
     {% for image in images %}
         <div class="relative">
             <img src="{{ asset('images/gallery/' ~ image.src) }}" loading="lazy" alt="{{ image.alt }}" title="{{ image.title }}" width="500" height="500" class="w-full h-full object-cover" />

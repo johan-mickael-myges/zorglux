@@ -54,9 +54,20 @@ class PublicController extends AbstractController
         ],
         methods: ['GET']
     )]
-    public function about(): Response
+    public function about(BlogRepositoryService $blogRepositoryService, GalleryRepository $galleryRepository): Response
     {
-        return $this->render('static/about.html.twig');
+        $blogs = $blogRepositoryService->getPublicBlog([
+            'limit' => 3,
+        ]);
+
+        $images = $galleryRepository::all([
+            'limit' => 4,
+        ]);
+
+        return $this->render('static/about.html.twig', [
+            'galleries' => $images,
+            'blogs' => $blogs,
+        ]);
     }
 
     #[Route(
@@ -71,9 +82,19 @@ class PublicController extends AbstractController
         ],
         methods: ['GET']
     )]
-    public function socialShare(): Response
+    public function socialShare(GalleryRepository $galleryRepository, BlogRepositoryService $blogRepositoryService): Response
     {
-        return $this->render('static/social-share.html.twig');
+        $blogs = $blogRepositoryService->getPublicBlog([
+            'limit' => 3,
+        ]);
+
+        $images = $galleryRepository::all([
+            'limit' => 4,
+        ]);
+        return $this->render('static/social-share.html.twig', [
+            'galleries' => $images,
+            'blogs' => $blogs,
+        ]);
     }
 
     #[Route(
@@ -88,8 +109,18 @@ class PublicController extends AbstractController
         ],
         methods: ['GET']
     )]
-    public function contact(): Response
+    public function contact(GalleryRepository $galleryRepository, BlogRepositoryService $blogRepositoryService): Response
     {
-        return $this->render('static/contact.html.twig');
+        $blogs = $blogRepositoryService->getPublicBlog([
+            'limit' => 3,
+        ]);
+
+        $images = $galleryRepository::all([
+            'limit' => 4,
+        ]);
+        return $this->render('static/contact.html.twig', [
+            'galleries' => $images,
+            'blogs' => $blogs,
+        ]);
     }
 }
