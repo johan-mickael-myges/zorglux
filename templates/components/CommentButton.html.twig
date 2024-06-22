@@ -4,7 +4,7 @@
             {% if this.withCommentsContainer is same as true %}{{ stimulus_action('comments_toggler', 'toggle', 'click') }}{% endif %}
             title="Commentaires"
             class="cursor-pointer text-gray-500"
-            href="#"
+            href="{{ this.withCommentsContainer is same as true ? '#' : path('blog_read', { slug: this.blog.slug }) }}"
         >
             <i class="{{ this.iconType }} fa-comment"></i>
             <span>{{ this.blog.comments|length }}</span>

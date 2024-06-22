@@ -34,9 +34,7 @@
                     <time class="mr-4" datetime="{{ this.createdAt|date }}">{{ this.createdAt|date('M d') }}</time>
                     <div class="grid grid-cols-2 gap-2">
                         <twig:LikeButton class="col-span-1" :blog="blog" />
-                        <a href="{{ path('blog_read', { slug: this.blog.slug }) }}" class="text-gray-500" title="Lire la suite">
-                            <twig:CommentButton class="col-span-1" :blog="blog" :withCommentsContainer="false" />
-                        </a>
+                        <twig:CommentButton class="col-span-1" :blog="blog" :withCommentsContainer="false" />
                     </div>
                 </footer>
             </div>
