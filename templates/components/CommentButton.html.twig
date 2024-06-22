@@ -11,11 +11,11 @@
         </a>
 
         {% if this.withCommentsContainer is same as true %}
-        <div class="hidden md:block">
+        <div class="hidden md:block shadow">
             <twig:Comments :blog="this.blog" variant="desktop" />
         </div>
 
-        <div class="md:hidden">
+        <div class="md:hidden shadow">
             <twig:Comments :blog="this.blog" />
         </div>
         {% endif %}
