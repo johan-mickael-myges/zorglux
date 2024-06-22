@@ -37,11 +37,6 @@ class GalleryRepository
                 'title' => 'Emblème du centre numérique de Zorglux',
             ],
             [
-                'src' => 'zorglux-high-tech-assembly.webp',
-                'alt' => 'Assemblée haute technologie de Zorglux',
-                'title' => 'Rassemblement technologique de Zorglux',
-            ],
-            [
                 'src' => 'zorglux-giant-z-display.webp',
                 'alt' => 'Affichage géant du Z de Zorglux',
                 'title' => 'Grande exposition du Z de Zorglux',
@@ -100,6 +95,46 @@ class GalleryRepository
                 'src' => 'futuristic-colorful-zorglux-logo.webp',
                 'alt' => 'A futuristic and colorful scene featuring the Zorglux logo with elements of SEO and blogging in an exotic, vibrant setting.',
                 'title' => 'Futuristic and Colorful Zorglux Logo Scene'
+            ],
+            [
+                'src' => 'zorglux-blue-seo-blogging-scene.webp',
+                'alt' => 'A futuristic scene featuring the Zorglux logo and the theme of SEO and blogging with a blue background',
+                'title' => 'Zorglux Futuristic Blue Scene for SEO and Blogging',
+            ],
+            [
+                'src' => 'zorglux-red-seo-blogging-scene.webp',
+                'alt' => 'A futuristic scene featuring the Zorglux logo and the theme of SEO and blogging with a red background',
+                'title' => 'Zorglux Futuristic Red Scene for SEO and Blogging',
+            ],
+            [
+                'src' => 'zorglux-green-seo-blogging-scene.webp',
+                'alt' => 'A futuristic scene featuring the Zorglux logo and the theme of SEO and blogging with a green background',
+                'title' => 'Zorglux Futuristic Green Scene for SEO and Blogging',
+            ],
+            [
+                'src' => 'zorglux-yellow-seo-blogging-scene.webp',
+                'alt' => 'A futuristic scene featuring the Zorglux logo and the theme of SEO and blogging with a yellow background',
+                'title' => 'Zorglux Futuristic Yellow Scene for SEO and Blogging',
+            ],
+            [
+                'src' => 'zorglux-purple-seo-blogging-scene.webp',
+                'alt' => 'A futuristic scene featuring the Zorglux logo and the theme of SEO and blogging with a purple background',
+                'title' => 'Zorglux Futuristic Purple Scene for SEO and Blogging',
+            ],
+            [
+                'src' => 'zorglux-pink-seo-blogging-scene.webp',
+                'alt' => 'A futuristic scene featuring the Zorglux logo and the theme of SEO and blogging with a pink background',
+                'title' => 'Zorglux Futuristic Pink Scene for SEO and Blogging',
+            ],
+            [
+                'src' => 'zorglux-turquoise-seo-blogging-scene.webp',
+                'alt' => 'A futuristic scene featuring the Zorglux logo and the theme of SEO and blogging with a turquoise background',
+                'title' => 'Zorglux Futuristic Turquoise Scene for SEO and Blogging',
+            ],
+            [
+                'src' => 'zorglux-brown-seo-blogging-scene.webp',
+                'alt' => 'A futuristic scene featuring the Zorglux logo and the theme of SEO and blogging with a brown background',
+                'title' => 'Zorglux Futuristic Brown Scene for SEO and Blogging',
             ],
         ];
     }
