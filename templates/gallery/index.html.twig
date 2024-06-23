@@ -37,7 +37,7 @@
             "@type": "WebPage",
             "name": "Galerie Zorglux",
             "description": "{{ description }}",
-            "url": "https://www.zorglux.works/gallery",
+            "url": "{{ absolute_url(path('public_index')) }}gallery",
             "publisher": {
                 "@type": "Organization",
                 "name": "Zorglux",
@@ -46,7 +46,7 @@
                     "url": "{{ logoUrl }}"
                 }
             }
-        }
+        }}
     </script>
 
     <script type="application/ld+json">

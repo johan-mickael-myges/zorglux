@@ -41,7 +41,7 @@
             "@context": "https://schema.org",
             "@type": "Organization",
             "name": "Zorglux",
-            "url": "https://www.zorglux.works",
+            "url": "{{ absolute_url(path('public_index')) }}",
             "logo": "{{ logoUrl }}",
             "contactPoint": {
                 "@type": "ContactPoint",
@@ -51,11 +51,10 @@
                 "availableLanguage": ["French", "English"]
             },
             "sameAs": [
-                "https://www.facebook.com/zorglux",
-                "https://www.twitter.com/zorglux_works",
-                "https://www.linkedin.com/company/zorglux",
-                "https://www.youtube.com/channel/zorglux",
-                "https://www.pinterest.fr/zorgluxx/"
+                "https://fr.zorglux.works/",
+                "https://en.zorglux.works/",
+                "https://zorglux.works/",
+                "https://www.zorglux.works/"
             ],
             "address": {
                 "@type": "PostalAddress",

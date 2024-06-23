@@ -63,15 +63,13 @@
                 "@context": "https://schema.org",
                 "@type": "Organization",
                 "name": "Zorglux",
-                "url": "https://www.zorglux.works",
+                "url": "{{ absolute_url(path('public_index')) }}",
                 "logo": "{{ logoUrl|default(defaultLogoUrl) }}",
                 "sameAs": [
-                    "https://x.com/zorglux_works",
-                    "https://www.facebook.com/zorglux/",
-                    "https://www.youtube.com/@zorglux-works",
-                    "https://www.tiktok.com/@zorglux.works",
-                    "https://www.linkedin.com/in/zorglux/",
-                    "https://www.pinterest.fr/zorgluxx/"
+                    "https://fr.zorglux.works/",
+                    "https://en.zorglux.works/",
+                    "https://zorglux.works/",
+                    "https://www.zorglux.works/"
                 ],
                 "description": "{{ description|default(defaultDescription) }}",
                 "contactPoint": {
@@ -79,7 +77,7 @@
                     "telephone": "+33 7 69 34 87 44",
                     "contactType": "Customer Service"
                 }
-            }
+            }}
         </script>
 
 
@@ -87,7 +85,7 @@
             {
                 "@context": "https://schema.org",
                 "@type": "WebSite",
-                "url": "https://www.zorglux.works",
+                "url": "{{ absolute_url(path('public_index')) }}",
                 "name": "{{ title|default(defaultTitle) }}",
                 "description": "{{ description|default(defaultDescription) }}",
                 "publisher": {

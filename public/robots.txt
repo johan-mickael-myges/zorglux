@@ -4,3 +4,5 @@ Disallow: /blog/write/
 Allow: /
 
 Sitemap: https://www.zorglux.works/sitemap.xml
+Sitemap: https://fr.zorglux.works/sitemap.xml
+Sitemap: https://en.zorglux.works/sitemap.xml
