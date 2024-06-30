@@ -6,6 +6,7 @@
 {% set videoUrl = 'https://zorglux-bucket.s3.eu-north-1.amazonaws.com/videos/Maîtrisez le SEO avec Zorglux Works!.mp4' %}
 {% set videoTitle = 'Maîtrisez le SEO avec Zorglux Works!' %}
 {% set videoDescription = 'Découvrez Zorglux en vidéo et apprenez à maîtriser le SEO avec notre plateforme.' %}
+{% set videoPoster = 'https://zorglux-bucket.s3.eu-north-1.amazonaws.com/Booste ton site avec Zorglux Works !.webp' %}
 
 {% block canonical %}
     <link rel="canonical" href="{{ absolute_url(path('public_about')) }}">
@@ -69,7 +70,7 @@
             "@type": "VideoObject",
             "name": "{{ videoTitle }}",
             "description": "{{ videoDescription }}",
-            "thumbnailUrl": "{{ logoUrl }}",
+            "thumbnailUrl": "{{ videoPoster }}",
             "uploadDate": "2024-07-01T00:00:00+00:00",
             "contentUrl": "{{ videoUrl }}",
             "embedUrl": "{{ videoUrl }}",
@@ -96,7 +97,7 @@
             <h2 class="text-2xl font-semibold mb-4">1. Qu'est-ce que Zorglux ? 🤔</h2>
             <p class="mb-4">Zorglux est une plateforme dynamique conçue pour les blogueurs de tous horizons afin de partager leurs histoires, idées et expériences avec un large public. Que vous soyez un écrivain chevronné ou que vous débutiez tout juste, Zorglux offre les outils et la communauté pour faire entendre votre voix.</p>
             <figure class="mb-6">
-                <video controls width="100%">
+                <video controls width="100%" poster="{{ videoPoster }}">
                     <source src="{{ videoUrl }}" type="video/mp4" title="{{ videoTitle }}">
                     Votre navigateur ne supporte pas les vidéos HTML5. Voici <a href="{{ videoUrl }}">un lien pour télécharger la vidéo</a> au lieu.
                 </video>

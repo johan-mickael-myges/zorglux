@@ -6,6 +6,7 @@
 {% set videoUrl = 'https://zorglux-bucket.s3.eu-north-1.amazonaws.com/videos/Booste ton site avec Zorglux Works !.mp4' %}
 {% set videoTitle = 'Booste ton site avec Zorglux Works !' %}
 {% set videoDescription = "Découvrez comment Zorglux Works peut vous aider à améliorer votre site web et à le rendre plus performant. Rejoignez-nous pour une expérience unique et enrichissante." %}
+{% set videoPoster = 'https://zorglux-bucket.s3.eu-north-1.amazonaws.com/Booste ton site avec Zorglux Works !.webp' %}
 
 {% block title %}{{ title }}{% endblock %}
 
@@ -114,7 +115,7 @@
             "@type": "VideoObject",
             "name": "{{ videoTitle }}",
             "description": "{{ videoDescription }}",
-            "thumbnailUrl": "{{ logoUrl }}",
+            "thumbnailUrl": "{{ videoPoster }}",
             "uploadDate": "2024-07-01T00:00:00+00:00",
             "contentUrl": "{{ videoUrl }}",
             "embedUrl": "{{ videoUrl }}",
@@ -187,7 +188,7 @@
     <div id="presentation-video" class="{{ contentWrapperClasses }}">
         <div class="{{ contentClasses }}">
             <figure class="mb-4">
-                <video controls width="100%">
+                <video controls width="100%" poster="{{ videoPoster }}">
                     <source src="{{ videoUrl }}" type="video/mp4" title="{{ videoTitle }}">
                     Votre navigateur ne supporte pas les vidéos HTML5. Voici <a href="{{ videoUrl }}">un lien pour télécharger la vidéo</a> au lieu.
                 </video>
