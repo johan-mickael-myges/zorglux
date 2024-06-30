@@ -153,17 +153,17 @@
 
         <div class="{{ contentWrapperClasses }}">
             <div class="{{ contentClasses }}">
-                <h1 class="text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold my-0 text-gray-500">Zorglux</h1>
-                <h2 class="text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold my-0">Idées</h2>
-                <h2 class="text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold my-0">Articles</h2>
+                <h1 class="text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold my-0 text-gray-500">Zorglux</h1>
+                <h2 class="text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold my-0">Blog</h2>
+                <h2 class="text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold my-0">SEO</h2>
                 <br>
-                <p class="mb-4 text-md md:text-lg lg:text-xl">
+                <h3 class="font-normal mb-4 text-md md:text-lg lg:text-xl">
                     Une place pour lire, écrire, et approfondir les connaissances.
-                </p>
-                <p class="mb-10 text-md md:text-lg lg:text-xl">
+                </h3>
+                <h4 class="font-normal mb-10 text-md md:text-lg lg:text-xl">
                     Zorglux offre une plateforme de blog spécialement conçue pour optimiser votre SEO,
                     connectez-vous avec une communauté passionnée et améliorez votre visibilité en ligne grâce à des outils innovants.
-                </p>
+                </h4>
                 <button
                     {{ stimulus_controller('clickable', { url: path('blog_index'), title: 'Découvrir la liste des articles' }) }}
                     {{ stimulus_action('clickable', 'visit', 'click') }}
