@@ -3,6 +3,9 @@
 {% set title = "Zorglux : Votre Centre pour le Partage et l'Approfondissement des Connaissances" %}
 {% set description = "Zorglux est votre plateforme ultime pour lire, écrire et approfondir vos connaissances sur divers sujets. Rejoignez une communauté d'enthousiastes et d'experts pour élargir vos horizons." %}
 {% set logoUrl = 'https://zorglux-bucket.s3.eu-north-1.amazonaws.com/zorglux.webp' %}
+{% set videoUrl = 'https://zorglux-bucket.s3.eu-north-1.amazonaws.com/videos/Booste ton site avec Zorglux Works !.mp4' %}
+{% set videoTitle = 'Booste ton site avec Zorglux Works !' %}
+{% set videoDescription = "Découvrez comment Zorglux Works peut vous aider à améliorer votre site web et à le rendre plus performant. Rejoignez-nous pour une expérience unique et enrichissante." %}
 
 {% block title %}{{ title }}{% endblock %}
 
@@ -105,6 +108,26 @@
         ]
     }
     </script>
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "VideoObject",
+            "name": "{{ videoTitle }}",
+            "description": "{{ videoDescription }}",
+            "thumbnailUrl": "{{ logoUrl }}",
+            "uploadDate": "2024-07-01T00:00:00+00:00",
+            "contentUrl": "{{ videoUrl }}",
+            "embedUrl": "{{ videoUrl }}",
+            "publisher": {
+                "@type": "Organization",
+                "name": "Zorglux",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "{{ logoUrl }}"
+                }
+            }
+        }
+    </script>
 {% endblock %}
 
 {% block body %}
@@ -158,6 +181,18 @@
                 images: galleries,
                 withMoreLink: true,
             } %}
+        </div>
+    </div>
+
+    <div id="presentation-video" class="{{ contentWrapperClasses }}">
+        <div class="{{ contentClasses }}">
+            <figure class="mb-4">
+                <video controls width="100%">
+                    <source src="{{ videoUrl }}" type="video/mp4" title="{{ videoTitle }}">
+                    Votre navigateur ne supporte pas les vidéos HTML5. Voici <a href="{{ videoUrl }}">un lien pour télécharger la vidéo</a> au lieu.
+                </video>
+                <figcaption class="text-sm text-gray-500 mt-2">{{ videoDescription }}</figcaption>
+            </figure>
         </div>
     </div>
 
