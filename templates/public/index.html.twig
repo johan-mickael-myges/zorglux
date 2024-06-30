@@ -157,13 +157,14 @@
                 <h2 class="text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold my-0">Blog</h2>
                 <h2 class="text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold my-0">SEO</h2>
                 <br>
-                <h3 class="font-normal mb-4 text-md md:text-lg lg:text-xl">
-                    Une place pour lire, écrire, et approfondir les connaissances.
-                </h3>
-                <h4 class="font-normal mb-10 text-md md:text-lg lg:text-xl">
-                    Zorglux offre une plateforme de blog spécialement conçue pour optimiser votre SEO,
-                    connectez-vous avec une communauté passionnée et améliorez votre visibilité en ligne grâce à des outils innovants.
-                </h4>
+                <p class="font-normal mb-4 text-md lg:text-lg">
+                    📖 Une place pour lire et écrire sur des sujets autour du référencement naturel.
+                </p>
+                <p class="font-normal mb-10 text-md lg:text-lg">
+                    ✍️ Zorglux offre une plateforme de blog où vous pouvez partager vos idées et expériences.
+                    Les articles sont optimisés pour être bien classés sur Google,
+                    vous aidant à atteindre un public plus large grâce à des pratiques SEO avancées.
+                </p>
                 <button
                     {{ stimulus_controller('clickable', { url: path('blog_index'), title: 'Découvrir la liste des articles' }) }}
                     {{ stimulus_action('clickable', 'visit', 'click') }}
