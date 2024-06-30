@@ -146,7 +146,7 @@
         'md:w-2/3',
     ]|join(' ') %}
 
-    <div class="flex flex-col h-screen border-b border-b-gray-100">
+    <div class="flex flex-col min-h-screen border-b border-b-gray-100">
         <header {{ stimulus_controller('menu_toggler') }} class="sticky top-0 bg-white z-[9990]">
             {% include '@common/navbar.html.twig' %}
         </header>
@@ -157,18 +157,17 @@
                 <h2 class="text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold my-0">Idées</h2>
                 <h2 class="text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold my-0">Articles</h2>
                 <br>
-                <p class="text-lg md:text-xl lg:text-2xl">
+                <p class="mb-4 text-md md:text-lg lg:text-xl">
                     Une place pour lire, écrire, et approfondir les connaissances.
                 </p>
-                <p class="text-md md:text-lg lg:text-xl">
+                <p class="mb-10 text-md md:text-lg lg:text-xl">
                     Zorglux offre une plateforme de blog spécialement conçue pour optimiser votre SEO,
                     connectez-vous avec une communauté passionnée et améliorez votre visibilité en ligne grâce à des outils innovants.
                 </p>
-                <br><br>
                 <button
                     {{ stimulus_controller('clickable', { url: path('blog_index'), title: 'Découvrir la liste des articles' }) }}
                     {{ stimulus_action('clickable', 'visit', 'click') }}
-                        class="w-full sm:w-2/3 md:w-1/2 lg:w-1/3 xl:1/4 text-white bg-black rounded-md px-4 py-2 md:px-6 md:py-3">
+                        class="w-full lg:w-1/2 xl:1/3 text-white bg-black rounded-md px-4 py-2 md:px-6 md:py-3">
                     🚀 Explorer
                 </button>
             </div>
