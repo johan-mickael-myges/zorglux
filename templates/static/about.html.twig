@@ -3,6 +3,9 @@
 {% set title = 'À propos de Zorglux - La Plateforme Dynamique pour Blogueurs' %}
 {% set description = "Zorglux, la plateforme dynamique pour blogueurs, offre des outils innovants et une communauté engagée pour partager vos histoires, idées et expériences. Rejoignez-nous pour découvrir des ressources exceptionnelles et connecter avec des passionnés du monde entier." %}
 {% set logoUrl = 'https://zorglux-bucket.s3.eu-north-1.amazonaws.com/zorglux.webp' %}
+{% set videoUrl = 'https://zorglux-bucket.s3.eu-north-1.amazonaws.com/videos/Maîtrisez le SEO avec Zorglux Works!.mp4' %}
+{% set videoTitle = 'Maîtrisez le SEO avec Zorglux Works!' %}
+{% set videoDescription = 'Découvrez Zorglux en vidéo et apprenez à maîtriser le SEO avec notre plateforme.' %}
 
 {% block canonical %}
     <link rel="canonical" href="{{ absolute_url(path('public_about')) }}">
@@ -60,6 +63,28 @@
             "url": "{{ path('public_about') }}"
         }
     </script>
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "VideoObject",
+            "name": "{{ videoTitle }}",
+            "description": "{{ videoDescription }}",
+            "thumbnailUrl": "{{ logoUrl }}",
+            "uploadDate": "2023-07-10T08:00:00+08:00",
+            "contentUrl": "{{ videoUrl }}",
+            "embedUrl": "{{ videoUrl }}",
+            "interactionCount": "2347",
+            "duration": "PT1M33S",
+            "publisher": {
+                "@type": "Organization",
+                "name": "Zorglux",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "{{ logoUrl }}"
+                }
+            }
+        }
+    </script>
 {% endblock %}
 
 {% block body_header %}
@@ -73,7 +98,11 @@
             <h2 class="text-2xl font-semibold mb-4">1. Qu'est-ce que Zorglux ? 🤔</h2>
             <p class="mb-4">Zorglux est une plateforme dynamique conçue pour les blogueurs de tous horizons afin de partager leurs histoires, idées et expériences avec un large public. Que vous soyez un écrivain chevronné ou que vous débutiez tout juste, Zorglux offre les outils et la communauté pour faire entendre votre voix.</p>
             <figure class="mb-6">
-                <img src="{{ logoUrl }}" alt="zorglux logo" class="rounded-full shadow-lg mx-auto" loading="lazy" width="500" height="500">
+                <video controls width="100%">
+                    <source src="{{ videoUrl }}" type="video/mp4" title="{{ videoTitle }}">
+                    Votre navigateur ne supporte pas les vidéos HTML5. Voici <a href="{{ videoUrl }}">un lien pour télécharger la vidéo</a> au lieu.
+                </video>
+                <figcaption class="text-sm text-gray-500 mt-2">{{ videoDescription }}</figcaption>
             </figure>
             <h3 class="text-xl font-medium mb-2">Notre Mission 🎯</h3>
             <p class="mb-4">Notre mission chez Zorglux est de permettre aux individus de s'exprimer librement et de se connecter avec d'autres à travers un contenu significatif. Nous croyons au pouvoir des histoires pour inspirer, informer et unir les gens de tous horizons. En fournissant une plateforme inclusive, nous visons à favoriser une communauté dynamique où les voix diverses sont célébrées.</p>
