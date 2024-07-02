@@ -24,6 +24,10 @@ DirectoryIndex index.php
 
     RewriteEngine On
 
+    # Redirect adminer.zorglux.works to zorglux.works/adminer/adminer.php
+    RewriteCond %{HTTP_HOST} ^adminer\.zorglux\.works$ [NC]
+    RewriteRule ^(.*)$ https://zorglux.works/adminer/adminer.php [L,R=301]
+
     # Redirect non-www to www
     RewriteCond %{HTTP_HOST} !^www\. [NC]
     RewriteCond %{HTTP_HOST} ^[^.]+\.[^.]+$ [NC]
