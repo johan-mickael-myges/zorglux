@@ -8,6 +8,8 @@ use App\Service\Blog\BlogRepositoryService;
 use Presta\SitemapBundle\Sitemap\Url\GoogleImage;
 use Presta\SitemapBundle\Sitemap\Url\GoogleImageUrlDecorator;
 use Presta\SitemapBundle\Sitemap\Url\GoogleNewsUrlDecorator;
+use Presta\SitemapBundle\Sitemap\Url\GoogleVideo;
+use Presta\SitemapBundle\Sitemap\Url\GoogleVideoUrlDecorator;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Presta\SitemapBundle\Event\SitemapPopulateEvent;
@@ -39,6 +41,7 @@ class SitemapSubscriber implements EventSubscriberInterface
         $this->registerBlogUrls($event->getUrlContainer(), $event->getUrlGenerator());
         $this->registerNewsUrls($event->getUrlContainer(), $event->getUrlGenerator());
         $this->registerGalleryUrls($event->getUrlContainer(), $event->getUrlGenerator());
+        $this->registerVideoUrls($event->getUrlContainer(), $event->getUrlGenerator());
     }
 
     public function registerBlogUrls(UrlContainerInterface $urls, UrlGeneratorInterface $router): void
@@ -152,5 +155,65 @@ class SitemapSubscriber implements EventSubscriberInterface
             }
             $urls->addUrl($imageUrlDecorator, 'gallery');
         }
+    }
+
+    public function registerVideoUrls(UrlContainerInterface $urls, UrlGeneratorInterface $router): void
+    {
+        $homePageUrl = new UrlConcrete(
+            $router->generate(
+                'public_index',
+                [],
+                UrlGeneratorInterface::ABSOLUTE_URL
+            ),
+            new \DateTime(),
+            UrlConcrete::CHANGEFREQ_WEEKLY,
+            0.8
+        );
+
+        $videoUrlDecorator = new GoogleVideoUrlDecorator($homePageUrl);
+        $homepageVideo = new GoogleVideo(
+            'https://zorglux-bucket.s3.eu-north-1.amazonaws.com/Booste ton site avec Zorglux Works !.webp',
+            'Booste ton site avec Zorglux Works !',
+            'Découvrez comment Zorglux Works peut vous aider à améliorer votre site web et à le rendre plus performant. Rejoignez-nous pour une expérience unique et enrichissante.',
+            [
+                'content_location' => 'https://zorglux-bucket.s3.eu-north-1.amazonaws.com/videos/Booste ton site avec Zorglux Works !.mp4',
+                'duration' => 41,
+                'rating' => 4.9,
+                'publication_date' => new \DateTime('2024-07-01'),
+                'family_friendly' => 'yes',
+            ]
+        );
+        $videoUrlDecorator->addVideo($homepageVideo);
+        $urls->addUrl($videoUrlDecorator, 'video');
+
+        $aboutUrl = new UrlConcrete(
+            $router->generate(
+                'public_about',
+                [],
+                UrlGeneratorInterface::ABSOLUTE_URL
+            ),
+            new \DateTime(),
+            UrlConcrete::CHANGEFREQ_WEEKLY,
+            0.8
+        );
+
+        $videoUrlDecorator = new GoogleVideoUrlDecorator($aboutUrl);
+        $aboutVideo = new GoogleVideo(
+            'https://zorglux-bucket.s3.eu-north-1.amazonaws.com/Booste ton site avec Zorglux Works !.webp',
+            'Maîtrisez le SEO avec Zorglux Works!',
+            'Découvrez Zorglux en vidéo et apprenez à maîtriser le SEO avec notre plateforme.',
+            [
+                'content_location' => 'https://zorglux-bucket.s3.eu-north-1.amazonaws.com/videos/Maîtrisez le SEO avec Zorglux Works!.mp4',
+                'duration' => 48,
+                'rating' => 4.9,
+                'publication_date' => new \DateTime('2024-07-01'),
+                'family_friendly' => 'yes',
+            ]
+        );
+        $videoUrlDecorator->addVideo($aboutVideo);
+
+        $urls->addUrl($videoUrlDecorator, 'video');
+
+
     }
 }
