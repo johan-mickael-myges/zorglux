@@ -73,23 +73,24 @@
 
 {% block body_content %}
     <twig:Container>
-        <h1 class="text-4xl text-gray-800 font-bold mb-5">Contactez-nous</h1>
+        <h1 class="text-4xl text-gray-800 mb-5">Contactez-nous</h1>
 
         <section id="contact" class="mb-10">
-            <h2 class="text-2xl font-semibold mb-4">Besoin d'aide ? Contactez-nous dès aujourd'hui !</h2>
-            <ul class="mb-4 text-lg">
-                <li class="mb-2">Téléphone : <a href="tel:{{ phone }}" class="text-blue-700 underline">{{ phone }}</a></li>
-                <li class="mb-2">Email : <a href="mailto:{{ email }}" class="text-blue-700 underline">{{ email }}</a></li>
-                <li class="mb-2">Adresse : <a href="{{ mapUrl }}" class="text-blue-700 underline">{{ address }}</a></li>
-            </ul>
-        </section>
-
-        <section id="informations" class="mb-10">
-            <figure class="mb-6">
-                <img src="{{ logoUrl }}" alt="zorglux logo" class="w-full rounded shadow-lg" loading="lazy" width="500" height="500">
-            </figure>
-            <p class="text-lg italic mb-4">Nous sommes disponibles pour répondre à vos questions et vous aider dans vos projets. N'hésitez pas à nous contacter pour obtenir plus d'informations sur nos services ou pour planifier une consultation.</p>
-            <p class="text-lg italic">Que vous ayez besoin d'un conseil d'expert, d'une assistance technique ou simplement de plus amples informations, notre équipe est là pour vous accompagner à chaque étape. Faites-nous part de vos besoins et nous vous fournirons une solution adaptée à vos besoins.</p>
+            <h2 class="mb-4 font-normal text-base">Besoin d'aide ? Contactez-nous dès aujourd'hui !</h2>
+            <div class="text-sm">
+                <div class="bg-gray-100 shadow mb-2 p-2 rounded">
+                    <span>Téléphone : </span>
+                    <a href="tel:{{ phone }}" class="">{{ phone }}</a>
+                </div>
+                <div class="bg-gray-100 shadow mb-2 p-2 rounded">
+                    <span>Email : </span>
+                    <a href="mailto:{{ email }}" class="">{{ email }}</a>
+                </div>
+                <div class="bg-gray-100 shadow mb-2 p-2 rounded">
+                    <span>Adresse : </span>
+                    <a href="{{ mapUrl }}" class="">{{ address }}</a>
+                </div>
+            </div>
         </section>
     </twig:Container>
 
